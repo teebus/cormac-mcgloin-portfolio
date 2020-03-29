@@ -5,18 +5,24 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@emotion/babel-preset-css-prop": "^10.0.27",
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
+    "emotion": "^10.0.23",
+    "emotion-theming": "^10.0.27",
     "gatsby": "^2.19.45",
+    "gatsby-cli": "^2.11.3",
     "gatsby-image": "^2.2.44",
     "gatsby-plugin-manifest": "^2.2.48",
     "gatsby-plugin-offline": "^3.0.41",
     "gatsby-plugin-react-helmet": "^3.1.24",
-    "gatsby-plugin-sharp": "^2.4.13",
-    "gatsby-source-filesystem": "^2.1.56",
-    "gatsby-transformer-sharp": "^2.3.19",
+    "gatsby-source-sanity": "^5.0.6",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "react-gsap": "^1.2.0",
+    "react-helmet": "^5.2.1",
+    "react-scrollmagic": "^2.2.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
@@ -27,7 +33,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",

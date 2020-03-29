@@ -7,15 +7,6 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
-      },
-    },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,
@@ -25,6 +16,25 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    {
+      resolve: "gatsby-source-sanity",
+      options: {
+        projectId: "z8jm8zku",
+        dataset: "production",
+        overlayDrafts: true,
+        watchMode: true,
+        token:
+          "skmh9B1h7bMrsFR3wTJWKi3kexpZZ34CM4tFikOvRumg2FqAUl0qehlAQxXZMivVo6QH1bYT6tPohkDa1XcotNepFWcifddEI46Y97FFGLS8ALznxQhZy36ZK5IZqKnEg8r3Ork7CZp3KiKrHypKSLXn5PMdAc68lUauPrd8P0HhqGHuUrnm",
+
+        // a token with read permissions is required
+        // if you have a private dataset
+        // token: process.env.MY_SANITY_TOKEN,
+
+        // If the Sanity GraphQL API was deployed using `--tag <name>`,
+        // use `graphqlTag` to specify the tag name. Defaults to `default`.
+        // graphqlTag: 'default',
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
