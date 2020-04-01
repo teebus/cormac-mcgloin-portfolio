@@ -1,11 +1,12 @@
 /** @jsx jsx */
-import React from "react"
-import { Link, graphql } from "gatsby"
+// import React from "react"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Image from "gatsby-image"
 import { css, jsx } from "@emotion/core"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
 
-import { FadeIn, FadeInOnScroll } from "../components/animation"
+// import { FadeIn, FadeInOnScroll } from "../components/animation"
 
 export const query = graphql`
   query($slug: String) {
@@ -15,7 +16,7 @@ export const query = graphql`
       image {
         asset {
           fluid {
-            ...GatsbySanityImageFluid
+            ...GatsbySanityImageFluid_noBase64
           }
         }
       }
@@ -43,6 +44,8 @@ export default ({ data }) => (
     </div>
     <h1>{data.sanityProject.title}</h1>
     <p>{data.sanityProject.description}</p>
-    <Link to="/">Back to projects</Link>
+    <AniLink fade to="/">
+      Back to projects
+    </AniLink>
   </Layout>
 )

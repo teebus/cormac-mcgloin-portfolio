@@ -31,6 +31,12 @@ export default {
       type: "text",
     },
     {
+      name: "projectImages",
+      title: "Project Images",
+      type: "array",
+      of: [{ type: "image" }],
+    },
+    {
       name: "author",
       title: "Author",
       type: "reference",
