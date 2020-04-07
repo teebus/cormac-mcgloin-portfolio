@@ -215,7 +215,8 @@ const BaseStyles = () => (
         -ms-font-feature-settings: "kern", "liga", "clig", "calt";
         -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
         font-feature-settings: "kern", "liga", "clig", "calt";
-        background: ${theme.colors.pageBackground};
+        // background: ${theme.colors.pageBackground};
+        min-height: 100vh;
       }
       img {
         max-width: 100%;

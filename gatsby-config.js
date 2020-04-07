@@ -39,7 +39,7 @@ module.exports = {
         overlayDrafts: true,
         watchMode: true,
         token:
-          "skmh9B1h7bMrsFR3wTJWKi3kexpZZ34CM4tFikOvRumg2FqAUl0qehlAQxXZMivVo6QH1bYT6tPohkDa1XcotNepFWcifddEI46Y97FFGLS8ALznxQhZy36ZK5IZqKnEg8r3Ork7CZp3KiKrHypKSLXn5PMdAc68lUauPrd8P0HhqGHuUrnm",
+          "skKuPBgriusU78bdjksGLYhhDalDnDJGVe7Y1dFUSzeEUVOAQfPPZjaZxzoKeqFhyOpbPYHBKaH4YPwU4C839T9V765FVl3byiNkOUurt1TE4H67Y6AKbgYfflB3EBXeulK6hESB0VLhZRyhGd5illnffb11hwmqWu5vMFgPZbwhVLkopg3e",
 
         // a token with read permissions is required
         // if you have a private dataset

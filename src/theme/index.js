@@ -18,7 +18,17 @@ export const theme =
       heading: "Source Sans Pro",
       monospace: "Menlo, monospace",
     },
-    fontSizes: [16, 18, 22, 24, 28, 32, 40, 48, 80],
+    fontSizes: [
+      "1rem",
+      "1.125rem",
+      "1.375rem",
+      "1.5rem",
+      "1.75rem",
+      "2rem",
+      "2.5rem",
+      "3rem",
+      "5rem",
+    ],
     smallfontSizes: [12, 14],
     fontWeights: {
       body: 400,

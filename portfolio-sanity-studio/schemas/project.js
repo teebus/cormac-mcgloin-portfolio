@@ -1,3 +1,5 @@
+import { object } from "prop-types"
+
 export default {
   name: "project",
   title: "Project",
@@ -18,23 +20,23 @@ export default {
       },
     },
     {
-      name: "image",
-      title: "Project Screenshot",
+      name: "projectHero",
+      title: "Project Hero",
       type: "image",
       options: {
         hotspot: true,
       },
     },
     {
-      name: "description",
-      title: "Description",
+      name: "projectDescription",
+      title: "Project description",
       type: "text",
     },
     {
       name: "projectImages",
       title: "Project Images",
       type: "array",
-      of: [{ type: "image" }],
+      of: [{ type: "projectImage" }],
     },
     {
       name: "author",

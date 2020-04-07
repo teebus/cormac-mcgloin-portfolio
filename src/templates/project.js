@@ -1,5 +1,5 @@
 /** @jsx jsx */
-// import React from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Image from "gatsby-image"
@@ -12,13 +12,26 @@ export const query = graphql`
   query($slug: String) {
     sanityProject(slug: { current: { eq: $slug } }) {
       title
-      description
-      image {
+      projectDescription
+      slug {
+        current
+      }
+      projectHero {
         asset {
           fluid {
-            ...GatsbySanityImageFluid_noBase64
+            ...GatsbySanityImageFluid
           }
         }
+      }
+      projectImages {
+        image {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        description
       }
     }
   }
@@ -33,17 +46,38 @@ const heroStyle = css`
 export default ({ data }) => (
   <Layout>
     <div css={heroStyle}>
-      <Image
-        fluid={{
-          ...data.sanityProject.image.asset.fluid,
-          sizes: "(max-width: 800px) 100vw, 1440px",
-        }}
-        alt={data.sanityProject.title}
-        imgStyle={{ objectFit: "cover" }}
-      />
+      {data.sanityProject.projectHero && (
+        <Image
+          fluid={{
+            ...data.sanityProject.projectHero.asset.fluid,
+            sizes: "(max-width: 800px) 100vw, 1440px",
+          }}
+          alt={data.sanityProject.title}
+          imgStyle={{ objectFit: "cover" }}
+        />
+      )}
     </div>
     <h1>{data.sanityProject.title}</h1>
-    <p>{data.sanityProject.description}</p>
+    <p>{data.sanityProject.projectDescription}</p>
+
+    {data.sanityProject.projectImages.map((project, index) => (
+      <React.Fragment key={index}>
+        <Image
+          key={project.image.asset.assetId}
+          fluid={{
+            ...project.image.asset.fluid,
+            sizes: "(max-width: 800px) 100vw, 400px",
+          }}
+          alt={project.description}
+          // sizes={sizes}
+          css={{
+            height: "300px",
+          }}
+          imgStyle={{ objectPosition: "top center" }}
+        />
+        <p key={index}>{project.description}</p>
+      </React.Fragment>
+    ))}
     <AniLink fade to="/">
       Back to projects
     </AniLink>
