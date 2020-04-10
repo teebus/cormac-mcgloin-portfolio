@@ -14,8 +14,8 @@ export const theme =
   {
     space: [2, 4, 8, 16, 24, 32, 48, 64, 80],
     fonts: {
-      body: '"Lato", "Helvetica Neue", sans-serif',
-      heading: "Source Sans Pro",
+      body: '"Source Sans Pro", "Lato", "Helvetica Neue", sans-serif',
+      heading: "Source Serif Pro",
       monospace: "Menlo, monospace",
     },
     fontSizes: [
@@ -27,6 +27,7 @@ export const theme =
       "2rem",
       "2.5rem",
       "3rem",
+      "4rem",
       "5rem",
     ],
     smallfontSizes: [12, 14],
@@ -40,13 +41,13 @@ export const theme =
       heading: 1.25,
     },
     colors: {
-      text: "#262630",
+      text: "#333333",
       white: "#ffffff",
       primary: "#6a148e",
       primaryLight: "#901fbf",
       helm: "#1D7B8A",
       greyAlabaster: "#f8f8f8",
-      pageBackground: "#f9f8f4",
+      pageBackground: "#FAF8F6",
     },
     styles: {
       root: {

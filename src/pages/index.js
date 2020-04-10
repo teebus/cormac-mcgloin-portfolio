@@ -11,15 +11,16 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TransitionLink from "gatsby-plugin-transition-link"
 import { TransitionPortal } from "gatsby-plugin-transition-link"
-import "./test.css"
-// import AniLink from "gatsby-plugin-transition-link/AniLink"
 import gsap from "gsap"
+
+import "./test.css"
 
 export const query = graphql`
   {
     allSanityProject(sort: { fields: _updatedAt, order: DESC }) {
       edges {
         node {
+          _rawProjectContent(resolveReferences: { maxDepth: 5 })
           title
           projectDescription
           slug {
@@ -82,7 +83,6 @@ const elasticWrapperStyle = css`
   width: 100vw;
   background: #f5f5f5;
   transform: translateX(-100%);
-  opacity: 0;
 `
 
 const IndexPage = ({ data }) => {
@@ -92,52 +92,53 @@ const IndexPage = ({ data }) => {
   let logo = useRef(null)
 
   const [ExitAnimation, setExitAnimation] = useState()
-  const [EntryAnimation, setEntryAnimation] = useState()
 
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
+
     setExitAnimation(
       timeline
-
-        .to(logo, 0.3, { autoAlpha: 0 }, 0)
-        .to(elasticWrapper, 0, { autoAlpha: 1 })
+        .to(logo, 1, { autoAlpha: 0 }, 0)
+        .to(elasticWrapper, 0, {
+          display: "block",
+          autoAlpha: 1,
+        })
         .to(
           elasticWrapper,
-          2,
+          1,
           {
-            x: "115%",
-            ease: "Power4.easeInOut",
+            x: "155%",
+            ease: "Power1.InOut",
           },
           0
         )
         .to(
           elastic,
-          0.8,
+          0.4,
           {
             attr: {
               d:
                 "M73.637 0.5H365.137V1023.5H73.637C-172.363 777.5 295.637 222.5 73.637 0.5Z",
             },
 
-            ease: "Elastic.easeOut",
+            ease: "Elastic.easeInOut",
           },
-          "-=1.2"
+          "-=0.3"
         )
-        .to(page, 0.1, { autoAlpha: 0 }, "-=1.2")
+        .to(page, 0.1, { autoAlpha: 0 }, "-=2")
         .to(
           elastic,
-          2,
+          0.5,
           {
             attr: {
               d: "M0 0.5H291.5V1023.5H0C0.363037 774 0 256.5 0 0Z",
             },
-            ease: "Elastic.easeOut",
+            ease: "Elastic.easeInOut",
           },
-          "-=0.8"
+          "-=0.3"
         )
     )
-    setEntryAnimation(timeline.to(page, 0.3, { autoAlpha: 1 }))
-  }, [setExitAnimation, setEntryAnimation])
+  }, [setExitAnimation])
 
   return (
     <Layout>
@@ -151,55 +152,28 @@ const IndexPage = ({ data }) => {
         <ul css={projectListStyle}>
           <div id="test"></div>
 
-          <FadeInFromLeft duration={0.7} stagger={0.2}>
+          <FadeInFromLeft duration={0.4} stagger={0.1}>
             {data.allSanityProject.edges.map(({ node: project }) => (
               <li key={project.slug.current}>
                 <h2 css={projectListItemStyle}>
                   <TransitionLink
+                    preventScrollJump
                     to={`/project/${project.slug.current}`}
                     exit={{
-                      trigger: ({ exit }) => ExitAnimation.play(),
                       length: 1.2,
+                      trigger: ({ exit }) => ExitAnimation.play(),
                     }}
                     entry={{
-                      trigger: ({ entry, node }) => EntryAnimation.play(),
-                      delay: 1,
+                      delay: 0.4,
                     }}
                   >
                     {project.title}
                   </TransitionLink>
                 </h2>
-                {/* <Link to={`/project/${project.slug.current}`}>
-                <Image
-                  fluid={{
-                    ...project.image.asset.fluid,
-                    sizes: "(max-width: 800px) 100vw, 400px",
-                  }}
-                  alt={project.title}
-                  // sizes={sizes}
-                  css={{
-                    height: "300px",
-                  }}
-                  imgStyle={{ objectPosition: "top center" }}
-                />
-              </Link>
-              <p>{project.description}</p> */}
               </li>
             ))}
           </FadeInFromLeft>
           <TransitionPortal>
-            {/* <div
-              ref={n => (testing = n)}
-              style={{
-                position: "fixed",
-                background: "#000",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                transform: "translateY(-100%)",
-              }}
-            /> */}
             <div css={elasticWrapperStyle} ref={n => (elasticWrapper = n)}>
               <svg
                 style={{ height: "100vh", transform: "translateX(-200px)" }}
@@ -210,7 +184,6 @@ const IndexPage = ({ data }) => {
                   ref={n => (elastic = n)}
                   d="M40.0656 0.5H331.566V1023.5H40.0656C216.066 527 -106.934 299 40.0656 0.5Z"
                   fill="#f5f5f5"
-                  // transform="translate(-420 0)"
                 />
               </svg>
             </div>

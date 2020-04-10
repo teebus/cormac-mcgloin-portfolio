@@ -206,8 +206,9 @@ const BaseStyles = () => (
         box-sizing: inherit;
       }
       body {
-        color: hsla(0, 0%, 0%, 1);
+        color: var(--colour-text);
         font-family: ${theme.fonts.body};
+        line-height: var(--line-height-body);
         font-weight: normal;
         word-wrap: break-word;
         font-kerning: normal;
@@ -215,7 +216,7 @@ const BaseStyles = () => (
         -ms-font-feature-settings: "kern", "liga", "clig", "calt";
         -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
         font-feature-settings: "kern", "liga", "clig", "calt";
-        // background: ${theme.colors.pageBackground};
+        background: ${theme.colors.pageBackground};
         min-height: 100vh;
       }
       img {
@@ -387,6 +388,8 @@ const BaseStyles = () => (
         margin-bottom: 1.45rem;
       }
       p {
+        font-size: var(--size-2);
+        letter-spacing: 0.5px;
         margin-left: 0;
         margin-right: 0;
         margin-top: 0;
@@ -632,8 +635,46 @@ const BaseStyles = () => (
       }
 
       // Cormac's edits
+
+      :root {
+        --colour-text: #333333;
+        --colour-white: #ffffff;
+        --colour-page-background: #faf8f6;
+
+        --micro-size-1: 0.25rem;
+        --micro-size-2: 0.5rem;
+
+        --size-1: 1rem;
+        --size-2: 1.125rem;
+        --size-3: 1.375rem;
+        --size-4: 1.5rem;
+        --size-5: 1.75rem;
+        --size-6: 2rem;
+        --size-7: 2.5rem;
+        --size-8: 3rem;
+        --size-9: 4rem;
+        --size-10: 5rem;
+
+        --line-height-body: 1.625;
+        --line-height-heading: 1.25;
+
+        --project-title: var(--size-7);
+        @media (min-width: 800px) {
+          --project-title: var(--size-9);
+        }
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: var(--line-height-heading);
+      }
+
       h2 {
-        font-size: ${theme.fontSizes[0]}px;
+        --project-title: var(--size6);
       }
     `}
   />

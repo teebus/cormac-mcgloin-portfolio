@@ -28,6 +28,10 @@ module.exports = {
             family: "Source Sans Pro",
             variants: ["400", "700"],
           },
+          {
+            family: "Source Serif Pro",
+            variants: ["700"],
+          },
         ],
       },
     },

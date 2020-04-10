@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 
-import Layout from "../components/layout"
+import Layout from "../../components/layout"
 import Image from "gatsby-image"
 import { css, jsx } from "@emotion/core"
 // import styled from "@emotion/styled"
@@ -11,16 +11,15 @@ import TransitionLink from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
 import gsap from "gsap"
 
-import ProjectInfo from "../components/ProjectInfo"
+import ProjectInfo from "../../components/ProjectInfo"
 
 // import { FadeIn, FadeInOnScroll } from "../components/animation"
 
 export const query = graphql`
-  query($slug: String) {
-    sanityProject(slug: { current: { eq: $slug } }) {
+  query {
+    sanityProject(slug: { current: { eq: "tateossian" } }) {
       title
       projectDescription
-      projectRole
       slug {
         current
       }
@@ -41,7 +40,9 @@ const heroStyle = css`
   width: 100%;
   height: 80vh;
   overflow: hidden;
-  div {
+  * {
+    object-fit: cover;
+    width: 100%;
     height: 100%;
   }
 `
@@ -96,14 +97,55 @@ export default ({ data }) => {
       <div ref={el => (page = el)}>
         <div css={heroStyle}>
           {project.projectHero && (
-            <Image
-              fluid={{
-                ...project.projectHero.asset.fluid,
-                sizes: "(min-width: 1200px) 1680px, 100vw",
-              }}
-              alt={project.title}
-              imgStyle={{ objectFit: "cover", objectPosition: "center center" }}
-            />
+            // <Image
+            //   fluid={[
+            //     project.projectHero.asset.fluid,
+            //     `sizes: (min-width: 1200px) 1680px, 100vw`,
+            //   ]}
+            //   alt={project.title}
+            //   imgStyle={{ objectFit: "cover", objectPosition: "center center" }}
+            // />
+
+            <picture>
+              <source
+                media="(min-width: 800px)"
+                srcSet={[
+                  urlFor(project._rawProjectHero)
+                    .fit("max")
+                    .height(700)
+                    .width(1680) + ` 1680w`,
+                  urlFor(project._rawProjectHero)
+                    .fit("max")
+                    .height(900)
+                    .width(600) + ` 600w`,
+                ]}
+                sizes="100vw"
+              />
+
+              <source
+                srcSet={[
+                  urlFor(project._rawProjectHero)
+                    .fit("crop")
+                    // .focalPoint(0.7, 0.5)
+                    .height(1060)
+                    .width(750) + ` 750w`,
+                  urlFor(project._rawProjectHero)
+                    .fit("crop")
+                    // .focalPoint(0.7, 0.5)
+                    .height(1060)
+                    .width(750) + ` 750w`,
+                ]}
+              />
+
+              <img
+                src={urlFor(project._rawProjectHero)
+                  .width(1060)
+                  .height(750)
+                  .fit("crop")
+                  // .focalPoint(0.7, 0.5)
+                  .url()}
+              />
+            </picture>
           )}
         </div>
 
@@ -113,11 +155,11 @@ export default ({ data }) => {
           role={project.projectRole}
         />
 
-        <BlockContent
+        {/* <BlockContent
           blocks={project._rawProjectContent}
           serializers={serializers}
           css={testStyle}
-        />
+        /> */}
 
         <TransitionLink
           to={`/`}
@@ -126,6 +168,7 @@ export default ({ data }) => {
             length: 0.3,
           }}
           entry={{
+            // trigger: ({ entry, node }) => EntryAnimation.play(),
             delay: 0.3,
           }}
           preventScrollJump

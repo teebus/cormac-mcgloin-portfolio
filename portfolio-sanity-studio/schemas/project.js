@@ -21,7 +21,7 @@ export default {
     },
     {
       name: "projectHero",
-      title: "Project Hero",
+      title: "Project hero",
       type: "image",
       options: {
         hotspot: true,
@@ -33,10 +33,21 @@ export default {
       type: "text",
     },
     {
-      name: "projectImages",
-      title: "Project Images",
+      name: "projectRole",
+      title: "Role in project",
+      type: "string",
+    },
+    // {
+    //   name: "projectImages",
+    //   title: "Project Images",
+    //   type: "array",
+    //   of: [{ type: "projectImage" }],
+    // },
+    {
+      name: "projectContent",
+      title: "Project content",
       type: "array",
-      of: [{ type: "projectImage" }],
+      of: [{ type: "block" }, { type: "image" }],
     },
     {
       name: "author",
