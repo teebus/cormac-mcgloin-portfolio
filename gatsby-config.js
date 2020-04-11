@@ -1,6 +1,6 @@
 const {
   api: { projectId, dataset },
-} = require("../cormac-mcgloin-portfolio/portfolio-sanity-studio/sanity.json")
+} = require("./portfolio-sanity-studio/sanity.json")
 
 module.exports = {
   siteMetadata: {
