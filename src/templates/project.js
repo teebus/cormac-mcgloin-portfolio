@@ -48,11 +48,23 @@ const heroStyle = css`
 `
 
 const projectImageStyle = theme => css`
-  margin: 0;
+  margin: 0 var(--size-1);
+  @media (min-width: 832px) {
+    margin: 0 auto;
+    max-width: 800px;
+  }
 `
 const projectContent = css`
-  margin: 0 auto var(--size-10);
-  max-width: 800px;
+  margin: 0 auto;
+  /* max-width: 800px; */
+`
+
+const projectContentText = css`
+  margin: 0 var(--size-1);
+  @media (min-width: 832px) {
+    margin: 0 auto var(--size-1);
+    max-width: 800px;
+  }
 `
 
 const urlFor = source =>
@@ -69,8 +81,8 @@ export default ({ data }) => {
             sizes="(min-width: 800px) 800px, 100vw,"
             srcSet={[
               urlFor(node.asset)
-                .width(1400)
-                .url() + ` 1400w`,
+                .width(1600)
+                .url() + ` 1600w`,
               urlFor(node.asset)
                 .width(800)
                 .url() + ` 800w`,
@@ -81,7 +93,7 @@ export default ({ data }) => {
           />
         </div>
       ),
-      block: ({ children }) => <p className="test">{children}</p>,
+      block: ({ children }) => <p css={projectContentText}>{children}</p>,
     },
   }
 
@@ -112,6 +124,10 @@ export default ({ data }) => {
               <source
                 media="(min-width: 800px)"
                 srcSet={[
+                  urlFor(project._rawProjectHero)
+                    .fit("max")
+                    .height(1400)
+                    .width(3360) + ` 3360w`,
                   urlFor(project._rawProjectHero)
                     .fit("max")
                     .height(700)

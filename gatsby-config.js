@@ -1,3 +1,7 @@
+const {
+  api: { projectId, dataset },
+} = require("../cormac-mcgloin-portfolio/portfolio-sanity-studio/sanity.json")
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -38,12 +42,11 @@ module.exports = {
     {
       resolve: "gatsby-source-sanity",
       options: {
-        projectId: "z8jm8zku",
-        dataset: "production",
+        projectId,
+        dataset,
+        token: process.env.SANITY_TOKEN,
         overlayDrafts: true,
         watchMode: true,
-        token:
-          "sk8a3ezCA9LB4CNA5KY169DHKJK7qCfN3jYAx5jmJ2S3p45Vkgx3hDPmXZXPKl5gOhmygHWEd3GWL73iWrJ50B5pFXcIeh2ueAlyenJWk9lilJ5Jn7B3V1ETDjN2Di91A3wkdOYche93pU390x8zMbDd0EtV0H0uCKFr8I9iiP2enOSoL8SK",
 
         // a token with read permissions is required
         // if you have a private dataset
