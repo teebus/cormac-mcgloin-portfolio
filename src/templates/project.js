@@ -36,21 +36,23 @@ export const query = graphql`
     }
   }
 `
-
 const heroStyle = css`
   width: 100%;
   height: 80vh;
   overflow: hidden;
-  div {
+  * {
+    object-fit: cover;
+    width: 100%;
     height: 100%;
   }
 `
 
 const projectImageStyle = theme => css`
-  margin: 0 ${theme.space[4]}px;
+  margin: 0;
 `
-const testStyle = css`
-  background: #000;
+const projectContent = css`
+  margin: 0 auto var(--size-10);
+  max-width: 800px;
 `
 
 const urlFor = source =>
@@ -64,21 +66,22 @@ export default ({ data }) => {
       image: ({ node }) => (
         <div css={projectImageStyle}>
           <img
-            sizes="(min-width: 800px) 600px, 100vw,"
+            sizes="(min-width: 800px) 800px, 100vw,"
             srcSet={[
               urlFor(node.asset)
                 .width(1400)
                 .url() + ` 1400w`,
               urlFor(node.asset)
-                .width(600)
-                .url() + ` 600w`,
+                .width(800)
+                .url() + ` 800w`,
             ]}
             src={urlFor(node.asset)
-              .width(600)
+              .width(800)
               .url()}
           />
         </div>
       ),
+      block: ({ children }) => <p className="test">{children}</p>,
     },
   }
 
@@ -96,14 +99,55 @@ export default ({ data }) => {
       <div ref={el => (page = el)}>
         <div css={heroStyle}>
           {project.projectHero && (
-            <Image
-              fluid={{
-                ...project.projectHero.asset.fluid,
-                sizes: "(min-width: 1200px) 1680px, 100vw",
-              }}
-              alt={project.title}
-              imgStyle={{ objectFit: "cover", objectPosition: "center center" }}
-            />
+            // <Image
+            //   fluid={[
+            //     project.projectHero.asset.fluid,
+            //     `sizes: (min-width: 1200px) 1680px, 100vw`,
+            //   ]}
+            //   alt={project.title}
+            //   imgStyle={{ objectFit: "cover", objectPosition: "center center" }}
+            // />
+
+            <picture>
+              <source
+                media="(min-width: 800px)"
+                srcSet={[
+                  urlFor(project._rawProjectHero)
+                    .fit("max")
+                    .height(700)
+                    .width(1680) + ` 1680w`,
+                  urlFor(project._rawProjectHero)
+                    .fit("max")
+                    .height(900)
+                    .width(600) + ` 600w`,
+                ]}
+                sizes="100vw"
+              />
+
+              <source
+                srcSet={[
+                  urlFor(project._rawProjectHero)
+                    .fit("crop")
+                    // .focalPoint(0.7, 0.5)
+                    .height(1060)
+                    .width(750) + ` 750w`,
+                  urlFor(project._rawProjectHero)
+                    .fit("crop")
+                    // .focalPoint(0.7, 0.5)
+                    .height(1060)
+                    .width(750) + ` 750w`,
+                ]}
+              />
+
+              <img
+                src={urlFor(project._rawProjectHero)
+                  .width(1060)
+                  .height(750)
+                  .fit("crop")
+                  // .focalPoint(0.7, 0.5)
+                  .url()}
+              />
+            </picture>
           )}
         </div>
 
@@ -116,7 +160,8 @@ export default ({ data }) => {
         <BlockContent
           blocks={project._rawProjectContent}
           serializers={serializers}
-          css={testStyle}
+          css={projectContent}
+          className="projectContent"
         />
 
         <TransitionLink
