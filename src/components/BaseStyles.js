@@ -228,7 +228,8 @@ const BaseStyles = () => (
         padding-left: 0;
         padding-right: 0;
         padding-top: 0;
-        margin-bottom: 1.45rem;
+        /* margin-bottom: 1.45rem; */
+        margin-bottom: 0;
       }
       h1 {
         margin-left: 0;
@@ -659,7 +660,7 @@ const BaseStyles = () => (
         --line-height-heading: 1.25;
 
         --project-title: var(--size-7);
-        @media (min-width: 800px) {
+        @media (min-width: 700px) {
           --project-title: var(--size-9);
         }
       }

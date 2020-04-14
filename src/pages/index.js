@@ -154,7 +154,7 @@ const IndexPage = ({ data }) => {
 
           <FadeInFromLeft duration={0.4} stagger={0.1}>
             {data.allSanityProject.edges.map(({ node: project }) => (
-              <li key={project.slug.current}>
+              <li css={{ visibility: "hidden" }} key={project.slug.current}>
                 <h2 css={projectListItemStyle}>
                   <TransitionLink
                     preventScrollJump

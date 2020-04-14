@@ -11,7 +11,15 @@ import TransitionLink from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
 import gsap from "gsap"
 
+import Zoom from "react-medium-image-zoom"
+import "react-medium-image-zoom/dist/styles.css"
+
 import ProjectInfo from "../components/ProjectInfo"
+
+import { Controller, Scene } from "react-scrollmagic"
+import { Tween } from "react-gsap"
+
+import { FadeInFromLeft } from "../components/animation"
 
 // import { FadeIn, FadeInOnScroll } from "../components/animation"
 
@@ -21,6 +29,7 @@ export const query = graphql`
       title
       projectDescription
       projectRole
+      _rawProjectSection(resolveReferences: { maxDepth: 5 })
       slug {
         current
       }
@@ -47,11 +56,26 @@ const heroStyle = css`
   }
 `
 
+const projectInfoStyles = css`
+  margin: var(--size-8) var(--size-1);
+  max-width: 800px;
+  @media (min-width: 700px) {
+    margin: var(--size-10) var(--size-8);
+  }
+  @media (min-width: 896px) {
+    margin: var(--size-10) auto;
+  }
+`
+
 const projectImageStyle = theme => css`
-  margin: 0 var(--size-1);
-  @media (min-width: 832px) {
-    margin: 0 auto;
-    max-width: 800px;
+  margin: 0 var(--size-1) var(--size-4);
+  max-width: 800px;
+  position: relative;
+  @media (min-width: 700px) {
+    margin: 0 var(--size-8) var(--size-4);
+  }
+  @media (min-width: 896px) {
+    margin: 0 auto var(--size-4);
   }
 `
 const projectContent = css`
@@ -60,11 +84,26 @@ const projectContent = css`
 `
 
 const projectContentText = css`
-  margin: 0 var(--size-1);
-  @media (min-width: 832px) {
-    margin: 0 auto var(--size-1);
-    max-width: 800px;
+  margin: var(--size-8) var(--size-1);
+  max-width: 800px;
+  @media (min-width: 700px) {
+    margin: var(--size-8) var(--size-8);
   }
+  @media (min-width: 896px) {
+    margin: var(--size-8) auto;
+  }
+`
+
+const mask = css`
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  position: absolute;
+  background: #faf8f5;
+  transform: scaleX(1);
+  transform-origin: left;
+  /* visibility: hidden; */
 `
 
 const urlFor = source =>
@@ -77,23 +116,31 @@ export default ({ data }) => {
     types: {
       image: ({ node }) => (
         <div css={projectImageStyle}>
-          <img
-            sizes="(min-width: 800px) 800px, 100vw,"
-            srcSet={[
-              urlFor(node.asset)
-                .width(1600)
-                .url() + ` 1600w`,
-              urlFor(node.asset)
+          <Zoom>
+            <img
+              sizes="(min-width: 800px) 800px, 100vw,"
+              srcSet={[
+                urlFor(node.asset)
+                  .width(1600)
+                  .url() + ` 1600w`,
+                urlFor(node.asset)
+                  .width(800)
+                  .url() + ` 800w`,
+              ]}
+              src={urlFor(node.asset)
                 .width(800)
-                .url() + ` 800w`,
-            ]}
-            src={urlFor(node.asset)
-              .width(800)
-              .url()}
-          />
+                .url()}
+            />
+          </Zoom>
+
+          <div css={mask}></div>
         </div>
       ),
-      block: ({ children }) => <p css={projectContentText}>{children}</p>,
+      block: ({ children }) => (
+        <div css={projectContentText}>
+          <p>{children}</p>
+        </div>
+      ),
     },
   }
 
@@ -171,14 +218,67 @@ export default ({ data }) => {
           title={project.title}
           description={project.projectDescription}
           role={project.projectRole}
+          css={projectInfoStyles}
         />
 
-        <BlockContent
+        {project._rawProjectSection.map((project, index) => (
+          <div css={projectImageStyle} key={index} id={`${project.asset.id}`}>
+            <Zoom>
+              <img
+                sizes="(min-width: 800px) 800px, 100vw,"
+                srcSet={[
+                  urlFor(project.asset)
+                    .width(1600)
+                    .url() + ` 1600w`,
+                  urlFor(project.asset)
+                    .width(800)
+                    .url() + ` 800w`,
+                ]}
+                src={urlFor(project.asset)
+                  .width(800)
+                  .url()}
+              />
+            </Zoom>
+            <Controller key={index}>
+              <Scene
+                triggerElement={`#${project.asset.id}`}
+                indicators={false}
+                duration={1}
+                offset={-100}
+                reverse={false}
+              >
+                {(progress, event) => {
+                  return (
+                    <Tween
+                      duration={0.5}
+                      to={{ autoAlpha: 1, scaleX: 0 }}
+                      ease="Power2.easeOut"
+                      paused
+                      playState={
+                        event.type === "enter" &&
+                        event.scrollDirection === "FORWARD"
+                          ? "play"
+                          : event.type === "enter" &&
+                            event.scrollDirection === "REVERSE"
+                          ? "reverse"
+                          : null
+                      }
+                    >
+                      <div css={mask}></div>
+                    </Tween>
+                  )
+                }}
+              </Scene>
+            </Controller>
+          </div>
+        ))}
+
+        {/* <BlockContent
           blocks={project._rawProjectContent}
           serializers={serializers}
           css={projectContent}
           className="projectContent"
-        />
+        /> */}
 
         <TransitionLink
           to={`/`}

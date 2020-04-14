@@ -10,6 +10,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type"
 // import post from './post'
 import author from "./author"
 import projectImage from "./projectImage"
+import projectSnippet from "./projectSnippet"
 import project from "./project"
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -22,6 +23,7 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     projectImage,
+    projectSnippet,
     project,
     author,
     // category,

@@ -37,12 +37,12 @@ export default {
       title: "Role in project",
       type: "string",
     },
-    // {
-    //   name: "projectImages",
-    //   title: "Project Images",
-    //   type: "array",
-    //   of: [{ type: "projectImage" }],
-    // },
+    {
+      name: "projectSection",
+      title: "Project section",
+      type: "array",
+      of: [{ type: "projectImage" }, { type: "projectSnippet" }],
+    },
     {
       name: "projectContent",
       title: "Project content",
