@@ -221,57 +221,58 @@ export default ({ data }) => {
           css={projectInfoStyles}
         />
 
-        {project._rawProjectSection.map((project, index) => (
-          <div css={projectImageStyle} key={index} id={`${project.asset.id}`}>
-            <Zoom>
-              <img
-                sizes="(min-width: 800px) 800px, 100vw,"
-                srcSet={[
-                  urlFor(project.asset)
-                    .width(1600)
-                    .url() + ` 1600w`,
-                  urlFor(project.asset)
+        {project._rawProjectSection &&
+          project._rawProjectSection.map((project, index) => (
+            <div css={projectImageStyle} key={index} id={`${project.asset.id}`}>
+              <Zoom>
+                <img
+                  sizes="(min-width: 800px) 800px, 100vw,"
+                  srcSet={[
+                    urlFor(project.asset)
+                      .width(1600)
+                      .url() + ` 1600w`,
+                    urlFor(project.asset)
+                      .width(800)
+                      .url() + ` 800w`,
+                  ]}
+                  src={urlFor(project.asset)
                     .width(800)
-                    .url() + ` 800w`,
-                ]}
-                src={urlFor(project.asset)
-                  .width(800)
-                  .url()}
-              />
-            </Zoom>
-            <Controller key={index}>
-              <Scene
-                triggerElement={`#${project.asset.id}`}
-                indicators={false}
-                duration={1}
-                offset={-100}
-                reverse={false}
-              >
-                {(progress, event) => {
-                  return (
-                    <Tween
-                      duration={0.5}
-                      to={{ autoAlpha: 1, scaleX: 0 }}
-                      ease="Power2.easeOut"
-                      paused
-                      playState={
-                        event.type === "enter" &&
-                        event.scrollDirection === "FORWARD"
-                          ? "play"
-                          : event.type === "enter" &&
-                            event.scrollDirection === "REVERSE"
-                          ? "reverse"
-                          : null
-                      }
-                    >
-                      <div css={mask}></div>
-                    </Tween>
-                  )
-                }}
-              </Scene>
-            </Controller>
-          </div>
-        ))}
+                    .url()}
+                />
+              </Zoom>
+              <Controller key={index}>
+                <Scene
+                  triggerElement={`#${project.asset.id}`}
+                  indicators={false}
+                  duration={1}
+                  offset={-100}
+                  reverse={true}
+                >
+                  {(progress, event) => {
+                    return (
+                      <Tween
+                        duration={0.5}
+                        to={{ autoAlpha: 1, scaleX: 0 }}
+                        ease="Power2.easeOut"
+                        paused
+                        playState={
+                          event.type === "enter" &&
+                          event.scrollDirection === "FORWARD"
+                            ? "play"
+                            : event.type === "enter" &&
+                              event.scrollDirection === "REVERSE"
+                            ? "reverse"
+                            : null
+                        }
+                      >
+                        <div css={mask}></div>
+                      </Tween>
+                    )
+                  }}
+                </Scene>
+              </Controller>
+            </div>
+          ))}
 
         {/* <BlockContent
           blocks={project._rawProjectContent}
