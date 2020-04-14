@@ -11,26 +11,29 @@ const path = require("path")
 exports.createPages = async ({ actions, graphql }) => {
   const result = await graphql(`
     {
-      allSanityProject {
+      allSanityProject(sort: { fields: _updatedAt, order: DESC }) {
         edges {
           node {
             slug {
               current
             }
+            title
           }
         }
       }
     }
   `)
 
-  const projects = result.data.allSanityProject.edges.map(({ node }) => node)
+  const projects = result.data.allSanityProject.edges
 
-  projects.forEach(project => {
+  projects.forEach(({ node }, index) => {
     actions.createPage({
-      path: `/project/${project.slug.current}`,
+      path: `/project/${node.slug.current}`,
       component: path.resolve("./src/templates/project.js"),
       context: {
-        slug: project.slug.current,
+        slug: node.slug.current,
+        prev: index === 0 ? null : projects[index - 1].node,
+        next: index === projects.length - 1 ? null : projects[index + 1].node,
       },
     })
   })
