@@ -18,6 +18,7 @@ exports.createPages = async ({ actions, graphql }) => {
               current
             }
             title
+            _rawProjectHero
           }
         }
       }

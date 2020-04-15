@@ -3,9 +3,9 @@ import React from "react"
 import { css, jsx } from "@emotion/core"
 
 const projectTitleStyle = theme => css`
-  font-family: ${theme.fonts.heading};
+  font-family: var(--font-family-heading);
   font-size: var(--project-title);
-  margin-bottom: var(--micro-size-2);
+  margin-bottom: var(--size-1);
 `
 
 const Heading = ({ children, as: As = "h1" }) => (

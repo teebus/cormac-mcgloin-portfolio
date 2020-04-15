@@ -29,12 +29,12 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: "Source Sans Pro",
+            family: "Fira Sans",
             variants: ["400", "700"],
           },
           {
-            family: "Source Serif Pro",
-            variants: ["700"],
+            family: "Playfair Display",
+            variants: ["400", "700"],
           },
         ],
       },

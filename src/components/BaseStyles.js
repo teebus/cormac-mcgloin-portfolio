@@ -5,7 +5,7 @@ const BaseStyles = () => (
   <Global
     styles={theme => css`
       html {
-        font-family: sans-serif;
+        font-family: var(--font-family-body);
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
       }
@@ -207,7 +207,7 @@ const BaseStyles = () => (
       }
       body {
         color: var(--colour-text);
-        font-family: ${theme.fonts.body};
+        font-family: var(--font-family-body);
         line-height: var(--line-height-body);
         font-weight: normal;
         word-wrap: break-word;
@@ -230,6 +230,7 @@ const BaseStyles = () => (
         padding-top: 0;
         /* margin-bottom: 1.45rem; */
         margin-bottom: 0;
+        display: block;
       }
       h1 {
         margin-left: 0;
@@ -241,8 +242,7 @@ const BaseStyles = () => (
         padding-top: 0;
         margin-bottom: 1.45rem;
         color: inherit;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
         font-size: 2.25rem;
@@ -264,7 +264,7 @@ const BaseStyles = () => (
         text-rendering: optimizeLegibility;
         font-size: 1.62671rem;
         line-height: 1.1;
-        font-family: ${theme.fonts.heading};
+        font-family: var(--font-family-heading);
       }
       h3 {
         margin-left: 0;
@@ -276,8 +276,7 @@ const BaseStyles = () => (
         padding-top: 0;
         margin-bottom: 1.45rem;
         color: inherit;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
         font-size: 1.38316rem;
@@ -293,8 +292,7 @@ const BaseStyles = () => (
         padding-top: 0;
         margin-bottom: 1.45rem;
         color: inherit;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
         font-size: 1rem;
@@ -310,8 +308,7 @@ const BaseStyles = () => (
         padding-top: 0;
         margin-bottom: 1.45rem;
         color: inherit;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
         font-size: 0.85028rem;
@@ -327,8 +324,7 @@ const BaseStyles = () => (
         padding-top: 0;
         margin-bottom: 1.45rem;
         color: inherit;
-        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-          Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
         font-size: 0.78405rem;
@@ -638,6 +634,9 @@ const BaseStyles = () => (
       // Cormac's edits
 
       :root {
+        --font-family-body: "Fira Sans", "Helvetica Neue", sans-serif;
+        --font-family-heading: "Playfair Display", "Helvetica Neue", sans-serif;
+
         --colour-text: #333333;
         --colour-white: #ffffff;
         --colour-page-background: #faf8f6;
@@ -646,7 +645,7 @@ const BaseStyles = () => (
         --micro-size-2: 0.5rem;
 
         --size-1: 1rem;
-        --size-2: 1.125rem;
+        --size-2: 1.25rem;
         --size-3: 1.375rem;
         --size-4: 1.5rem;
         --size-5: 1.75rem;

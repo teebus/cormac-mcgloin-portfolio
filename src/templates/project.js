@@ -6,8 +6,8 @@ import BlockContent from "@sanity/block-content-to-react"
 import Layout from "../components/layout"
 import Image from "gatsby-image"
 import { css, jsx } from "@emotion/core"
-// import styled from "@emotion/styled"
 import TransitionLink from "gatsby-plugin-transition-link"
+import { TransitionPortal } from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
 import gsap from "gsap"
 
@@ -15,6 +15,7 @@ import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
 
 import ProjectInfo from "../components/ProjectInfo"
+import NextProject from "../components/NextProject"
 
 import { Controller, Scene } from "react-scrollmagic"
 import { Tween } from "react-gsap"
@@ -45,212 +46,267 @@ export const query = graphql`
     }
   }
 `
-const heroStyle = css`
-  width: 100%;
-  height: 70vh;
-  overflow: hidden;
-  * {
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-  }
-`
-
-const projectInfoStyles = css`
-  margin: var(--size-8) var(--size-1);
-  max-width: 800px;
-  @media (min-width: 700px) {
-    margin: var(--size-10) var(--size-8);
-  }
-  @media (min-width: 896px) {
-    margin: var(--size-10) auto;
-  }
-`
-
-const projectImageStyle = theme => css`
-  margin: 0 var(--size-1) var(--size-4);
-  max-width: 800px;
-  position: relative;
-  overflow: hidden;
-
-  @media (min-width: 700px) {
-    margin: 0 var(--size-8) var(--size-4);
-  }
-  @media (min-width: 896px) {
-    margin: 0 auto var(--size-4);
-  }
-`
-const projectContent = css`
-  margin: 0 auto;
-  /* max-width: 800px; */
-`
-
-const projectContentText = css`
-  margin: var(--size-8) var(--size-1);
-  max-width: 800px;
-  @media (min-width: 700px) {
-    margin: var(--size-8) var(--size-8);
-  }
-  @media (min-width: 896px) {
-    margin: var(--size-8) auto;
-  }
-`
-
-const serializers = {
-  types: {
-    image: ({ node }) => (
-      <Controller key={node._key}>
-        <Scene
-          triggerElement={`#trigger-${node._key}`}
-          indicators={false}
-          duration={1}
-          offset={-200}
-          reverse={false}
-        >
-          {(progress, event) => {
-            return (
-              <Tween
-                duration={0.8}
-                from={{ autoAlpha: 0, x: "100%" }}
-                ease="Power4.easeOut"
-                paused
-                playState={scrollTriggerLogic(event)}
-              >
-                <div
-                  css={projectImageStyle}
-                  key={node._key}
-                  id={`trigger-${node._key}`}
-                >
-                  <Controller key={node._key}>
-                    <Scene
-                      triggerElement={`#trigger-${node._key}`}
-                      indicators={false}
-                      duration={1}
-                      offset={-200}
-                      reverse={false}
-                    >
-                      {(progress, event) => {
-                        return (
-                          <Tween
-                            duration={0.8}
-                            from={{ x: "-100%" }}
-                            ease="Power4.easeOut"
-                            paused
-                            playState={scrollTriggerLogic(event)}
-                          >
-                            <div>
-                              <Zoom>
-                                <img
-                                  sizes="(min-width: 800px) 800px, 100vw,"
-                                  srcSet={[
-                                    urlFor(node.asset)
-                                      .width(1600)
-                                      .url() + ` 1600w`,
-                                    urlFor(node.asset)
-                                      .width(800)
-                                      .url() + ` 800w`,
-                                  ]}
-                                  src={urlFor(node.asset)
-                                    .width(800)
-                                    .url()}
-                                />
-                              </Zoom>
-                            </div>
-                          </Tween>
-                        )
-                      }}
-                    </Scene>
-                  </Controller>
-                </div>
-              </Tween>
-            )
-          }}
-        </Scene>
-      </Controller>
-    ),
-
-    block: ({ node, children }) => {
-      switch (node.style) {
-        case "h1":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h2":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h3":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h4":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h5":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h6":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "blockquote":
-          return (
-            <div css={projectContentText}>
-              <blockquote>{children}</blockquote>
-            </div>
-          )
-        default:
-          return (
-            <div css={projectContentText}>
-              <p>{children}</p>
-            </div>
-          )
-      }
-    },
-  },
-}
-
-const urlFor = source =>
-  urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
-
-const scrollTriggerLogic = event =>
-  event.type === "enter" && event.scrollDirection === "FORWARD"
-    ? "play"
-    : event.type === "enter" && event.scrollDirection === "REVERSE"
-    ? "reverse"
-    : null
 
 export default ({ data, pathContext }) => {
   const project = { ...data.sanityProject }
 
-  const { next, prev } = pathContext
+  const heroStyle = css`
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    * {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  `
+
+  const projectInfoStyles = css`
+    margin: var(--size-8) var(--size-1);
+    max-width: 800px;
+    @media (min-width: 700px) {
+      margin: var(--size-10) var(--size-8);
+    }
+    @media (min-width: 896px) {
+      margin: var(--size-10) auto;
+    }
+  `
+
+  const projectImageStyle = theme => css`
+    margin: 0 var(--size-1) var(--size-4);
+    max-width: 800px;
+    position: relative;
+    overflow: hidden;
+
+    @media (min-width: 700px) {
+      margin: 0 var(--size-8) var(--size-4);
+    }
+    @media (min-width: 896px) {
+      margin: 0 auto var(--size-4);
+    }
+  `
+  const projectContent = css`
+    margin: 0 auto;
+    /* max-width: 800px; */
+  `
+
+  const projectContentText = css`
+    margin: var(--size-8) var(--size-1);
+    max-width: 800px;
+    @media (min-width: 700px) {
+      margin: var(--size-8) var(--size-8);
+    }
+    @media (min-width: 896px) {
+      margin: var(--size-8) auto;
+    }
+  `
+
+  const projectHeader = css`
+    position: fixed;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    mix-blend-mode: difference;
+    padding: var(--size-3) var(--size-1);
+    z-index: 1;
+    font-family: var(--font-family-heading);
+    @media (min-width: 700px) {
+      padding: var(--size-3) var(--size-8);
+    }
+  `
+
+  const backToProjects = css`
+    font-size: var(--size-3);
+    color: var(--colour-white);
+  `
+
+  const serializers = {
+    types: {
+      image: ({ node }) => (
+        <Controller key={node._key}>
+          <Scene
+            triggerElement={`#trigger-${node._key}`}
+            indicators={false}
+            duration={1}
+            offset={-200}
+            reverse={false}
+          >
+            {(progress, event) => {
+              return (
+                <Tween
+                  duration={0.8}
+                  from={{ autoAlpha: 0, x: "100%" }}
+                  ease="Power4.easeOut"
+                  paused
+                  playState={scrollTriggerLogic(event)}
+                >
+                  <div
+                    css={projectImageStyle}
+                    key={node._key}
+                    id={`trigger-${node._key}`}
+                  >
+                    <Controller key={node._key}>
+                      <Scene
+                        triggerElement={`#trigger-${node._key}`}
+                        indicators={false}
+                        duration={1}
+                        offset={-200}
+                        reverse={false}
+                      >
+                        {(progress, event) => {
+                          return (
+                            <Tween
+                              duration={0.8}
+                              from={{ x: "-100%" }}
+                              ease="Power4.easeOut"
+                              paused
+                              playState={scrollTriggerLogic(event)}
+                            >
+                              <div>
+                                <Zoom>
+                                  <img
+                                    sizes="(min-width: 800px) 800px, 100vw,"
+                                    srcSet={[
+                                      urlFor(node.asset)
+                                        .width(1600)
+                                        .url() + ` 1600w`,
+                                      urlFor(node.asset)
+                                        .width(800)
+                                        .url() + ` 800w`,
+                                    ]}
+                                    src={urlFor(node.asset)
+                                      .width(800)
+                                      .url()}
+                                  />
+                                </Zoom>
+                              </div>
+                            </Tween>
+                          )
+                        }}
+                      </Scene>
+                    </Controller>
+                  </div>
+                </Tween>
+              )
+            }}
+          </Scene>
+        </Controller>
+      ),
+
+      block: ({ node, children }) => {
+        switch (node.style) {
+          case "h1":
+            return (
+              <div css={projectContentText}>
+                <h1>{children}</h1>
+              </div>
+            )
+          case "h2":
+            return (
+              <div css={projectContentText}>
+                <h1>{children}</h1>
+              </div>
+            )
+          case "h3":
+            return (
+              <div css={projectContentText}>
+                <h1>{children}</h1>
+              </div>
+            )
+          case "h4":
+            return (
+              <div css={projectContentText}>
+                <h1>{children}</h1>
+              </div>
+            )
+          case "h5":
+            return (
+              <div css={projectContentText}>
+                <h1>{children}</h1>
+              </div>
+            )
+          case "h6":
+            return (
+              <div css={projectContentText}>
+                <h1>{children}</h1>
+              </div>
+            )
+          case "blockquote":
+            return (
+              <div css={projectContentText}>
+                <blockquote>{children}</blockquote>
+              </div>
+            )
+          default:
+            return (
+              <div css={projectContentText}>
+                <p>{children}</p>
+              </div>
+            )
+        }
+      },
+    },
+  }
+
+  const urlFor = source =>
+    urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
+
+  const scrollTriggerLogic = event =>
+    event.type === "enter" && event.scrollDirection === "FORWARD"
+      ? "play"
+      : event.type === "enter" && event.scrollDirection === "REVERSE"
+      ? "reverse"
+      : null
 
   let page = useRef(null)
+  let elasticWrapper = useRef(null)
 
   const [ExitAnimation, setExitAnimation] = useState()
+  const [coverAnimation, setCoverAnimation] = useState()
 
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
     setExitAnimation(timeline.to(page, 0.3, { autoAlpha: 0 }))
-  }, [setExitAnimation])
+
+    setCoverAnimation(
+      timeline
+        .set(elasticWrapper, { y: "100%" })
+        .to(elasticWrapper, {
+          y: "0%",
+          ease: "power1.easeInOut",
+          duration: 1,
+        })
+        .set(page, { opacity: 0 })
+        .to(elasticWrapper, {
+          y: "-100%",
+          ease: "power1.easeIn",
+          duration: 0.5,
+        })
+    )
+  }, [setExitAnimation, setCoverAnimation])
 
   return (
     <Layout>
-      <div ref={el => (page = el)}>
+      <div
+        css={{ mixBlendMode: "difference", background: "#FAF8F6" }}
+        ref={el => (page = el)}
+      >
+        <div css={projectHeader}>
+          <TransitionLink
+            css={backToProjects}
+            to={`/`}
+            exit={{
+              trigger: ({ exit }) => ExitAnimation.play(),
+              length: 0.3,
+            }}
+            entry={{
+              delay: 0.3,
+            }}
+            preventScrollJump
+          >
+            Back to projects
+          </TransitionLink>
+        </div>
         <div css={heroStyle}>
           {project.projectHero && (
             <picture>
@@ -296,44 +352,40 @@ export default ({ data, pathContext }) => {
             </picture>
           )}
         </div>
-
         <ProjectInfo
           title={project.title}
           description={project.projectDescription}
           role={project.projectRole}
           css={projectInfoStyles}
         />
-
         <BlockContent
           blocks={project._rawProjectContent}
           serializers={serializers}
           css={projectContent}
           className="projectContent"
         />
-
-        <TransitionLink
-          to={`/`}
-          exit={{
-            trigger: ({ exit }) => ExitAnimation.play(),
-            length: 0.3,
-          }}
-          entry={{
-            delay: 0.3,
-          }}
-          preventScrollJump
-        >
-          Back to projects
-        </TransitionLink>
-
-        <div>
-          {next && (
-            <Link to={`/project/${next.slug.current}`}>Next: {next.title}</Link>
-          )}
-          {prev && (
-            <Link to={`/project/${prev.slug.current}`}>Prev: {prev.title}</Link>
-          )}
-        </div>
+        <NextProject
+          css={css`
+            margin-bottom: var(--size-10);
+          `}
+          pathContext={pathContext}
+          animation={coverAnimation}
+        />
       </div>
+      <TransitionPortal>
+        <div
+          ref={n => (elasticWrapper = n)}
+          style={{
+            position: "fixed",
+            background: "var(--colour-page-background)",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            transform: "translateY(100%)",
+          }}
+        />
+      </TransitionPortal>
     </Layout>
   )
 }

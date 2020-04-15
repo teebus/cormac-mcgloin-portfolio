@@ -11,15 +11,15 @@ const projectInfoStyles = css`
   display: flex;
   flex-flow: row wrap;
   @media (min-width: 700px) {
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
   }
 `
 
 const projectDescriptionStyles = css`
   flex: 0 0 100%;
-  margin-right: var(--size-8);
+  /* margin-right: var(--size-8); */
   @media (min-width: 700px) {
-    flex: 0 0 calc(70% - (var(--size-8) / 2));
+    flex: 0 0 100%;
   }
 `
 
@@ -27,14 +27,15 @@ const projectMetaInfoStyles = css`
   flex: 0 0 100%;
   display: flex;
   flex-flow: row nowrap;
+  margin-top: var(--size-1);
   @media (min-width: 700px) {
-    flex: 0 0 calc(30% - (var(--size-8) / 2));
+    flex: 0 0 100%;
   }
 `
 
 const roleLabelStyles = css`
   font-size: var(--size-2);
-  margin-right: var(--size-4);
+  margin-right: var(--micro-size-2);
 `
 
 const roleValueStyles = css`
@@ -48,7 +49,7 @@ const ProjectInfo = ({ title, description, role, ...rest }) => (
     <div css={projectInfoStyles}>
       <p css={projectDescriptionStyles}>{description}</p>
       <div css={projectMetaInfoStyles}>
-        <span css={roleLabelStyles}>Role:</span>
+        <span css={roleLabelStyles}>Role</span>
         <span css={roleValueStyles}>{role}</span>
       </div>
       {/* <div css={projectMetaInfoStyles}>Lorem</div> */}

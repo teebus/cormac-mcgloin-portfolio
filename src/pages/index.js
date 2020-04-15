@@ -91,62 +91,78 @@ const IndexPage = ({ data }) => {
   let page = useRef(null)
   let logo = useRef(null)
 
-  const [ExitAnimation, setExitAnimation] = useState()
+  const [coverAnimation, setCoverAnimation] = useState()
 
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
 
-    setExitAnimation(
+    setCoverAnimation(
       timeline
-        .to(logo, 1, { autoAlpha: 0 }, 0)
-        .to(elasticWrapper, 0, {
-          display: "block",
-          autoAlpha: 1,
+        .set(elasticWrapper, { y: "100%" })
+        .to(elasticWrapper, {
+          y: "0%",
+          ease: "power1.easeInOut",
+          duration: 0.5,
         })
-        .to(
-          elasticWrapper,
-          1,
-          {
-            x: "155%",
-            ease: "Power1.InOut",
-          },
-          0
-        )
-        .to(
-          elastic,
-          0.4,
-          {
-            attr: {
-              d:
-                "M73.637 0.5H365.137V1023.5H73.637C-172.363 777.5 295.637 222.5 73.637 0.5Z",
-            },
-
-            ease: "Elastic.easeInOut",
-          },
-          "-=0.3"
-        )
-        .to(page, 0.1, { autoAlpha: 0 }, "-=2")
-        .to(
-          elastic,
-          0.5,
-          {
-            attr: {
-              d: "M0 0.5H291.5V1023.5H0C0.363037 774 0 256.5 0 0Z",
-            },
-            ease: "Elastic.easeInOut",
-          },
-          "-=0.3"
-        )
+        .set(page, { opacity: 0 })
+        .to(elasticWrapper, {
+          y: "-100%",
+          ease: "power1.easeIn",
+          duration: 0.5,
+        })
     )
-  }, [setExitAnimation])
+
+    // setExitAnimation(
+    //   timeline
+    //     .to(logo, 1, { autoAlpha: 0 }, 0)
+    //     .to(elasticWrapper, 0, {
+    //       display: "block",
+    //       autoAlpha: 1,
+    //     })
+    //     .to(
+    //       elasticWrapper,
+    //       1,
+    //       {
+    //         x: "155%",
+    //         ease: "Power1.InOut",
+    //       },
+    //       0
+    //     )
+    //     .to(
+    //       elastic,
+    //       0.4,
+    //       {
+    //         attr: {
+    //           d:
+    //             "M73.637 0.5H365.137V1023.5H73.637C-172.363 777.5 295.637 222.5 73.637 0.5Z",
+    //         },
+
+    //         ease: "Elastic.easeInOut",
+    //       },
+    //       "-=0.3"
+    //     )
+    //     .to(page, 0.1, { autoAlpha: 0 }, "-=2")
+    //     .to(
+    //       elastic,
+    //       0.5,
+    //       {
+    //         attr: {
+    //           d: "M0 0.5H291.5V1023.5H0C0.363037 774 0 256.5 0 0Z",
+    //         },
+    //         ease: "Elastic.easeInOut",
+    //       },
+    //       "-=0.3"
+    //     )
+    // )
+  }, [setCoverAnimation])
 
   return (
     <Layout>
       <SEO title="Home" />
-      <Header
+      {/* <Header
         ref={el => (logo = el)}
         siteTitle={data.site.siteMetadata.title}
-      />
+      /> */}
 
       <div ref={el => (page = el)} css={projectListWrapperStyle}>
         <ul css={projectListStyle}>
@@ -156,7 +172,7 @@ const IndexPage = ({ data }) => {
             {data.allSanityProject.edges.map(({ node: project }) => (
               <li css={{ visibility: "hidden" }} key={project.slug.current}>
                 <h2 css={projectListItemStyle}>
-                  <TransitionLink
+                  {/* <TransitionLink
                     preventScrollJump
                     to={`/project/${project.slug.current}`}
                     exit={{
@@ -168,13 +184,27 @@ const IndexPage = ({ data }) => {
                     }}
                   >
                     {project.title}
+                  </TransitionLink> */}
+
+                  <TransitionLink
+                    preventScrollJump
+                    to={`/project/${project.slug.current}`}
+                    exit={{
+                      length: 1,
+                      trigger: ({ exit }) => coverAnimation.play(),
+                    }}
+                    entry={{
+                      delay: 0.5,
+                    }}
+                  >
+                    {project.title}
                   </TransitionLink>
                 </h2>
               </li>
             ))}
           </FadeInFromLeft>
           <TransitionPortal>
-            <div css={elasticWrapperStyle} ref={n => (elasticWrapper = n)}>
+            {/* <div css={elasticWrapperStyle} ref={n => (elasticWrapper = n)}>
               <svg
                 style={{ height: "100vh", transform: "translateX(-200px)" }}
                 viewBox="0 0 400 1023"
@@ -186,7 +216,19 @@ const IndexPage = ({ data }) => {
                   fill="#f5f5f5"
                 />
               </svg>
-            </div>
+            </div> */}
+            <div
+              ref={n => (elasticWrapper = n)}
+              style={{
+                position: "fixed",
+                background: "var(--colour-page-background)",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                transform: "translateY(100%)",
+              }}
+            />
           </TransitionPortal>
         </ul>
       </div>
