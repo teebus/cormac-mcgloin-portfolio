@@ -1,10 +1,9 @@
-/** @jsx jsx */
 import React, { useRef, useState, useEffect } from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 
 import Layout from "../components/layout"
-import Image from "gatsby-image"
+
 import { css, jsx } from "@emotion/core"
 import TransitionLink from "gatsby-plugin-transition-link"
 import { TransitionPortal } from "gatsby-plugin-transition-link"
@@ -19,10 +18,6 @@ import NextProject from "../components/NextProject"
 
 import { Controller, Scene } from "react-scrollmagic"
 import { Tween } from "react-gsap"
-
-import { FadeInFromLeft } from "../components/animation"
-
-// import { FadeIn, FadeInOnScroll } from "../components/animation"
 
 export const query = graphql`
   query($slug: String) {
@@ -273,10 +268,10 @@ export default ({ data, pathContext }) => {
         .set(elasticWrapper, { y: "100%" })
         .to(elasticWrapper, {
           y: "0%",
-          ease: "power1.easeInOut",
-          duration: 1,
+          ease: "power1.easeOut",
+          duration: 0.4,
         })
-        .set(page, { opacity: 0 })
+        .to(page, 0.1, { opacity: 0 })
         .to(elasticWrapper, {
           y: "-100%",
           ease: "power1.easeIn",

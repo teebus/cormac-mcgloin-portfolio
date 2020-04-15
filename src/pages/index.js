@@ -52,7 +52,7 @@ const projectListWrapperStyle = css`
   width: 100%;
   height: 100vh;
   // background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
-  background: #f5f5f5;
+  /* background: #f5f5f5; */
 `
 
 const projectListStyle = theme => css`
@@ -172,20 +172,6 @@ const IndexPage = ({ data }) => {
             {data.allSanityProject.edges.map(({ node: project }) => (
               <li css={{ visibility: "hidden" }} key={project.slug.current}>
                 <h2 css={projectListItemStyle}>
-                  {/* <TransitionLink
-                    preventScrollJump
-                    to={`/project/${project.slug.current}`}
-                    exit={{
-                      length: 1.2,
-                      trigger: ({ exit }) => ExitAnimation.play(),
-                    }}
-                    entry={{
-                      delay: 0.4,
-                    }}
-                  >
-                    {project.title}
-                  </TransitionLink> */}
-
                   <TransitionLink
                     preventScrollJump
                     to={`/project/${project.slug.current}`}
@@ -204,19 +190,6 @@ const IndexPage = ({ data }) => {
             ))}
           </FadeInFromLeft>
           <TransitionPortal>
-            {/* <div css={elasticWrapperStyle} ref={n => (elasticWrapper = n)}>
-              <svg
-                style={{ height: "100vh", transform: "translateX(-200px)" }}
-                viewBox="0 0 400 1023"
-                preserveAspectRatio="xMidYMid slice"
-              >
-                <path
-                  ref={n => (elastic = n)}
-                  d="M40.0656 0.5H331.566V1023.5H40.0656C216.066 527 -106.934 299 40.0656 0.5Z"
-                  fill="#f5f5f5"
-                />
-              </svg>
-            </div> */}
             <div
               ref={n => (elasticWrapper = n)}
               style={{

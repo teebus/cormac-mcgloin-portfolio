@@ -1,6 +1,5 @@
 import React from "react"
-import { Link } from "gatsby"
-import { css, jsx } from "@emotion/core"
+import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import urlBuilder from "@sanity/image-url"
 
@@ -118,13 +117,15 @@ const NextProject = ({ pathContext, animation, ...rest }) => {
                                 <NextProjectLink
                                   to={`/project/${next.slug.current}`}
                                   exit={{
-                                    length: 1,
+                                    delay: 0,
+                                    length: 1.3,
                                     trigger: ({ exit }) => {
                                       animation.play()
                                     },
                                   }}
                                   entry={{
                                     delay: 0.5,
+                                    // length: 1,
                                   }}
                                 >
                                   {/* <Link css={nextProjectLink} to={`/project/${next.slug.current}`}> */}
@@ -146,15 +147,12 @@ const NextProject = ({ pathContext, animation, ...rest }) => {
                                       .height(300)
                                       .url()}
                                   />
-                                  {/* <div css={nextProjectOverlay}> */}
+
                                   <NextProjectOverlay>
                                     <span css={nextProjectText}>
                                       Next project
-                                      {/* {next.title} */}
                                     </span>
                                   </NextProjectOverlay>
-                                  {/* </div> */}
-                                  {/* </Link> */}
                                 </NextProjectLink>
                               </div>
                             </Tween>

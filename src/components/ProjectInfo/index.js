@@ -1,4 +1,3 @@
-/** @jsx jsx */
 import React from "react"
 import { css, jsx } from "@emotion/core"
 import Heading from "../Heading"
@@ -52,7 +51,6 @@ const ProjectInfo = ({ title, description, role, ...rest }) => (
         <span css={roleLabelStyles}>Role</span>
         <span css={roleValueStyles}>{role}</span>
       </div>
-      {/* <div css={projectMetaInfoStyles}>Lorem</div> */}
     </div>
   </div>
 )
