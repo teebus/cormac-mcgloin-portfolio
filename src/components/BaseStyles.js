@@ -4,6 +4,7 @@ import { Global, css, jsx } from "@emotion/core"
 const BaseStyles = () => (
   <Global
     styles={theme => css`
+      @import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Playfair+Display:wght@400;700&display=swap");
       html {
         font-family: var(--font-family-body);
         -ms-text-size-adjust: 100%;
@@ -654,6 +655,7 @@ const BaseStyles = () => (
         --size-8: 3rem;
         --size-9: 4rem;
         --size-10: 5rem;
+        --size-11: 10rem;
 
         --line-height-body: 1.625;
         --line-height-heading: 1.25;

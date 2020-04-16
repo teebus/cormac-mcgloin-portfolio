@@ -4,7 +4,7 @@ import BlockContent from "@sanity/block-content-to-react"
 
 import Layout from "../components/layout"
 
-import { css, jsx } from "@emotion/core"
+import { css } from "@emotion/core"
 import TransitionLink from "gatsby-plugin-transition-link"
 import { TransitionPortal } from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
@@ -42,7 +42,7 @@ export const query = graphql`
   }
 `
 
-export default ({ data, pathContext }) => {
+export default ({ data, pageContext }) => {
   const project = { ...data.sanityProject }
 
   const heroStyle = css`
@@ -172,6 +172,7 @@ export default ({ data, pathContext }) => {
                                     src={urlFor(node.asset)
                                       .width(800)
                                       .url()}
+                                    alt={node.asset.id}
                                   />
                                 </Zoom>
                               </div>
@@ -265,15 +266,15 @@ export default ({ data, pathContext }) => {
 
     setCoverAnimation(
       timeline
-        .set(elasticWrapper, { y: "100%" })
+        .set(elasticWrapper, { y: "-100%" })
         .to(elasticWrapper, {
           y: "0%",
-          ease: "power1.easeOut",
-          duration: 0.4,
+          ease: "power1.easeInOut",
+          duration: 0.5,
         })
-        .to(page, 0.1, { opacity: 0 })
+        .set(page, { opacity: 0 })
         .to(elasticWrapper, {
-          y: "-100%",
+          y: "100%",
           ease: "power1.easeIn",
           duration: 0.5,
         })
@@ -292,10 +293,10 @@ export default ({ data, pathContext }) => {
             to={`/`}
             exit={{
               trigger: ({ exit }) => ExitAnimation.play(),
-              length: 0.3,
+              length: 0.1,
             }}
             entry={{
-              delay: 0.3,
+              delay: 0.1,
             }}
             preventScrollJump
           >
@@ -343,6 +344,7 @@ export default ({ data, pathContext }) => {
                   .height(750)
                   .fit("crop")
                   .url()}
+                alt={project._rawProjectHero.asset.id}
               />
             </picture>
           )}
@@ -361,9 +363,12 @@ export default ({ data, pathContext }) => {
         />
         <NextProject
           css={css`
-            margin-bottom: var(--size-10);
+            margin: var(--size-4) 0;
+            @media (min-width: 700px) {
+              margin: var(--size-11) 0;
+            }
           `}
-          pathContext={pathContext}
+          pageContext={pageContext}
           animation={coverAnimation}
         />
       </div>

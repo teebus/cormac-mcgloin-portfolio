@@ -1,11 +1,7 @@
-/** @jsx jsx */
-import { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
-// import { Link } from "gatsby"
-// import Image from "gatsby-image"
-import { css, jsx } from "@emotion/core"
+import { css } from "@emotion/core"
 import { FadeInFromLeft } from "../components/animation"
-import Header from "../components/header"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -78,18 +74,18 @@ const projectListItemStyle = theme => css`
   }
 `
 
-const elasticWrapperStyle = css`
-  height: 100vh;
-  width: 100vw;
-  background: #f5f5f5;
-  transform: translateX(-100%);
-`
+// const elasticWrapperStyle = css`
+//   height: 100vh;
+//   width: 100vw;
+//   background: #f5f5f5;
+//   transform: translateX(-100%);
+// `
 
 const IndexPage = ({ data }) => {
-  let elastic = useRef(null)
+  // let elastic = useRef(null)
   let elasticWrapper = useRef(null)
   let page = useRef(null)
-  let logo = useRef(null)
+  // let logo = useRef(null)
 
   const [coverAnimation, setCoverAnimation] = useState()
 
@@ -98,7 +94,7 @@ const IndexPage = ({ data }) => {
 
     setCoverAnimation(
       timeline
-        .set(elasticWrapper, { y: "100%" })
+        .set(elasticWrapper, { y: "-100%" })
         .to(elasticWrapper, {
           y: "0%",
           ease: "power1.easeInOut",
@@ -106,54 +102,11 @@ const IndexPage = ({ data }) => {
         })
         .set(page, { opacity: 0 })
         .to(elasticWrapper, {
-          y: "-100%",
+          y: "100%",
           ease: "power1.easeIn",
           duration: 0.5,
         })
     )
-
-    // setExitAnimation(
-    //   timeline
-    //     .to(logo, 1, { autoAlpha: 0 }, 0)
-    //     .to(elasticWrapper, 0, {
-    //       display: "block",
-    //       autoAlpha: 1,
-    //     })
-    //     .to(
-    //       elasticWrapper,
-    //       1,
-    //       {
-    //         x: "155%",
-    //         ease: "Power1.InOut",
-    //       },
-    //       0
-    //     )
-    //     .to(
-    //       elastic,
-    //       0.4,
-    //       {
-    //         attr: {
-    //           d:
-    //             "M73.637 0.5H365.137V1023.5H73.637C-172.363 777.5 295.637 222.5 73.637 0.5Z",
-    //         },
-
-    //         ease: "Elastic.easeInOut",
-    //       },
-    //       "-=0.3"
-    //     )
-    //     .to(page, 0.1, { autoAlpha: 0 }, "-=2")
-    //     .to(
-    //       elastic,
-    //       0.5,
-    //       {
-    //         attr: {
-    //           d: "M0 0.5H291.5V1023.5H0C0.363037 774 0 256.5 0 0Z",
-    //         },
-    //         ease: "Elastic.easeInOut",
-    //       },
-    //       "-=0.3"
-    //     )
-    // )
   }, [setCoverAnimation])
 
   return (

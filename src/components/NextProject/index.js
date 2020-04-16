@@ -2,21 +2,21 @@ import React from "react"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import urlBuilder from "@sanity/image-url"
-
+import { Link } from "gatsby"
 import TransitionLink from "gatsby-plugin-transition-link"
 
 import { Controller, Scene } from "react-scrollmagic"
 import { Tween } from "react-gsap"
 
-const NextProject = ({ pathContext, animation, ...rest }) => {
-  const { next, prev } = pathContext
+const NextProject = ({ pageContext, animation, ...rest }) => {
+  const { next } = pageContext
 
   const urlFor = source =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
   const nextProject = css`
     position: relative;
-    height: 300px;
+    /* height: 300px; */
     overflow: hidden;
     max-width: 800px;
     margin: 0 var(--size-1) var(--size-8);
@@ -81,9 +81,9 @@ const NextProject = ({ pathContext, animation, ...rest }) => {
         <Controller>
           <Scene
             triggerElement={`#trigger-nextProject`}
-            indicators={false}
+            indicators={true}
             duration={1}
-            offset={-200}
+            offset={-350}
             reverse={true}
           >
             {(progress, event) => {
@@ -101,7 +101,7 @@ const NextProject = ({ pathContext, animation, ...rest }) => {
                         triggerElement={`#trigger-nextProject`}
                         indicators={false}
                         duration={1}
-                        offset={-200}
+                        offset={-350}
                         reverse={true}
                       >
                         {(progress, event) => {
@@ -115,11 +115,18 @@ const NextProject = ({ pathContext, animation, ...rest }) => {
                             >
                               <div>
                                 <NextProjectLink
+                                  // preventScrollJump
+                                  // css={nextProjectLink}
                                   to={`/project/${next.slug.current}`}
                                   exit={{
                                     delay: 0,
-                                    length: 1.3,
-                                    trigger: ({ exit }) => {
+                                    appearAfter: 0.75,
+                                    length: 1,
+                                    trigger: ({ node, exit }) => {
+                                      const currentScroll =
+                                        document.documentElement.scrollTop
+                                      node.style.overflow = "hidden"
+                                      document.documentElement.scrollTop = currentScroll
                                       animation.play()
                                     },
                                   }}
@@ -146,6 +153,7 @@ const NextProject = ({ pathContext, animation, ...rest }) => {
                                       .width(800)
                                       .height(300)
                                       .url()}
+                                    alt={next.title}
                                   />
 
                                   <NextProjectOverlay>
@@ -154,6 +162,7 @@ const NextProject = ({ pathContext, animation, ...rest }) => {
                                     </span>
                                   </NextProjectOverlay>
                                 </NextProjectLink>
+                                {/* </Link> */}
                               </div>
                             </Tween>
                           )

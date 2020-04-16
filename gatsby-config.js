@@ -25,16 +25,16 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-prefetch-google-fonts",
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
         fonts: [
           {
-            family: "Fira Sans",
-            variants: ["400", "700"],
+            family: `Fira Sans`,
+            variants: [`400`, `700`],
           },
           {
-            family: "Playfair Display",
-            variants: ["400", "700"],
+            family: `Playfair Display`,
+            variants: [`400`, `700`],
           },
         ],
       },
