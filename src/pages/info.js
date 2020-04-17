@@ -48,76 +48,117 @@ const InfoPage = ({ data }) => {
 
   const infoWrapper = css`
     display: flex;
-    flex-flow: row wrap;
-    align-items: center;
-    justify-content: center;
+    flex-flow: column wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
     min-height: 100vh;
     max-width: 1200px;
     margin: 0 auto;
+    padding: var(--size-10) var(--size-1);
+    @media (min-width: 1025px) {
+      flex-flow: row wrap;
+      align-items: center;
+      justify-content: center;
+      padding: var(--size-10) var(--size-6);
+    }
   `
 
   const infoText = css`
     display: flex;
     flex-flow: column wrap;
     order: 2;
-    font-size: var(--size-7);
+    flex: 100%;
+    font-size: var(--size-5);
     color: var(--colour-heading);
-    color: var(--colour-heading);
-    flex: 0 0 60%;
-    margin-right: var(--size-10);
-    @media (min-width: 700px) {
+    margin-bottom: var(--size-10);
+    line-height: var(--line-height-heading);
+    @media (min-width: 1024px) {
       order: 1;
+      flex: 0 0 calc(60% - (var(--size-10)) / 2);
+      margin: 0 var(--size-10) 0 0;
+    }
+    @media (min-width: 1025px) {
+      font-size: var(--size-7);
+    }
+  `
+  const infoImageWrapperStyles = css`
+    display: flex;
+    order: 1;
+    max-height: 50vh;
+    flex: 0 0 100%;
+    width: 100%;
+    margin-bottom: var(--size-4);
+    overflow: hidden;
+    visibility: hidden;
+    @media (min-width: 1024px) {
+      order: 2;
+      height: auto;
+      flex: 0 0 calc(40% - (var(--size-10)) / 2);
+      margin-bottom: 0;
     }
   `
   const infoImageStyles = css`
-    display: flex;
-    flex-flow: column wrap;
-    order: 1;
-    flex: 0 0 auto;
-    @media (min-width: 700px) {
-      order: 2;
-    }
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
   `
 
   const textLine = css`
     margin-bottom: var(--size-6);
+    visibility: hidden;
   `
 
   const page = { ...data.sanityPage }
-  let infoImage = useRef(null)
 
   const serializers = {
-    container: ({ node, children }) => (
-      <div css={{ marginTop: "100px" }}>{children}</div>
-    ),
+    container: ({ node, children }) => <div>{children}</div>,
 
     types: {
       image: ({ node, children }) => (
-        <div css={infoImageStyles} ref={el => (infoImage = el)}>
-          <img
-            sizes="(min-width: 800px) 400px, 100vw,"
-            srcSet={[
-              urlFor(node.asset)
-                .width(1600)
-                .url() + ` 1600w`,
-              urlFor(node.asset)
-                .width(800)
-                .url() + ` 800w`,
-            ]}
-            src={urlFor(node.asset)
-              .width(800)
-              .url()}
-            alt={node.asset.id}
-          />
-        </div>
+        <Tween
+          duration={0.8}
+          from={{ autoAlpha: 0, x: "100%" }}
+          ease="Power4.easeOut"
+          delay={0.5}
+        >
+          <div css={infoImageWrapperStyles}>
+            <Tween
+              duration={0.8}
+              from={{ x: "-100%" }}
+              ease="Power4.easeOut"
+              delay={0.5}
+            >
+              <div>
+                <img
+                  css={infoImageStyles}
+                  sizes="(min-width: 800px) 400px, 100vw,"
+                  srcSet={[
+                    urlFor(node.asset)
+                      .width(1600)
+                      .url() + ` 1600w`,
+                    urlFor(node.asset)
+                      .width(800)
+                      .url() + ` 800w`,
+                  ]}
+                  src={urlFor(node.asset)
+                    .width(800)
+                    .url()}
+                  alt={node.asset.id}
+                />
+              </div>
+            </Tween>
+          </div>
+        </Tween>
       ),
     },
   }
 
   useEffect(() => {
-    gsap.from(".textLine", 0.2, {
+    gsap.from(".textLine", 0.8, {
       css: { autoAlpha: 0, transform: "translateY(60px)" },
+      delay: 0.5,
       stagger: 0.1,
+      ease: "Power4.easeOut",
     })
   }, [])
 
@@ -132,14 +173,14 @@ const InfoPage = ({ data }) => {
       <div css={infoWrapper}>
         <div css={infoText}>
           <div css={textLine} className="textLine">
-            Hey, I’m a <strong>product</strong> designer based in&nbsp;London.
+            Hey, I’m a <strong>product designer</strong> based in&nbsp;London.
           </div>
           <div css={textLine} className="textLine">
             I help companies <strong>understand their customers</strong> and{" "}
             <strong>grow their&nbsp;products</strong>.
           </div>
           <div css={textLine} className="textLine">
-            I enjoy photography and&nbsp;travelling.
+            I also enjoy photography.
           </div>
         </div>
 
