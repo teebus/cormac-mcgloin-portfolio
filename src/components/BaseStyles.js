@@ -4,7 +4,7 @@ import { Global, css, jsx } from "@emotion/core"
 const BaseStyles = () => (
   <Global
     styles={theme => css`
-      @import url("https://fonts.googleapis.com/css2?family=Fira+Sans&family=Playfair+Display:wght@400;700&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap");
       html {
         font-family: var(--font-family-body);
         -ms-text-size-adjust: 100%;
@@ -635,10 +635,11 @@ const BaseStyles = () => (
       // Cormac's edits
 
       :root {
-        --font-family-body: "Fira Sans", "Helvetica Neue", sans-serif;
-        --font-family-heading: "Playfair Display", "Helvetica Neue", sans-serif;
+        --font-family-body: "Cabin", "Helvetica Neue", sans-serif;
+        --font-family-heading: "Cabin", "Helvetica Neue", sans-serif;
 
-        --colour-text: #333333;
+        --colour-text: #555555;
+        --colour-heading: #333333;
         --colour-white: #ffffff;
         --colour-page-background: #faf8f6;
 

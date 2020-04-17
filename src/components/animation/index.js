@@ -28,6 +28,39 @@ export const FadeInFromLeft = ({ duration = 0.5, stagger = 0.3, children }) => (
     {children}
   </Tween>
 )
+export const FadeInFromRight = ({
+  duration = 0.5,
+  stagger = 0.3,
+  children,
+}) => (
+  <Tween
+    duration={duration}
+    stagger={stagger}
+    staggerFrom={{
+      css: { autoAlpha: 0, transform: "translateX(-60px)" },
+    }}
+    ease="Power2.easeOut"
+  >
+    {children}
+  </Tween>
+)
+
+export const FadeInFromBelow = ({
+  duration = 0.5,
+  stagger = 0.3,
+  children,
+}) => (
+  <Tween
+    duration={duration}
+    stagger={stagger}
+    staggerFrom={{
+      css: { autoAlpha: 0, transform: "translateY(60px)" },
+    }}
+    ease="Power2.easeOut"
+  >
+    {children}
+  </Tween>
+)
 
 export const FadeInOnScroll = ({
   children,

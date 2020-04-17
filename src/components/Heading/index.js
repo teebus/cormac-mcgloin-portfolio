@@ -4,6 +4,7 @@ import { css } from "@emotion/core"
 const projectTitleStyle = theme => css`
   font-family: var(--font-family-heading);
   font-size: var(--project-title);
+  color: var(--colour-heading);
   margin-bottom: var(--size-1);
 `
 

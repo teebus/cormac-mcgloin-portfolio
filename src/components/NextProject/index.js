@@ -8,7 +8,12 @@ import TransitionLink from "gatsby-plugin-transition-link"
 import { Controller, Scene } from "react-scrollmagic"
 import { Tween } from "react-gsap"
 
-const NextProject = ({ pageContext, animation, ...rest }) => {
+const NextProject = ({
+  pageContext,
+  exitAnimation,
+  entryAnimation,
+  ...rest
+}) => {
   const { next } = pageContext
 
   const urlFor = source =>
@@ -34,10 +39,11 @@ const NextProject = ({ pageContext, animation, ...rest }) => {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: blur(2px);
   `
 
   const nextProjectText = css`
-    font-size: var(--size-6);
+    font-size: var(--size-3);
     font-family: var(--font-family-heading);
     position: absolute;
     top: 50%;
@@ -45,7 +51,10 @@ const NextProject = ({ pageContext, animation, ...rest }) => {
     transform: translate(-50%, -50%);
     font-weight: 400;
     letter-spacing: 2px;
-    color: var(--colour-text);
+    color: var(--colour-white);
+    @media (min-width: 500px) {
+      font-size: var(--size-6);
+    }
   `
 
   const NextProjectLink = styled(TransitionLink)`
@@ -57,7 +66,7 @@ const NextProject = ({ pageContext, animation, ...rest }) => {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(250, 248, 246, 0.8);
+    background: rgba(23, 27, 36, 0.8);
     transform: scaleX(1);
     transition: all 0.5s;
     /* ${NextProjectLink}:hover & {
@@ -81,10 +90,10 @@ const NextProject = ({ pageContext, animation, ...rest }) => {
         <Controller>
           <Scene
             triggerElement={`#trigger-nextProject`}
-            indicators={true}
+            indicators={false}
             duration={1}
             offset={-350}
-            reverse={true}
+            reverse={false}
           >
             {(progress, event) => {
               return (
@@ -102,7 +111,7 @@ const NextProject = ({ pageContext, animation, ...rest }) => {
                         indicators={false}
                         duration={1}
                         offset={-350}
-                        reverse={true}
+                        reverse={false}
                       >
                         {(progress, event) => {
                           return (
@@ -119,23 +128,29 @@ const NextProject = ({ pageContext, animation, ...rest }) => {
                                   // css={nextProjectLink}
                                   to={`/project/${next.slug.current}`}
                                   exit={{
-                                    delay: 0,
-                                    appearAfter: 0.75,
                                     length: 1,
-                                    trigger: ({ node, exit }) => {
-                                      const currentScroll =
-                                        document.documentElement.scrollTop
-                                      node.style.overflow = "hidden"
-                                      document.documentElement.scrollTop = currentScroll
-                                      animation.play()
+                                    trigger: ({ exit, node }) => {
+                                      // const currentScroll =
+                                      //   document.documentElement.scrollTop
+                                      // node.style.overflow = "hidden"
+                                      // document.documentElement.scrollTop = currentScroll
+                                      exitAnimation.play()
                                     },
                                   }}
                                   entry={{
-                                    delay: 0.5,
-                                    // length: 1,
+                                    delay: 0.7,
+                                    trigger: ({ entry, node }) => {
+                                      node.style.overflow = "hidden"
+                                      document.documentElement.scrollTop = 0
+                                      entryAnimation.play()
+                                    },
+                                    length: 0.5,
                                   }}
                                 >
-                                  {/* <Link css={nextProjectLink} to={`/project/${next.slug.current}`}> */}
+                                  {/* <Link
+                                  // css={nextProjectLink}
+                                  to={`/project/${next.slug.current}`}
+                                > */}
                                   <img
                                     css={nextProjectImage}
                                     sizes="(min-width: 800px) 1680px, 100vw,"
@@ -161,8 +176,8 @@ const NextProject = ({ pageContext, animation, ...rest }) => {
                                       Next project
                                     </span>
                                   </NextProjectOverlay>
+                                  {/* </Link> */}
                                 </NextProjectLink>
-                                {/* </Link> */}
                               </div>
                             </Tween>
                           )

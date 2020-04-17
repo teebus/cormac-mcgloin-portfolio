@@ -5,8 +5,7 @@ import BlockContent from "@sanity/block-content-to-react"
 import Layout from "../components/layout"
 
 import { css } from "@emotion/core"
-import TransitionLink from "gatsby-plugin-transition-link"
-import { TransitionPortal } from "gatsby-plugin-transition-link"
+import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
 import gsap from "gsap"
 
@@ -25,7 +24,6 @@ export const query = graphql`
       title
       projectDescription
       projectRole
-      _rawProjectSection(resolveReferences: { maxDepth: 5 })
       slug {
         current
       }
@@ -255,31 +253,33 @@ export default ({ data, pageContext }) => {
       : null
 
   let page = useRef(null)
-  let elasticWrapper = useRef(null)
+  let coverWrapper = useRef(null)
 
-  const [ExitAnimation, setExitAnimation] = useState()
-  const [coverAnimation, setCoverAnimation] = useState()
+  const [exitAnimation, setExitAnimation] = useState()
+  const [exitCoverAnimation, setExitCoverAnimation] = useState()
+  const [entryCoverAnimation, setEntryCoverAnimation] = useState()
 
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
     setExitAnimation(timeline.to(page, 0.3, { autoAlpha: 0 }))
 
-    setCoverAnimation(
+    setExitCoverAnimation(
       timeline
-        .set(elasticWrapper, { y: "-100%" })
-        .to(elasticWrapper, {
+        .set(coverWrapper, { y: "100%" })
+        .to(coverWrapper, {
           y: "0%",
           ease: "power1.easeInOut",
           duration: 0.5,
         })
         .set(page, { opacity: 0 })
-        .to(elasticWrapper, {
-          y: "100%",
+        .to(coverWrapper, {
+          y: "-100%",
           ease: "power1.easeIn",
           duration: 0.5,
         })
     )
-  }, [setExitAnimation, setCoverAnimation])
+    setEntryCoverAnimation(timeline.set(page, { opacity: 0 }))
+  }, [setExitAnimation, setExitCoverAnimation, setEntryCoverAnimation])
 
   return (
     <Layout>
@@ -292,7 +292,7 @@ export default ({ data, pageContext }) => {
             css={backToProjects}
             to={`/`}
             exit={{
-              trigger: ({ exit }) => ExitAnimation.play(),
+              trigger: ({ exit }) => exitAnimation.play(),
               length: 0.1,
             }}
             entry={{
@@ -369,12 +369,13 @@ export default ({ data, pageContext }) => {
             }
           `}
           pageContext={pageContext}
-          animation={coverAnimation}
+          exitAnimation={exitCoverAnimation}
+          entryAnimation={entryCoverAnimation}
         />
       </div>
       <TransitionPortal>
         <div
-          ref={n => (elasticWrapper = n)}
+          ref={n => (coverWrapper = n)}
           style={{
             position: "fixed",
             background: "var(--colour-page-background)",

@@ -21,7 +21,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/site-icon.png`, // This path is relative to the root of the site.
       },
     },
     {
@@ -44,8 +44,9 @@ module.exports = {
       options: {
         projectId,
         dataset,
-        token: process.env.SANITY_TOKEN,
-        overlayDrafts: true,
+        token:
+          "sk8a3ezCA9LB4CNA5KY169DHKJK7qCfN3jYAx5jmJ2S3p45Vkgx3hDPmXZXPKl5gOhmygHWEd3GWL73iWrJ50B5pFXcIeh2ueAlyenJWk9lilJ5Jn7B3V1ETDjN2Di91A3wkdOYche93pU390x8zMbDd0EtV0H0uCKFr8I9iiP2enOSoL8SK",
+        overlayDrafts: false,
         watchMode: true,
 
         // a token with read permissions is required

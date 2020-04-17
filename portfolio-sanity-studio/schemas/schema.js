@@ -12,6 +12,7 @@ import author from "./author"
 import projectImage from "./projectImage"
 import projectSnippet from "./projectSnippet"
 import project from "./project"
+import page from "./page"
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -25,6 +26,7 @@ export default createSchema({
     projectImage,
     projectSnippet,
     project,
+    page,
     author,
     // category,
     // When added to this list, object types can be used as
