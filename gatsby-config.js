@@ -15,8 +15,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Cormac McGloin theme`,
-        short_name: `starter`,
+        name: `Cormac McGloin website`,
+        short_name: `Cormac McGloin`,
         start_url: `/`,
         background_color: `#faf8f6`,
         theme_color: `#333333`,
