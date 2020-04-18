@@ -265,13 +265,13 @@ export default ({ data, pageContext }) => {
 
     setExitCoverAnimation(
       timeline
+        // .to(page, { opacity: 0 })
         .set(coverWrapper, { y: "100%" })
         .to(coverWrapper, {
           y: "0%",
-          ease: "power1.easeInOut",
+          ease: "power1.easeOut",
           duration: 0.5,
         })
-        .set(page, { opacity: 0 })
         .to(coverWrapper, {
           y: "-100%",
           ease: "power1.easeIn",
@@ -280,6 +280,8 @@ export default ({ data, pageContext }) => {
     )
     setEntryCoverAnimation(timeline.set(page, { opacity: 0 }))
   }, [setExitAnimation, setExitCoverAnimation, setEntryCoverAnimation])
+
+  const { next } = pageContext
 
   return (
     <Layout>
@@ -372,21 +374,22 @@ export default ({ data, pageContext }) => {
           exitAnimation={exitCoverAnimation}
           entryAnimation={entryCoverAnimation}
         />
+
+        <TransitionPortal>
+          <div
+            ref={n => (coverWrapper = n)}
+            style={{
+              position: "fixed",
+              background: "var(--colour-page-background)",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              transform: "translateY(100%)",
+            }}
+          />
+        </TransitionPortal>
       </div>
-      <TransitionPortal>
-        <div
-          ref={n => (coverWrapper = n)}
-          style={{
-            position: "fixed",
-            background: "var(--colour-page-background)",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            transform: "translateY(100%)",
-          }}
-        />
-      </TransitionPortal>
     </Layout>
   )
 }

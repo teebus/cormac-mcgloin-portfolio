@@ -35,10 +35,10 @@ const Header = ({ text, textLink, imageLink = null }) => (
   <div css={headerStyles}>
     {imageLink ? (
       <AniLink css={imageLinkStyles} to={imageLink}>
-        <img src={Logo} />
+        <img src={Logo} alt="Cormac McGloin logo" />
       </AniLink>
     ) : (
-      <img src={Logo} />
+      <img src={Logo} alt="Cormac McGloin logo" />
     )}
     <AniLink css={linkStyles} to={textLink}>
       {text}

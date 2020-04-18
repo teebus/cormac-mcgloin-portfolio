@@ -1,9 +1,8 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import Layout from "../components/layout"
 
 import SEO from "../components/seo"
 
-import BlockContent from "@sanity/block-content-to-react"
 import urlBuilder from "@sanity/image-url"
 
 import { css } from "@emotion/core"
@@ -19,33 +18,19 @@ export const query = graphql`
         current
       }
       title
-      _rawPageContent(resolveReferences: { maxDepth: 5 })
+      _rawPageImage(resolveReferences: { maxDepth: 5 })
+      pageImage {
+        asset {
+          fluid {
+            ...GatsbySanityImageFluid_noBase64
+          }
+        }
+      }
     }
   }
 `
 
 const InfoPage = ({ data }) => {
-  const infoHeader = css`
-    position: fixed;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    padding: var(--size-3) var(--size-1);
-    z-index: 1;
-    font-family: var(--font-family-heading);
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    @media (min-width: 700px) {
-      padding: var(--size-3) var(--size-8);
-    }
-  `
-
-  const infoLink = css`
-    font-size: var(--size-3);
-    color: var(--colour-text);
-  `
-
   const infoWrapper = css`
     display: flex;
     flex-flow: column wrap;
@@ -110,49 +95,6 @@ const InfoPage = ({ data }) => {
 
   const page = { ...data.sanityPage }
 
-  const serializers = {
-    container: ({ node, children }) => <div>{children}</div>,
-
-    types: {
-      image: ({ node, children }) => (
-        <Tween
-          duration={0.8}
-          from={{ autoAlpha: 0, x: "100%" }}
-          ease="Power4.easeOut"
-          delay={0.5}
-        >
-          <div css={infoImageWrapperStyles}>
-            <Tween
-              duration={0.8}
-              from={{ x: "-100%" }}
-              ease="Power4.easeOut"
-              delay={0.5}
-            >
-              <div>
-                <img
-                  css={infoImageStyles}
-                  sizes="(min-width: 800px) 400px, 100vw,"
-                  srcSet={[
-                    urlFor(node.asset)
-                      .width(1600)
-                      .url() + ` 1600w`,
-                    urlFor(node.asset)
-                      .width(800)
-                      .url() + ` 800w`,
-                  ]}
-                  src={urlFor(node.asset)
-                    .width(800)
-                    .url()}
-                  alt={node.asset.id}
-                />
-              </div>
-            </Tween>
-          </div>
-        </Tween>
-      ),
-    },
-  }
-
   useEffect(() => {
     gsap.from(".textLine", 0.8, {
       css: { autoAlpha: 0, transform: "translateY(60px)" },
@@ -184,7 +126,50 @@ const InfoPage = ({ data }) => {
           </div>
         </div>
 
-        <BlockContent blocks={page._rawPageContent} serializers={serializers} />
+        {page.pageImage && (
+          <Tween
+            duration={0.8}
+            from={{ autoAlpha: 0, x: "100%" }}
+            ease="Power4.easeOut"
+            delay={0.5}
+          >
+            <div css={infoImageWrapperStyles}>
+              <Tween
+                duration={0.8}
+                from={{ x: "-100%" }}
+                ease="Power4.easeOut"
+                delay={0.5}
+              >
+                <picture>
+                  <source
+                    sizes="(min-width: 800px) 400px, 100vw,"
+                    srcSet={[
+                      urlFor(page._rawPageImage)
+                        // .fit("max")
+                        .width(800)
+                        .url() + ` 800w`,
+                      urlFor(page._rawPageImage)
+                        // .fit("max")
+                        .width(400)
+                        .url() + ` 400w`,
+                    ]}
+                  />
+
+                  <img
+                    css={infoImageStyles}
+                    src={
+                      urlFor(page._rawPageImage)
+                        // .fit("max")
+                        .width(400)
+                        .url() + ` 400w`
+                    }
+                    alt={page._rawPageImage.asset._key}
+                  />
+                </picture>
+              </Tween>
+            </div>
+          </Tween>
+        )}
       </div>
     </Layout>
   )

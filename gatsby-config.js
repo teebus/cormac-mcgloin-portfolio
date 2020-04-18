@@ -29,11 +29,7 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Fira Sans`,
-            variants: [`400`, `700`],
-          },
-          {
-            family: `Playfair Display`,
+            family: `Cabin`,
             variants: [`400`, `700`],
           },
         ],

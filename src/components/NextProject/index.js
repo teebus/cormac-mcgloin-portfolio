@@ -2,8 +2,10 @@ import React from "react"
 import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import urlBuilder from "@sanity/image-url"
-import { Link } from "gatsby"
+
 import TransitionLink from "gatsby-plugin-transition-link"
+import AniLink from "gatsby-plugin-transition-link/AniLink"
+import { Link } from "gatsby"
 
 import { Controller, Scene } from "react-scrollmagic"
 import { Tween } from "react-gsap"
@@ -57,7 +59,7 @@ const NextProject = ({
     }
   `
 
-  const NextProjectLink = styled(TransitionLink)`
+  const NextProjectLink = styled(Link)`
     /* transition: all 0.5s; */
   `
   const NextProjectOverlay = styled.div`
@@ -123,22 +125,25 @@ const NextProject = ({
                               playState={scrollTriggerLogic(event)}
                             >
                               <div>
-                                <NextProjectLink
-                                  // preventScrollJump
+                                {/* <NextProjectLink
+                                  preventScrollJump
                                   // css={nextProjectLink}
                                   to={`/project/${next.slug.current}`}
                                   exit={{
                                     length: 1,
+                                    delay: 0,
                                     trigger: ({ exit, node }) => {
-                                      // const currentScroll =
-                                      //   document.documentElement.scrollTop
+                                      const currentScroll =
+                                        document.documentElement.scrollTop ||
+                                        document.body.scrollTop
                                       // node.style.overflow = "hidden"
-                                      // document.documentElement.scrollTop = currentScroll
+                                      document.documentElement.scrollTop = currentScroll
+                                      node.style.overflow = "hidden"
                                       exitAnimation.play()
                                     },
                                   }}
                                   entry={{
-                                    delay: 0.7,
+                                    delay: 0.5,
                                     trigger: ({ entry, node }) => {
                                       node.style.overflow = "hidden"
                                       document.documentElement.scrollTop = 0
@@ -146,11 +151,11 @@ const NextProject = ({
                                     },
                                     length: 0.5,
                                   }}
-                                >
-                                  {/* <Link
+                                > */}
+                                <NextProjectLink
                                   // css={nextProjectLink}
                                   to={`/project/${next.slug.current}`}
-                                > */}
+                                >
                                   <img
                                     css={nextProjectImage}
                                     sizes="(min-width: 800px) 1680px, 100vw,"

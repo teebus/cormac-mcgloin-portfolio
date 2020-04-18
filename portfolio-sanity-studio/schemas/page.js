@@ -20,10 +20,18 @@ export default {
       },
     },
     {
-      name: "pageContent",
-      title: "Page content",
-      type: "array",
-      of: [{ type: "block" }, { type: "image" }],
+      name: "pageImage",
+      title: "Page image",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
     },
+    // {
+    //   name: "pageContent",
+    //   title: "Page content",
+    //   type: "array",
+    //   of: [{ type: "block" }, { type: "image" }],
+    // },
   ],
 }

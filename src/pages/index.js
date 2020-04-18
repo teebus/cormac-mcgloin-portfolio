@@ -2,11 +2,11 @@ import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { FadeInFromRight } from "../components/animation"
-import Logo from "../images/cormac-mcgloin-logo.svg"
+
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
+
 import Header from "../components/Header/index"
 
 import gsap from "gsap"
@@ -48,7 +48,7 @@ const projectListWrapperStyle = css`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   // background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
   /* background: #f5f5f5; */
   mix-blend-mode: difference;
@@ -86,21 +86,10 @@ const projectListItemStyle = theme => css`
 // `
 
 const IndexPage = ({ data }) => {
-  // let elastic = useRef(null)
   let coverWrapper = useRef(null)
   let page = useRef(null)
-  // let logo = useRef(null)
 
-  const [exitAnimation, setExitAnimation] = useState()
-  const [entryAnimation, setEntryAnimation] = useState()
   const [coverAnimation, setCoverAnimation] = useState()
-
-  useEffect(() => {
-    const timeline = gsap.timeline({ paused: true })
-
-    setExitAnimation(timeline.to(page, 0.3, { autoAlpha: 0 }))
-    // setEntryAnimation(timeline.to(page, 0.3, { autoAlpha: 1 }))
-  }, [setExitAnimation])
 
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
@@ -122,56 +111,9 @@ const IndexPage = ({ data }) => {
     )
   }, [setCoverAnimation])
 
-  const homeHeader = css`
-    position: fixed;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    padding: var(--size-3) var(--size-1);
-    z-index: 1;
-    font-family: var(--font-family-heading);
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    @media (min-width: 700px) {
-      padding: var(--size-3) var(--size-8);
-    }
-  `
-
-  const infoLink = css`
-    font-size: var(--size-3);
-    color: var(--colour-text);
-  `
-
   return (
     <Layout>
       <SEO title="Home" />
-      {/* <Header
-        ref={el => (logo = el)}
-        siteTitle={data.site.siteMetadata.title}
-      /> */}
-
-      {/* <div css={homeHeader}>
-        <img src={Logo} />
-        <AniLink fade duration={0.5} css={infoLink} to={`/info`}>
-          Info
-        </AniLink> */}
-      {/* <TransitionLink
-          css={infoLink}
-          to={`/info`}
-          exit={{
-            trigger: ({ exit }) => exitAnimation.play(),
-            length: 0.3,
-          }}
-          entry={{
-            // trigger: ({ entry }) => entryAnimation.play(),
-            delay: 0.3,
-          }}
-          preventScrollJump
-        >
-          Info
-        </TransitionLink> */}
-      {/* </div> */}
 
       <Header text="Info" textLink="/info" />
       <div ref={el => (page = el)} css={projectListWrapperStyle}>
