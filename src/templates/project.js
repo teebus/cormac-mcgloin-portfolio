@@ -8,6 +8,7 @@ import { css } from "@emotion/core"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
 import gsap from "gsap"
+import SEO from "../components/seo"
 
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
@@ -285,6 +286,7 @@ export default ({ data, pageContext }) => {
 
   return (
     <Layout>
+      <SEO title={project.title} />
       <div
         css={{ mixBlendMode: "difference", background: "#FAF8F6" }}
         ref={el => (page = el)}
