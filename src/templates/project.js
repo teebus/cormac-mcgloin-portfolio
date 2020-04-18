@@ -307,52 +307,66 @@ export default ({ data, pageContext }) => {
             Back to projects
           </TransitionLink>
         </div>
-        <div css={heroStyle}>
-          {project.projectHero && (
-            <picture>
-              <source
-                media="(min-width: 800px)"
-                srcSet={[
-                  urlFor(project._rawProjectHero)
-                    .fit("max")
-                    .height(1400)
-                    .width(3360) + ` 3360w`,
-                  urlFor(project._rawProjectHero)
-                    .fit("max")
-                    .height(700)
-                    .width(1680) + ` 1680w`,
-                  urlFor(project._rawProjectHero)
-                    .fit("max")
-                    .height(900)
-                    .width(600) + ` 600w`,
-                ]}
-                sizes="100vw"
-              />
+        {project.projectHero && (
+          <Tween
+            duration={1}
+            from={{ autoAlpha: 0, y: "-100%" }}
+            ease="Power4.easeOut"
+          >
+            <div css={heroStyle}>
+              <Tween
+                duration={1}
+                from={{ autoAlpha: 0, y: "100%" }}
+                ease="Power4.easeOut"
+              >
+                <div>
+                  <picture>
+                    <source
+                      media="(min-width: 800px)"
+                      srcSet={[
+                        urlFor(project._rawProjectHero)
+                          .fit("max")
+                          .height(1400)
+                          .width(3360) + ` 3360w`,
+                        urlFor(project._rawProjectHero)
+                          .fit("max")
+                          .height(700)
+                          .width(1680) + ` 1680w`,
+                        urlFor(project._rawProjectHero)
+                          .fit("max")
+                          .height(900)
+                          .width(600) + ` 600w`,
+                      ]}
+                      sizes="100vw"
+                    />
 
-              <source
-                srcSet={[
-                  urlFor(project._rawProjectHero)
-                    .fit("crop")
-                    .height(1060)
-                    .width(750) + ` 750w`,
-                  urlFor(project._rawProjectHero)
-                    .fit("crop")
-                    .height(1060)
-                    .width(750) + ` 750w`,
-                ]}
-              />
+                    <source
+                      srcSet={[
+                        urlFor(project._rawProjectHero)
+                          .fit("crop")
+                          .height(1060)
+                          .width(750) + ` 750w`,
+                        urlFor(project._rawProjectHero)
+                          .fit("crop")
+                          .height(1060)
+                          .width(750) + ` 750w`,
+                      ]}
+                    />
 
-              <img
-                src={urlFor(project._rawProjectHero)
-                  .width(1060)
-                  .height(750)
-                  .fit("crop")
-                  .url()}
-                alt={project._rawProjectHero.asset.id}
-              />
-            </picture>
-          )}
-        </div>
+                    <img
+                      src={urlFor(project._rawProjectHero)
+                        .width(1060)
+                        .height(750)
+                        .fit("crop")
+                        .url()}
+                      alt={project._rawProjectHero.asset.id}
+                    />
+                  </picture>
+                </div>
+              </Tween>
+            </div>
+          </Tween>
+        )}
         <ProjectInfo
           title={project.title}
           description={project.projectDescription}
