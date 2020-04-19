@@ -22,28 +22,44 @@ const headerStyles = css`
 const linkStyles = css`
   font-size: var(--size-3);
   color: var(--colour-text);
+  position: fixed;
+  top: 0%;
+  right: 0;
+  padding: var(--size-3) var(--size-1);
+  z-index: 1;
+  font-family: var(--font-family-heading);
+  @media (min-width: 700px) {
+    padding: var(--size-3) var(--size-8);
+  }
 `
 
 const imageLinkStyles = css`
-  display: inherit;
-  margin: 0;
-  padding: 0;
-  position: relative;
+  position: fixed;
+  top: 0%;
+  left: 0;
+  padding: var(--size-3) var(--size-1);
+  z-index: 1;
+  font-family: var(--font-family-heading);
+  @media (min-width: 700px) {
+    padding: var(--size-3) var(--size-8);
+  }
 `
 
 const Header = ({ text, textLink, imageLink = null }) => (
-  <div css={headerStyles}>
+  // <div css={headerStyles}>
+  <>
     {imageLink ? (
       <AniLink css={imageLinkStyles} to={imageLink}>
         <img src={Logo} alt="Cormac McGloin logo" />
       </AniLink>
     ) : (
-      <img src={Logo} alt="Cormac McGloin logo" />
+      <img src={Logo} alt="Cormac McGloin logo" css={imageLinkStyles} />
     )}
     <AniLink css={linkStyles} to={textLink}>
       {text}
     </AniLink>
-  </div>
+    {/* </div> */}
+  </>
 )
 
 export default Header

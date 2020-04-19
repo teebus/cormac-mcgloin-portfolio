@@ -75,11 +75,19 @@ const InfoPage = ({ data }) => {
     margin-bottom: var(--size-4);
     overflow: hidden;
     visibility: hidden;
+
+    * {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
     @media (min-width: 1024px) {
       order: 2;
       height: auto;
       flex: 0 0 calc(40% - (var(--size-10)) / 2);
       margin-bottom: 0;
+      max-height: none;
     }
   `
   const infoImageStyles = css`
@@ -98,7 +106,7 @@ const InfoPage = ({ data }) => {
   useEffect(() => {
     gsap.from(".textLine", 0.8, {
       css: { autoAlpha: 0, transform: "translateY(60px)" },
-      delay: 0.5,
+      delay: 0.2,
       stagger: 0.1,
       ease: "Power4.easeOut",
     })
@@ -131,14 +139,14 @@ const InfoPage = ({ data }) => {
             duration={0.8}
             from={{ autoAlpha: 0, x: "100%" }}
             ease="Power4.easeOut"
-            delay={0.5}
+            delay={0.2}
           >
             <div css={infoImageWrapperStyles}>
               <Tween
                 duration={0.8}
                 from={{ x: "-100%" }}
                 ease="Power4.easeOut"
-                delay={0.5}
+                delay={0.2}
               >
                 <picture>
                   <source

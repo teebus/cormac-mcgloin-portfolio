@@ -10,6 +10,7 @@ import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
 import gsap from "gsap"
 import SEO from "../components/seo"
+import Header from "../components/HeaderProject"
 
 import Heading from "../components/Heading"
 import Zoom from "react-medium-image-zoom"
@@ -249,25 +250,7 @@ export default ({ data, pageContext }) => {
           overflow: "auto",
         }}
       >
-        <div css={projectHeader}>
-          <TransitionLink
-            css={backToProjects}
-            to={`/`}
-            exit={{
-              trigger: ({ exit }) => exitAnimation.play(),
-              length: 0.1,
-            }}
-            entry={{
-              delay: 0.1,
-            }}
-            preventScrollJump
-          >
-            Back to projects
-          </TransitionLink>
-          <Link css={infoLinkStyles} to="/info">
-            Info
-          </Link>
-        </div>
+        <Header />
         <div css={pageContentStyle}>
           <Heading as="h1">{page.title}</Heading>
         </div>

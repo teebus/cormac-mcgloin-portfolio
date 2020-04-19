@@ -14,6 +14,7 @@ import SEO from "../components/seo"
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
 
+import Header from "../components/HeaderProject"
 import ProjectInfo from "../components/ProjectInfo"
 import NextProject from "../components/NextProject"
 
@@ -304,25 +305,7 @@ export default ({ data, pageContext }) => {
         }}
         ref={el => (page = el)}
       >
-        <div css={projectHeader}>
-          <TransitionLink
-            css={backToProjects}
-            to={`/`}
-            exit={{
-              trigger: ({ exit }) => exitAnimation.play(),
-              length: 0.1,
-            }}
-            entry={{
-              delay: 0.1,
-            }}
-            preventScrollJump
-          >
-            Back to projects
-          </TransitionLink>
-          <Link css={infoLinkStyles} to="/info">
-            Info
-          </Link>
-        </div>
+        <Header />
         {project.projectHero && (
           <Tween
             duration={1}

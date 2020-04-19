@@ -53,13 +53,14 @@ const projectListWrapperStyle = css`
   /* background: #f5f5f5; */
   mix-blend-mode: difference;
   background: #faf8f6;
+  /* padding: var(--size-10) 0; */
 `
 
 const projectListStyle = theme => css`
   display: flex;
   flex-flow: column wrap;
   align-items: flex-end;
-  text-align: left;
+  text-align: right;
   margin: ${theme.space[4]}px;
   padding: 0;
   width: 100%;
@@ -115,10 +116,10 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="Home" />
 
-      <Header text="Info" textLink="/info" />
       <div ref={el => (page = el)} css={projectListWrapperStyle}>
+        <Header text="Info" textLink="/info" />
         <ul css={projectListStyle}>
-          <div id="test"></div>
+          {/* <div id="test"></div> */}
           <FadeInFromRight duration={0.4} stagger={0.1}>
             {data.allSanityProject.edges.map(({ node: project }) => (
               <li css={{ visibility: "hidden" }} key={project.slug.current}>
