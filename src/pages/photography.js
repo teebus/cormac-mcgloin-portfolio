@@ -235,11 +235,6 @@ export default ({ data, pageContext }) => {
 
   const { next } = pageContext
 
-  useEffect(() => {
-    const timeline = gsap.timeline({ paused: true })
-    setExitAnimation(timeline.to(page, 0.3, { autoAlpha: 0 }))
-  }, [setExitAnimation])
-
   return (
     <Layout>
       <SEO title={page.title} />
@@ -259,17 +254,6 @@ export default ({ data, pageContext }) => {
           serializers={serializers}
           css={projectContent}
           className="projectContent"
-        />
-        <NextProject
-          css={css`
-            margin: var(--size-4) 0;
-            @media (min-width: 700px) {
-              margin: var(--size-11) 0;
-            }
-          `}
-          pageContext={pageContext}
-          exitAnimation={exitCoverAnimation}
-          entryAnimation={entryCoverAnimation}
         />
       </div>
     </Layout>
