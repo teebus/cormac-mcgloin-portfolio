@@ -44,13 +44,15 @@ const roleValueStyles = css`
 
 const ProjectInfo = ({ title, description, role, ...rest }) => (
   <div {...rest}>
-    <Heading as="h1">{title}</Heading>
+    {title && <Heading as="h1">{title}</Heading>}
     <div css={projectInfoStyles}>
-      <p css={projectDescriptionStyles}>{description}</p>
-      <div css={projectMetaInfoStyles}>
-        <span css={roleLabelStyles}>Role</span>
-        <span css={roleValueStyles}>{role}</span>
-      </div>
+      {description && <p css={projectDescriptionStyles}>{description}</p>}
+      {role && (
+        <div css={projectMetaInfoStyles}>
+          <span css={roleLabelStyles}>Role</span>
+          <span css={roleValueStyles}>{role}</span>
+        </div>
+      )}
     </div>
   </div>
 )

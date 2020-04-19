@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 
 import Layout from "../components/layout"
+import { Link } from "gatsby"
 
 import { css } from "@emotion/core"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
@@ -104,12 +105,20 @@ export default ({ data, pageContext }) => {
     padding: var(--size-3) var(--size-1);
     z-index: 1;
     font-family: var(--font-family-heading);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     @media (min-width: 700px) {
       padding: var(--size-3) var(--size-8);
     }
   `
 
   const backToProjects = css`
+    font-size: var(--size-3);
+    color: var(--colour-white);
+  `
+
+  const infoLinkStyles = css`
     font-size: var(--size-3);
     color: var(--colour-white);
   `
@@ -288,7 +297,11 @@ export default ({ data, pageContext }) => {
     <Layout>
       <SEO title={project.title} />
       <div
-        css={{ mixBlendMode: "difference", background: "#FAF8F6" }}
+        css={{
+          mixBlendMode: "difference",
+          background: "#FAF8F6",
+          overflow: "auto",
+        }}
         ref={el => (page = el)}
       >
         <div css={projectHeader}>
@@ -306,6 +319,9 @@ export default ({ data, pageContext }) => {
           >
             Back to projects
           </TransitionLink>
+          <Link css={infoLinkStyles} to="/info">
+            Info
+          </Link>
         </div>
         {project.projectHero && (
           <Tween

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react"
-import { graphql } from "gatsby"
+import { graphql, Link } from "gatsby"
 import { css } from "@emotion/core"
 import { FadeInFromRight } from "../components/animation"
 
@@ -140,6 +140,24 @@ const IndexPage = ({ data }) => {
                 </h2>
               </li>
             ))}
+            <li css={{ visibility: "hidden" }}>
+              <h2 css={projectListItemStyle}>
+                <TransitionLink
+                  css={{ color: "var(--colour-heading)" }}
+                  preventScrollJump
+                  to="/photography"
+                  exit={{
+                    length: 1,
+                    trigger: ({ exit }) => coverAnimation.play(),
+                  }}
+                  entry={{
+                    delay: 0.5,
+                  }}
+                >
+                  Photography
+                </TransitionLink>
+              </h2>
+            </li>
           </FadeInFromRight>
           <TransitionPortal>
             <div

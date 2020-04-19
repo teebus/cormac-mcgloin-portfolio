@@ -27,11 +27,11 @@ export default {
         hotspot: true,
       },
     },
-    // {
-    //   name: "pageContent",
-    //   title: "Page content",
-    //   type: "array",
-    //   of: [{ type: "block" }, { type: "image" }],
-    // },
+    {
+      name: "pageContent",
+      title: "Page content",
+      type: "array",
+      of: [{ type: "block" }, { type: "image" }],
+    },
   ],
 }
