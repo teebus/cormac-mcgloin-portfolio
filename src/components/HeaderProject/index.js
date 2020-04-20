@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "gatsby"
 import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { css } from "@emotion/core"
 
@@ -39,9 +40,9 @@ const HeaderProject = () => (
       Back to projects
     </AniLink>
 
-    <AniLink fade duration={0.2} css={infoLinkStyles} to="/info">
+    <Link fade duration={0.2} css={infoLinkStyles} to="/info">
       Info
-    </AniLink>
+    </Link>
   </>
 )
 

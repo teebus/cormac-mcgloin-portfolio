@@ -65,6 +65,7 @@ export default ({ data, pageContext }) => {
     max-width: 800px;
     position: relative;
     overflow: hidden;
+    text-align: center;
 
     @media (min-width: 700px) {
       margin: 0 var(--size-8) var(--size-4);

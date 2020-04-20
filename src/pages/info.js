@@ -1,5 +1,6 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import Layout from "../components/layout"
+import { Link } from "gatsby"
 
 import SEO from "../components/seo"
 
@@ -8,6 +9,7 @@ import urlBuilder from "@sanity/image-url"
 import { css } from "@emotion/core"
 import gsap from "gsap"
 import { Tween } from "react-gsap"
+import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 
 import Header from "../components/Header/index"
 
@@ -31,7 +33,7 @@ export const query = graphql`
 `
 
 const InfoPage = ({ data }) => {
-  const infoWrapper = css`
+  const infoWrapperStyles = css`
     display: flex;
     flex-flow: column wrap;
     align-items: flex-start;
@@ -101,6 +103,31 @@ const InfoPage = ({ data }) => {
     visibility: hidden;
   `
 
+  const linkStyles = css`
+    position: relative;
+    color: var(--colour-heading);
+    transition: color 0.2s ease-in-out;
+    &:hover {
+      color: var(--colour-white);
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 10px;
+      background: #12a295;
+      transition: height 0.2s ease-in-out;
+      z-index: -1;
+    }
+    &:hover {
+      &:before {
+        height: 100%;
+      }
+    }
+  `
+
   const page = { ...data.sanityPage }
 
   useEffect(() => {
@@ -112,6 +139,31 @@ const InfoPage = ({ data }) => {
     })
   }, [])
 
+  let coverWrapper = useRef(null)
+  let infoWrapper = useRef(null)
+
+  const [coverAnimation, setCoverAnimation] = useState()
+
+  useEffect(() => {
+    const timeline = gsap.timeline({ paused: true })
+
+    setCoverAnimation(
+      timeline
+        .set(coverWrapper, { y: "100%" })
+        .to(coverWrapper, {
+          y: "0%",
+          ease: "power1.easeInOut",
+          duration: 0.5,
+        })
+        .set(infoWrapper, { opacity: 0 })
+        .to(coverWrapper, {
+          y: "-100%",
+          ease: "power1.easeIn",
+          duration: 0.5,
+        })
+    )
+  }, [setCoverAnimation])
+
   const urlFor = source =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
@@ -120,7 +172,7 @@ const InfoPage = ({ data }) => {
       <SEO title="Info" />
       <Header text="Back to projects" imageLink="/" textLink="/" />
 
-      <div css={infoWrapper}>
+      <div ref={el => (infoWrapper = el)} css={infoWrapperStyles}>
         <div css={infoText}>
           <div css={textLine} className="textLine">
             Hey, I’m a <strong>product designer</strong> based in&nbsp;London.
@@ -130,7 +182,23 @@ const InfoPage = ({ data }) => {
             <strong>grow their&nbsp;products</strong>.
           </div>
           <div css={textLine} className="textLine">
-            I also enjoy photography.
+            I also enjoy{" "}
+            <TransitionLink
+              css={linkStyles}
+              preventScrollJump
+              to={"photography"}
+              exit={{
+                length: 1,
+                trigger: ({ exit }) => coverAnimation.play(),
+              }}
+              entry={{
+                delay: 0.5,
+              }}
+            >
+              {/* <Link css={linkStyles} to="/photography"> */}
+              photography
+            </TransitionLink>
+            .
           </div>
         </div>
 
@@ -178,6 +246,20 @@ const InfoPage = ({ data }) => {
             </div>
           </Tween>
         )}
+        <TransitionPortal>
+          <div
+            ref={n => (coverWrapper = n)}
+            style={{
+              position: "fixed",
+              background: "var(--colour-page-background)",
+              top: 0,
+              left: 0,
+              width: "100vw",
+              height: "100vh",
+              transform: "translateY(100%)",
+            }}
+          />
+        </TransitionPortal>
       </div>
     </Layout>
   )
