@@ -71,6 +71,7 @@ const InfoPage = ({ data }) => {
   const infoImageWrapperStyles = css`
     display: flex;
     order: 1;
+    height: 50vh;
     max-height: 50vh;
     flex: 0 0 100%;
     width: 100%;
@@ -193,6 +194,10 @@ const InfoPage = ({ data }) => {
               }}
               entry={{
                 delay: 0.5,
+                trigger: ({ entry, node }) => {
+                  node.style.overflow = "hidden"
+                  document.documentElement.scrollTop = 0
+                },
               }}
             >
               {/* <Link css={linkStyles} to="/photography"> */}
