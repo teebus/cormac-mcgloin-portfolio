@@ -3,8 +3,6 @@ import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import urlBuilder from "@sanity/image-url"
 
-import TransitionLink from "gatsby-plugin-transition-link"
-import AniLink from "gatsby-plugin-transition-link/AniLink"
 import { Link } from "gatsby"
 
 import { Controller, Scene } from "react-scrollmagic"
@@ -12,8 +10,7 @@ import { Tween } from "react-gsap"
 
 const NextProject = ({
   pageContext,
-  exitAnimation,
-  entryAnimation,
+
   ...rest
 }) => {
   const { next } = pageContext
@@ -125,33 +122,6 @@ const NextProject = ({
                               playState={scrollTriggerLogic(event)}
                             >
                               <div>
-                                {/* <NextProjectLink
-                                  preventScrollJump
-                                  // css={nextProjectLink}
-                                  to={`/project/${next.slug.current}`}
-                                  exit={{
-                                    length: 1,
-                                    delay: 0,
-                                    trigger: ({ exit, node }) => {
-                                      const currentScroll =
-                                        document.documentElement.scrollTop ||
-                                        document.body.scrollTop
-                                      // node.style.overflow = "hidden"
-                                      document.documentElement.scrollTop = currentScroll
-                                      node.style.overflow = "hidden"
-                                      exitAnimation.play()
-                                    },
-                                  }}
-                                  entry={{
-                                    delay: 0.5,
-                                    trigger: ({ entry, node }) => {
-                                      node.style.overflow = "hidden"
-                                      document.documentElement.scrollTop = 0
-                                      entryAnimation.play()
-                                    },
-                                    length: 0.5,
-                                  }}
-                                > */}
                                 <NextProjectLink
                                   // css={nextProjectLink}
                                   to={`/project/${next.slug.current}`}

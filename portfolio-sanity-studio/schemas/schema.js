@@ -9,7 +9,7 @@ import schemaTypes from "all:part:@sanity/base/schema-type"
 // import category from './category'
 // import post from './post'
 import author from "./author"
-import projectImage from "./projectImage"
+import galleryItem from "./galleryItem"
 import projectSnippet from "./projectSnippet"
 import project from "./project"
 import page from "./page"
@@ -23,7 +23,7 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    projectImage,
+    galleryItem,
     projectSnippet,
     project,
     page,

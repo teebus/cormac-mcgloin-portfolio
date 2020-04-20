@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { FadeInFromRight } from "../components/animation"
 

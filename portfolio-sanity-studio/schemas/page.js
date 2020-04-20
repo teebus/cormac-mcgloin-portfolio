@@ -27,11 +27,23 @@ export default {
         hotspot: true,
       },
     },
+    // {
+    //   name: "gallery",
+    //   title: "Gallery",
+    //   type: "array",
+    //   of: [{ type: "galleryItem" }],
+    // },
     {
-      name: "pageContent",
-      title: "Page content",
+      name: "galleryItems",
+      title: "Gallery Items",
       type: "array",
-      of: [{ type: "block" }, { type: "image" }],
+      of: [{ type: "galleryItem" }],
     },
+    // {
+    //   name: "pageContent",
+    //   title: "Page content",
+    //   type: "array",
+    //   of: [{ type: "block" }, { type: "image" }],
+    // },
   ],
 }

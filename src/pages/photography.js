@@ -1,25 +1,12 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useState, useCallback } from "react"
 import { graphql } from "gatsby"
-import BlockContent from "@sanity/block-content-to-react"
-
 import Layout from "../components/layout"
-import { Link } from "gatsby"
-
-import { css } from "@emotion/core"
-import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
-import gsap from "gsap"
+import Gallery from "react-photo-gallery"
+import Carousel, { Modal, ModalGateway } from "react-images"
 import SEO from "../components/seo"
 import Header from "../components/HeaderProject"
-
-import Heading from "../components/Heading"
-import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
-
-import NextProject from "../components/NextProject"
-
-import { Controller, Scene } from "react-scrollmagic"
-import { Tween } from "react-gsap"
 
 export const query = graphql`
   {
@@ -28,15 +15,25 @@ export const query = graphql`
         current
       }
       title
-      _rawPageImage(resolveReferences: { maxDepth: 5 })
-      pageImage {
-        asset {
-          fluid {
-            src
+      _rawGalleryItems(resolveReferences: { maxDepth: 5 })
+      galleryItems {
+        _key
+        galleryImage {
+          asset {
+            metadata {
+              dimensions {
+                width
+                height
+                aspectRatio
+              }
+            }
+            fluid {
+              src
+            }
           }
         }
+        imageDescription
       }
-      _rawPageContent(resolveReferences: { maxDepth: 5 })
     }
   }
 `
@@ -44,196 +41,41 @@ export const query = graphql`
 export default ({ data, pageContext }) => {
   const page = { ...data.sanityPage }
 
-  const projectImageStyle = theme => css`
-    margin: 0 var(--size-1) var(--size-4);
-    max-width: 800px;
-    position: relative;
-    overflow: hidden;
+  const [currentImage, setCurrentImage] = useState(0)
+  const [viewerIsOpen, setViewerIsOpen] = useState(false)
 
-    @media (min-width: 700px) {
-      margin: 0 var(--size-8) var(--size-4);
-    }
-    @media (min-width: 896px) {
-      margin: 0 auto var(--size-4);
-    }
-  `
-  const projectContent = css`
-    margin: 0 auto;
-    /* max-width: 800px; */
-  `
+  const openLightbox = useCallback((event, { photo, index }) => {
+    setCurrentImage(index)
+    setViewerIsOpen(true)
+  }, [])
 
-  const projectContentText = css`
-    margin: var(--size-8) var(--size-1);
-    max-width: 800px;
-    @media (min-width: 700px) {
-      margin: var(--size-8) var(--size-8);
-    }
-    @media (min-width: 896px) {
-      margin: var(--size-8) auto;
-    }
-  `
-
-  const projectHeader = css`
-    position: fixed;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    mix-blend-mode: difference;
-    padding: var(--size-3) var(--size-1);
-    z-index: 1;
-    font-family: var(--font-family-heading);
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    @media (min-width: 700px) {
-      padding: var(--size-3) var(--size-8);
-    }
-  `
-
-  const backToProjects = css`
-    font-size: var(--size-3);
-    color: var(--colour-white);
-  `
-
-  const infoLinkStyles = css`
-    font-size: var(--size-3);
-    color: var(--colour-white);
-  `
-
-  const pageContentStyle = css`
-    margin: 0 auto;
-    max-width: 800px;
-    margin: var(--size-10) var(--size-1) var(--size-8);
-    @media (min-width: 700px) {
-      margin: var(--size-10) var(--size-8);
-    }
-    @media (min-width: 896px) {
-      margin: var(--size-10) auto;
-    }
-  `
-
-  const serializers = {
-    types: {
-      image: ({ node }) => (
-        <div
-          css={projectImageStyle}
-          key={node._key}
-          id={`trigger-${node._key}`}
-        >
-          <div>
-            <Zoom>
-              <img
-                sizes="(min-width: 800px) 800px, 100vw,"
-                srcSet={[
-                  urlFor(node.asset)
-                    .width(1600)
-                    .url() + ` 1600w`,
-                  urlFor(node.asset)
-                    .width(800)
-                    .url() + ` 800w`,
-                ]}
-                src={urlFor(node.asset)
-                  .width(800)
-                  .url()}
-                alt={node.asset.id}
-              />
-            </Zoom>
-          </div>
-        </div>
-      ),
-
-      block: ({ node, children }) => {
-        switch (node.style) {
-          case "h1":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h2":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h3":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h4":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h5":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h6":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "blockquote":
-            return (
-              <div css={projectContentText}>
-                <blockquote>{children}</blockquote>
-              </div>
-            )
-          default:
-            return (
-              <div css={projectContentText}>
-                <p>{children}</p>
-              </div>
-            )
-        }
-      },
-    },
+  const closeLightbox = () => {
+    setCurrentImage(0)
+    setViewerIsOpen(false)
   }
 
   const urlFor = source =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
-  const scrollTriggerLogic = event =>
-    event.type === "enter" && event.scrollDirection === "FORWARD"
-      ? "play"
-      : event.type === "enter" && event.scrollDirection === "REVERSE"
-      ? "reverse"
-      : null
-
-  const [exitAnimation, setExitAnimation] = useState()
-  const [exitCoverAnimation, setExitCoverAnimation] = useState()
-  const [entryCoverAnimation, setEntryCoverAnimation] = useState()
-
-  // useEffect(() => {
-  //   const timeline = gsap.timeline({ paused: true })
-  //   setExitAnimation(timeline.to(page, 0.3, { autoAlpha: 0 }))
-
-  //   setExitCoverAnimation(
-  //     timeline
-  //       // .to(page, { opacity: 0 })
-  //       .set(coverWrapper, { y: "100%" })
-  //       .to(coverWrapper, {
-  //         y: "0%",
-  //         ease: "power1.easeOut",
-  //         duration: 0.5,
-  //       })
-  //       .to(coverWrapper, {
-  //         y: "-100%",
-  //         ease: "power1.easeIn",
-  //         duration: 0.5,
-  //       })
-  //   )
-  //   setEntryCoverAnimation(timeline.set(page, { opacity: 0 }))
-  // }, [setExitAnimation, setExitCoverAnimation, setEntryCoverAnimation])
-
-  const { next } = pageContext
+  const galleryMap = page._rawGalleryItems.map(image => ({
+    src: urlFor(image.galleryImage.asset).url(),
+    srcSet: [
+      // urlFor(image.asset)
+      //   .width(1600)
+      //   .url() + ` 1600w`,
+      urlFor(image.galleryImage.asset)
+        .width(800)
+        .url() + ` 800w`,
+      urlFor(image.galleryImage.asset)
+        .width(400)
+        .url() + ` 400w`,
+    ],
+    sizes: ["(min-width: 800px) 400px, 100vw"],
+    width: image.galleryImage.asset.metadata.dimensions.width,
+    height: image.galleryImage.asset.metadata.dimensions.height,
+    title: image.imageDescription,
+    // alt: image.seets.metadata.title,
+  }))
 
   return (
     <Layout>
@@ -246,15 +88,30 @@ export default ({ data, pageContext }) => {
         }}
       >
         <Header />
-        <div css={pageContentStyle}>
+        {/* <div css={pageContentStyle}>
           <Heading as="h1">{page.title}</Heading>
-        </div>
-        <BlockContent
-          blocks={page._rawPageContent}
-          serializers={serializers}
-          css={projectContent}
-          className="projectContent"
+        </div> */}
+
+        <Gallery
+          photos={galleryMap}
+          direction="column"
+          onClick={openLightbox}
         />
+
+        <ModalGateway>
+          {viewerIsOpen ? (
+            <Modal onClose={closeLightbox}>
+              <Carousel
+                currentIndex={currentImage}
+                views={galleryMap.map(image => ({
+                  ...image,
+                  // srcset: image.srcSet,
+                  caption: image.title,
+                }))}
+              />
+            </Modal>
+          ) : null}
+        </ModalGateway>
       </div>
     </Layout>
   )

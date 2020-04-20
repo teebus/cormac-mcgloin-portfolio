@@ -1,23 +1,15 @@
-import React, { useRef, useState, useEffect } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
-
 import Layout from "../components/layout"
-import { Link } from "gatsby"
-
 import { css } from "@emotion/core"
-import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 import urlBuilder from "@sanity/image-url"
-import gsap from "gsap"
 import SEO from "../components/seo"
-
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
-
 import Header from "../components/HeaderProject"
 import ProjectInfo from "../components/ProjectInfo"
 import NextProject from "../components/NextProject"
-
 import { Controller, Scene } from "react-scrollmagic"
 import { Tween } from "react-gsap"
 
@@ -95,33 +87,6 @@ export default ({ data, pageContext }) => {
     @media (min-width: 896px) {
       margin: var(--size-8) auto;
     }
-  `
-
-  const projectHeader = css`
-    position: fixed;
-    top: 0%;
-    left: 0;
-    width: 100%;
-    mix-blend-mode: difference;
-    padding: var(--size-3) var(--size-1);
-    z-index: 1;
-    font-family: var(--font-family-heading);
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    @media (min-width: 700px) {
-      padding: var(--size-3) var(--size-8);
-    }
-  `
-
-  const backToProjects = css`
-    font-size: var(--size-3);
-    color: var(--colour-white);
-  `
-
-  const infoLinkStyles = css`
-    font-size: var(--size-3);
-    color: var(--colour-white);
   `
 
   const serializers = {
@@ -263,37 +228,6 @@ export default ({ data, pageContext }) => {
       ? "reverse"
       : null
 
-  let page = useRef(null)
-  let coverWrapper = useRef(null)
-
-  const [exitAnimation, setExitAnimation] = useState()
-  const [exitCoverAnimation, setExitCoverAnimation] = useState()
-  const [entryCoverAnimation, setEntryCoverAnimation] = useState()
-
-  useEffect(() => {
-    const timeline = gsap.timeline({ paused: true })
-    setExitAnimation(timeline.to(page, 0.3, { autoAlpha: 0 }))
-
-    setExitCoverAnimation(
-      timeline
-        // .to(page, { opacity: 0 })
-        .set(coverWrapper, { y: "100%" })
-        .to(coverWrapper, {
-          y: "0%",
-          ease: "power1.easeOut",
-          duration: 0.5,
-        })
-        .to(coverWrapper, {
-          y: "-100%",
-          ease: "power1.easeIn",
-          duration: 0.5,
-        })
-    )
-    setEntryCoverAnimation(timeline.set(page, { opacity: 0 }))
-  }, [setExitAnimation, setExitCoverAnimation, setEntryCoverAnimation])
-
-  const { next } = pageContext
-
   return (
     <Layout>
       <SEO title={project.title} />
@@ -303,7 +237,6 @@ export default ({ data, pageContext }) => {
           background: "#FAF8F6",
           overflow: "auto",
         }}
-        ref={el => (page = el)}
       >
         <Header />
         {project.projectHero && (
@@ -386,24 +319,7 @@ export default ({ data, pageContext }) => {
             }
           `}
           pageContext={pageContext}
-          exitAnimation={exitCoverAnimation}
-          entryAnimation={entryCoverAnimation}
         />
-
-        <TransitionPortal>
-          <div
-            ref={n => (coverWrapper = n)}
-            style={{
-              position: "fixed",
-              background: "var(--colour-page-background)",
-              top: 0,
-              left: 0,
-              width: "100vw",
-              height: "100vh",
-              transform: "translateY(100%)",
-            }}
-          />
-        </TransitionPortal>
       </div>
     </Layout>
   )
