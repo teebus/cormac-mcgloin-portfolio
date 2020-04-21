@@ -124,7 +124,7 @@ const InfoPage = ({ data }) => {
     }
     &:hover {
       &:before {
-        height: 100%;
+        height: 90%;
       }
     }
   `
