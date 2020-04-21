@@ -82,9 +82,9 @@ export default ({ data, pageContext }) => {
       <SEO title={page.title} />
       <div
         css={{
-          mixBlendMode: "difference",
+          // mixBlendMode: "difference",
           background: "#FAF8F6",
-          overflow: "auto",
+          overflow: "hidden",
         }}
       >
         <Header />
