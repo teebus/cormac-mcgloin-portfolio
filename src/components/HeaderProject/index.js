@@ -36,11 +36,11 @@ const backToProjectsStyles = css`
 
 const HeaderProject = () => (
   <>
-    <AniLink fade duration={0.2} css={backToProjectsStyles} to="/">
+    <AniLink fade="true" duration={0.2} css={backToProjectsStyles} to="/">
       Back to projects
     </AniLink>
 
-    <Link fade duration={0.2} css={infoLinkStyles} to="/info">
+    <Link fade="true" duration={0.2} css={infoLinkStyles} to="/info">
       Info
     </Link>
   </>

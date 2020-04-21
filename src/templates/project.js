@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 import Layout from "../components/layout"
@@ -37,6 +37,11 @@ export const query = graphql`
 
 export default ({ data, pageContext }) => {
   const project = { ...data.sanityProject }
+
+  const urlFor = source =>
+    urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
+
+  useEffect(() => {})
 
   const heroStyle = css`
     width: 100%;
@@ -90,50 +95,80 @@ export default ({ data, pageContext }) => {
     }
   `
 
-  const serializers = {
-    types: {
-      image: ({ node }) => (
-        <Controller key={node._key}>
-          <Scene
-            triggerElement={`#trigger-${node._key}`}
-            indicators={false}
-            duration={1}
-            offset={-200}
-            reverse={false}
-          >
-            {(progress, event) => {
-              return (
-                <Tween
-                  duration={0.8}
-                  from={{ autoAlpha: 0, x: "100%" }}
-                  ease="Power4.easeOut"
-                  paused
-                  playState={scrollTriggerLogic(event)}
+  // const imageWidthCheck = ({ node }) => {
+  //   const imagewidth = node.asset.metadata.dimensions.width
+  //   console.log(imagewidth)
+
+  //   if (imagewidth < 400) {
+  //     return (
+  //       <img
+  //         sizes="(min-width: 800px) 800px, 100vw,"
+  //         srcSet={[
+  //           urlFor(node.asset)
+  //             .width(1600)
+  //             .url() + ` 1600w`,
+  //           urlFor(node.asset)
+  //             .width(800)
+  //             .url() + ` 800w`,
+  //         ]}
+  //         src={urlFor(node.asset)
+  //           .width(800)
+  //           .url()}
+  //         alt={node.asset.id}
+  //       />
+  //     )
+  //   } else {
+  //     return "Hello"
+  //   }
+  // }
+
+  const imageWidthCheck = ({ node }) => {
+    const imageWidth = node.asset.metadata.dimensions.width
+    // console.log(imageWidth)
+
+    return (
+      <Controller key={node._key}>
+        <Scene
+          triggerElement={`#trigger-${node._key}`}
+          indicators={false}
+          duration={1}
+          offset={-200}
+          reverse={false}
+        >
+          {(progress, event) => {
+            return (
+              <Tween
+                duration={0.8}
+                from={{ autoAlpha: 0, x: "100%" }}
+                ease="Power4.easeOut"
+                paused
+                playState={scrollTriggerLogic(event)}
+              >
+                <div
+                  css={projectImageStyle}
+                  key={node._key}
+                  id={`trigger-${node._key}`}
                 >
-                  <div
-                    css={projectImageStyle}
-                    key={node._key}
-                    id={`trigger-${node._key}`}
-                  >
-                    <Controller key={node._key}>
-                      <Scene
-                        triggerElement={`#trigger-${node._key}`}
-                        indicators={false}
-                        duration={1}
-                        offset={-200}
-                        reverse={false}
-                      >
-                        {(progress, event) => {
-                          return (
-                            <Tween
-                              duration={0.8}
-                              from={{ x: "-100%" }}
-                              ease="Power4.easeOut"
-                              paused
-                              playState={scrollTriggerLogic(event)}
-                            >
-                              <div>
-                                <Zoom>
+                  <Controller key={node._key}>
+                    <Scene
+                      triggerElement={`#trigger-${node._key}`}
+                      indicators={false}
+                      duration={1}
+                      offset={-200}
+                      reverse={false}
+                    >
+                      {(progress, event) => {
+                        return (
+                          <Tween
+                            duration={0.8}
+                            from={{ x: "-100%" }}
+                            ease="Power4.easeOut"
+                            paused
+                            playState={scrollTriggerLogic(event)}
+                          >
+                            <div>
+                              <Zoom>
+                                {imageWidth > 800 ? (
                                   <img
                                     sizes="(min-width: 800px) 800px, 100vw,"
                                     srcSet={[
@@ -149,78 +184,93 @@ export default ({ data, pageContext }) => {
                                       .url()}
                                     alt={node.asset.id}
                                   />
-                                </Zoom>
-                              </div>
-                            </Tween>
-                          )
-                        }}
-                      </Scene>
-                    </Controller>
-                  </div>
-                </Tween>
-              )
-            }}
-          </Scene>
-        </Controller>
-      ),
-
-      block: ({ node, children }) => {
-        switch (node.style) {
-          case "h1":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
+                                ) : (
+                                  <img
+                                    sizes="(min-width: 800px) 400px, 100vw,"
+                                    srcSet={[
+                                      urlFor(node.asset)
+                                        .width(1600)
+                                        .url() + ` 1600w`,
+                                      urlFor(node.asset)
+                                        .width(800)
+                                        .url() + ` 800w`,
+                                    ]}
+                                    src={urlFor(node.asset)
+                                      .width(800)
+                                      .url()}
+                                    alt={node.asset.id}
+                                  />
+                                )}
+                              </Zoom>
+                            </div>
+                          </Tween>
+                        )
+                      }}
+                    </Scene>
+                  </Controller>
+                </div>
+              </Tween>
             )
-          case "h2":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h3":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h4":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h5":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "h6":
-            return (
-              <div css={projectContentText}>
-                <h1>{children}</h1>
-              </div>
-            )
-          case "blockquote":
-            return (
-              <div css={projectContentText}>
-                <blockquote>{children}</blockquote>
-              </div>
-            )
-          default:
-            return (
-              <div css={projectContentText}>
-                <p>{children}</p>
-              </div>
-            )
-        }
-      },
-    },
+          }}
+        </Scene>
+      </Controller>
+    )
   }
 
-  const urlFor = source =>
-    urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
+  const blockRenderer = {
+    block: ({ node, children }) => {
+      switch (node.style) {
+        case "h1":
+          return (
+            <div css={projectContentText}>
+              <h1>{children}</h1>
+            </div>
+          )
+        case "h2":
+          return (
+            <div css={projectContentText}>
+              <h1>{children}</h1>
+            </div>
+          )
+        case "h3":
+          return (
+            <div css={projectContentText}>
+              <h1>{children}</h1>
+            </div>
+          )
+        case "h4":
+          return (
+            <div css={projectContentText}>
+              <h1>{children}</h1>
+            </div>
+          )
+        case "h5":
+          return (
+            <div css={projectContentText}>
+              <h1>{children}</h1>
+            </div>
+          )
+        case "h6":
+          return (
+            <div css={projectContentText}>
+              <h1>{children}</h1>
+            </div>
+          )
+        case "blockquote":
+          return (
+            <div css={projectContentText}>
+              <blockquote>{children}</blockquote>
+            </div>
+          )
+        default:
+          return (
+            <div css={projectContentText}>
+              <p>{children}</p>
+            </div>
+          )
+      }
+    },
+  }
 
   const scrollTriggerLogic = event =>
     event.type === "enter" && event.scrollDirection === "FORWARD"
@@ -234,9 +284,9 @@ export default ({ data, pageContext }) => {
       <SEO title={project.title} />
       <div
         css={{
-          mixBlendMode: "difference",
+          // mixBlendMode: "difference",
           background: "#FAF8F6",
-          overflow: "auto",
+          overflow: "hidden",
         }}
       >
         <Header />
@@ -308,7 +358,9 @@ export default ({ data, pageContext }) => {
         />
         <BlockContent
           blocks={project._rawProjectContent}
-          serializers={serializers}
+          serializers={{
+            types: { image: imageWidthCheck, block: blockRenderer },
+          }}
           css={projectContent}
           className="projectContent"
         />

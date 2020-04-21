@@ -49,9 +49,8 @@ const projectListWrapperStyle = css`
   justify-content: flex-end;
   width: 100%;
   min-height: 100vh;
-  // background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%);
-  /* background: #f5f5f5; */
-  mix-blend-mode: difference;
+  /* background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%); */
+  /* mix-blend-mode: difference; */
   background: #faf8f6;
   /* padding: var(--size-10) 0; */
 `
