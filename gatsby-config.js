@@ -7,11 +7,13 @@ module.exports = {
     title: `Cormac McGloin | Product Designer`,
     description: `Product designer base in London. Helping businesses understand their customers and grow.`,
     author: `Cormac McGloin`,
+    siteUrl: `https://www.cormacmcgloin.com`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-netlify`,
     `gatsby-plugin-transition-link`,
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -64,5 +66,14 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     `gatsby-plugin-offline`,
+    // {
+    //   resolve: "gatsby-plugin-use-dark-mode",
+    //   options: {
+    //     classNameDark: "darkMode",
+    //     classNameLight: "lightMode",
+    //     storageKey: "darkMode",
+    //     minify: true,
+    //   },
+    // },
   ],
 }

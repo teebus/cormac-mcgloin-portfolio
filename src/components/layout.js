@@ -13,6 +13,7 @@ import PropTypes from "prop-types"
 import { jsx } from "@emotion/core"
 import { ThemeProvider } from "emotion-theming"
 // import { ThemeProvider } from "theme-ui"
+import DarkModeSwitch from "../components/DarkModeSwitch"
 
 import theme from "../theme"
 
@@ -20,7 +21,7 @@ import theme from "../theme"
 // import "./layout.css"
 import BaseStyles from "./BaseStyles.js"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, pageContext }) => {
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
@@ -34,6 +35,18 @@ const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <BaseStyles />
+
+      {/* <div
+        css={{
+          position: "absolute",
+          bottom: "10px",
+          left: "10px",
+          zIndex: "1",
+        }}
+      >
+        <DarkModeSwitch pgaeContext={pageContext} />
+      </div> */}
+
       {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
 
       <div
@@ -44,7 +57,9 @@ const Layout = ({ children }) => {
           // padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
+        <main css={{ background: "var(--colour-page-background)" }}>
+          {children}
+        </main>
         {/* <footer>
           © {new Date().getFullYear()}, Built with
           {` `}

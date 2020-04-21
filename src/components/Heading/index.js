@@ -1,7 +1,7 @@
 import React from "react"
 import { css } from "@emotion/core"
 
-const projectTitleStyle = theme => css`
+const projectTitleStyle = css`
   font-family: var(--font-family-heading);
   font-size: var(--project-title);
   color: var(--colour-heading);

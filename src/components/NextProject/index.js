@@ -50,7 +50,7 @@ const NextProject = ({
     transform: translate(-50%, -50%);
     font-weight: 400;
     letter-spacing: 2px;
-    color: var(--colour-white);
+    color: #ccc;
     @media (min-width: 500px) {
       font-size: var(--size-6);
     }

@@ -2,12 +2,11 @@ import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import { css } from "@emotion/core"
 import { FadeInFromRight } from "../components/animation"
-
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
-
 import Header from "../components/Header/index"
+import Logo from "../images/cormac-mcgloin-logo.svg"
 
 import gsap from "gsap"
 
@@ -51,7 +50,7 @@ const projectListWrapperStyle = css`
   min-height: 100vh;
   /* background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%); */
   /* mix-blend-mode: difference; */
-  background: #faf8f6;
+  background: var(--colour-page-background);
   /* padding: var(--size-10) 0; */
 `
 
@@ -116,7 +115,13 @@ const IndexPage = ({ data }) => {
       <SEO title="Home" />
 
       <div ref={el => (page = el)} css={projectListWrapperStyle}>
-        <Header text="Info" textLink="/info" />
+        <Header
+          logo={Logo}
+          logoLink={null}
+          rightText="Info"
+          rightTextLink="/info"
+          pageType="home"
+        />
         <ul css={projectListStyle}>
           {/* <div id="test"></div> */}
           <FadeInFromRight duration={0.4} stagger={0.1}>

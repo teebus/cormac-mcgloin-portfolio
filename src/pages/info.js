@@ -1,16 +1,13 @@
 import React, { useEffect, useState, useRef } from "react"
 import Layout from "../components/layout"
-
 import SEO from "../components/seo"
-
 import urlBuilder from "@sanity/image-url"
-
 import { css } from "@emotion/core"
 import gsap from "gsap"
 import { Tween } from "react-gsap"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
-
 import Header from "../components/Header/index"
+import Logo from "../images/cormac-mcgloin-logo.svg"
 
 export const query = graphql`
   {
@@ -112,7 +109,7 @@ const InfoPage = ({ data }) => {
     transition: color 0.2s ease-in-out;
     display: inline-block;
     &:hover {
-      color: var(--colour-white);
+      color: #fff;
     }
     &:before {
       content: "";
@@ -174,7 +171,12 @@ const InfoPage = ({ data }) => {
   return (
     <Layout>
       <SEO title="Info" />
-      <Header text="Back to projects" imageLink="/" textLink="/" />
+      <Header
+        logo={Logo}
+        rightText="Back to projects"
+        rightTextLink="/"
+        pageType="info"
+      />
 
       <div ref={el => (infoWrapper = el)} css={infoWrapperStyles}>
         <div css={infoText}>

@@ -217,7 +217,7 @@ const BaseStyles = () => (
         -ms-font-feature-settings: "kern", "liga", "clig", "calt";
         -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
         font-feature-settings: "kern", "liga", "clig", "calt";
-        background: ${theme.colors.pageBackground};
+        background: var(--colour-page-background);
         min-height: 100vh;
       }
       img {
@@ -246,7 +246,7 @@ const BaseStyles = () => (
         font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
-        font-size: 2.25rem;
+        font-size: var(--size-10);
         line-height: 1.1;
       }
       h2 {
@@ -263,7 +263,7 @@ const BaseStyles = () => (
           Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
         font-weight: bold;
         text-rendering: optimizeLegibility;
-        font-size: 1.62671rem;
+        font-size: var(--size-8);
         line-height: 1.1;
         font-family: var(--font-family-heading);
       }
@@ -280,7 +280,7 @@ const BaseStyles = () => (
         font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
-        font-size: 1.38316rem;
+        font-size: var(--size-6);
         line-height: 1.1;
       }
       h4 {
@@ -296,7 +296,7 @@ const BaseStyles = () => (
         font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
-        font-size: 1rem;
+        font-size: var(--size-5);
         line-height: 1.1;
       }
       h5 {
@@ -312,7 +312,7 @@ const BaseStyles = () => (
         font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
-        font-size: 0.85028rem;
+        font-size: var(--size-4);
         line-height: 1.1;
       }
       h6 {
@@ -328,7 +328,7 @@ const BaseStyles = () => (
         font-family: var(--font-family-heading);
         font-weight: bold;
         text-rendering: optimizeLegibility;
-        font-size: 0.78405rem;
+        font-size: var(--size-3);
         line-height: 1.1;
       }
       hgroup {
@@ -667,6 +667,13 @@ const BaseStyles = () => (
         }
       }
 
+      .darkMode {
+        --colour-text: #cccccc;
+        --colour-heading: #ffffff;
+        --colour-white: #000000;
+        --colour-page-background: #222222;
+      }
+
       h1,
       h2,
       h3,
@@ -674,10 +681,6 @@ const BaseStyles = () => (
       h5,
       h6 {
         line-height: var(--line-height-heading);
-      }
-
-      h2 {
-        --project-title: var(--size6);
       }
     `}
   />

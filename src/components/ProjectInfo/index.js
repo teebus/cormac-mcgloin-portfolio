@@ -17,6 +17,7 @@ const projectInfoStyles = css`
 const projectDescriptionStyles = css`
   flex: 0 0 100%;
   /* margin-right: var(--size-8); */
+  color: var(--colour-text);
   @media (min-width: 700px) {
     flex: 0 0 100%;
   }
@@ -33,11 +34,13 @@ const projectMetaInfoStyles = css`
 `
 
 const roleLabelStyles = css`
+  color: var(--colour-text);
   font-size: var(--size-2);
   margin-right: var(--micro-size-2);
 `
 
 const roleValueStyles = css`
+  color: var(--colour-text);
   font-size: var(--size-2);
   font-weight: 700;
 `

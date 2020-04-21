@@ -5,7 +5,7 @@ import urlBuilder from "@sanity/image-url"
 import Gallery from "react-photo-gallery"
 import Carousel, { Modal, ModalGateway } from "react-images"
 import SEO from "../components/seo"
-import Header from "../components/HeaderProject"
+import Header from "../components/Header/index"
 import "react-medium-image-zoom/dist/styles.css"
 
 export const query = graphql`
@@ -87,7 +87,13 @@ export default ({ data, pageContext }) => {
           overflow: "hidden",
         }}
       >
-        <Header />
+        <Header
+          leftText="Back to projects"
+          leftTextLink="/"
+          rightText="Info"
+          rightTextLink="/info"
+          pageType="photography"
+        />
         {/* <div css={pageContentStyle}>
           <Heading as="h1">{page.title}</Heading>
         </div> */}

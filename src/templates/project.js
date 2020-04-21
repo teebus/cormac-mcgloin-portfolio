@@ -7,7 +7,7 @@ import urlBuilder from "@sanity/image-url"
 import SEO from "../components/seo"
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
-import Header from "../components/HeaderProject"
+import Header from "../components/Header/index"
 import ProjectInfo from "../components/ProjectInfo"
 import NextProject from "../components/NextProject"
 import { Controller, Scene } from "react-scrollmagic"
@@ -65,7 +65,7 @@ export default ({ data, pageContext }) => {
     }
   `
 
-  const projectImageStyle = theme => css`
+  const projectImageStyle = css`
     margin: 0 var(--size-1) var(--size-4);
     max-width: 800px;
     position: relative;
@@ -85,42 +85,15 @@ export default ({ data, pageContext }) => {
   `
 
   const projectContentText = css`
-    margin: var(--size-8) var(--size-1);
+    margin: 0 var(--size-1);
     max-width: 800px;
     @media (min-width: 700px) {
-      margin: var(--size-8) var(--size-8);
+      margin: 0 var(--size-8);
     }
     @media (min-width: 896px) {
-      margin: var(--size-8) auto;
+      margin: 0 auto;
     }
   `
-
-  // const imageWidthCheck = ({ node }) => {
-  //   const imagewidth = node.asset.metadata.dimensions.width
-  //   console.log(imagewidth)
-
-  //   if (imagewidth < 400) {
-  //     return (
-  //       <img
-  //         sizes="(min-width: 800px) 800px, 100vw,"
-  //         srcSet={[
-  //           urlFor(node.asset)
-  //             .width(1600)
-  //             .url() + ` 1600w`,
-  //           urlFor(node.asset)
-  //             .width(800)
-  //             .url() + ` 800w`,
-  //         ]}
-  //         src={urlFor(node.asset)
-  //           .width(800)
-  //           .url()}
-  //         alt={node.asset.id}
-  //       />
-  //     )
-  //   } else {
-  //     return "Hello"
-  //   }
-  // }
 
   const imageWidthCheck = ({ node }) => {
     const imageWidth = node.asset.metadata.dimensions.width
@@ -217,59 +190,57 @@ export default ({ data, pageContext }) => {
     )
   }
 
-  const blockRenderer = {
-    block: ({ node, children }) => {
-      switch (node.style) {
-        case "h1":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h2":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h3":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h4":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h5":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "h6":
-          return (
-            <div css={projectContentText}>
-              <h1>{children}</h1>
-            </div>
-          )
-        case "blockquote":
-          return (
-            <div css={projectContentText}>
-              <blockquote>{children}</blockquote>
-            </div>
-          )
-        default:
-          return (
-            <div css={projectContentText}>
-              <p>{children}</p>
-            </div>
-          )
-      }
-    },
+  const blockRenderer = ({ node, children }) => {
+    switch (node.style) {
+      case "h1":
+        return (
+          <div css={projectContentText}>
+            <h1>{children}</h1>
+          </div>
+        )
+      case "h2":
+        return (
+          <div css={projectContentText}>
+            <h2>{children}</h2>
+          </div>
+        )
+      case "h3":
+        return (
+          <div css={projectContentText}>
+            <h3>{children}</h3>
+          </div>
+        )
+      case "h4":
+        return (
+          <div css={projectContentText}>
+            <h4>{children}</h4>
+          </div>
+        )
+      case "h5":
+        return (
+          <div css={projectContentText}>
+            <h5>{children}</h5>
+          </div>
+        )
+      case "h6":
+        return (
+          <div css={projectContentText}>
+            <h6>{children}</h6>
+          </div>
+        )
+      case "blockquote":
+        return (
+          <div css={projectContentText}>
+            <blockquote>{children}</blockquote>
+          </div>
+        )
+      default:
+        return (
+          <div css={projectContentText}>
+            <p>{children}</p>
+          </div>
+        )
+    }
   }
 
   const scrollTriggerLogic = event =>
@@ -285,11 +256,17 @@ export default ({ data, pageContext }) => {
       <div
         css={{
           // mixBlendMode: "difference",
-          background: "#FAF8F6",
+          background: "var(--colour-page-background)",
           overflow: "hidden",
         }}
       >
-        <Header />
+        <Header
+          leftText="Back to projects"
+          leftTextLink="/"
+          rightText="Info"
+          rightTextLink="/info"
+          pageType="photography"
+        />
         {project.projectHero && (
           <Tween
             duration={1}
