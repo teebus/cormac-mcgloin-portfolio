@@ -41,11 +41,14 @@ const InfoPage = ({ data }) => {
     max-width: 1200px;
     margin: 0 auto;
     padding: var(--size-10) var(--size-1);
+    @media (min-width: 700px) {
+      padding: var(--size-10) var(--size-8);
+    }
     @media (min-width: 1025px) {
       flex-flow: row wrap;
       align-items: center;
       justify-content: center;
-      padding: var(--size-10) var(--size-6);
+      padding: var(--size-10) var(--size-8);
     }
   `
 
@@ -59,11 +62,11 @@ const InfoPage = ({ data }) => {
     margin-bottom: var(--size-10);
     line-height: var(--line-height-heading);
     @media (min-width: 1024px) {
-      order: 1;
       flex: 0 0 calc(60% - (var(--size-10)) / 2);
       margin: 0 var(--size-10) 0 0;
     }
     @media (min-width: 1025px) {
+      order: 1;
       font-size: var(--size-7);
     }
   `
@@ -73,7 +76,7 @@ const InfoPage = ({ data }) => {
     height: 50vh;
     max-height: 50vh;
     flex: 0 0 100%;
-    width: 100%;
+    /* width: 100%; */
     margin-bottom: var(--size-4);
     overflow: hidden;
     visibility: hidden;
@@ -84,7 +87,7 @@ const InfoPage = ({ data }) => {
       height: 100%;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 1025px) {
       order: 2;
       height: auto;
       flex: 0 0 calc(40% - (var(--size-10)) / 2);
@@ -107,6 +110,7 @@ const InfoPage = ({ data }) => {
     position: relative;
     color: var(--colour-heading);
     transition: color 0.2s ease-in-out;
+    display: inline-block;
     &:hover {
       color: var(--colour-white);
     }
@@ -186,7 +190,7 @@ const InfoPage = ({ data }) => {
             <TransitionLink
               css={linkStyles}
               preventScrollJump
-              to={"photography"}
+              to={"/photography"}
               exit={{
                 length: 1,
                 trigger: ({ exit }) => coverAnimation.play(),
