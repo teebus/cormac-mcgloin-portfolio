@@ -29,7 +29,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Cabin\:400,700`],
+        fonts: [`Cabin\:400,700`, `Crimson Text\:400,700`],
         display: "swap",
       },
     },
@@ -48,7 +48,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Cabin:400,700"],
+          families: ["Cabin:400,700", "Crimson Text:400,700"],
         },
       },
     },

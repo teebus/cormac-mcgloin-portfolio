@@ -55,6 +55,7 @@ const InfoPage = ({ data }) => {
     order: 2;
     flex: 100%;
     font-size: var(--size-5);
+    font-family: var(--font-family-heading);
     color: var(--colour-heading);
     margin-bottom: var(--size-10);
     line-height: var(--line-height-heading);

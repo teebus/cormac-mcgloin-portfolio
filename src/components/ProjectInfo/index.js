@@ -37,12 +37,14 @@ const roleLabelStyles = css`
   color: var(--colour-text);
   font-size: var(--size-2);
   margin-right: var(--micro-size-2);
+  font-family: var(--font-family-heading);
 `
 
 const roleValueStyles = css`
   color: var(--colour-text);
   font-size: var(--size-2);
   font-weight: 700;
+  font-family: var(--font-family-heading);
 `
 
 const ProjectInfo = ({ title, description, role, ...rest }) => (
@@ -53,7 +55,9 @@ const ProjectInfo = ({ title, description, role, ...rest }) => (
       {role && (
         <div css={projectMetaInfoStyles}>
           <span css={roleLabelStyles}>Role</span>
-          <span css={roleValueStyles}>{role}</span>
+          <span css={roleValueStyles}>
+            <strong>{role}</strong>
+          </span>
         </div>
       )}
     </div>

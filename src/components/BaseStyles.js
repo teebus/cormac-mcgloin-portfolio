@@ -386,8 +386,8 @@ const BaseStyles = () => (
         margin-bottom: 1.45rem;
       }
       p {
-        font-size: var(--size-2);
-        letter-spacing: 0.5px;
+        font-size: var(--size-3);
+        letter-spacing: 0.2px;
         margin-left: 0;
         margin-right: 0;
         margin-top: 0;
@@ -663,7 +663,7 @@ const BaseStyles = () => (
 
         --project-title: var(--size-7);
         @media (min-width: 700px) {
-          --project-title: var(--size-9);
+          --project-title: var(--size-8);
         }
       }
 

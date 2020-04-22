@@ -76,7 +76,7 @@ export default ({ data, pageContext }) => {
       margin: 0 var(--size-8) var(--size-4);
     }
     @media (min-width: 896px) {
-      margin: 0 auto var(--size-4);
+      margin: 0 auto var(--size-8);
     }
   `
   const projectContent = css`
@@ -88,10 +88,7 @@ export default ({ data, pageContext }) => {
     margin: 0 var(--size-1);
     max-width: 800px;
     @media (min-width: 700px) {
-      margin: 0 var(--size-8);
-    }
-    @media (min-width: 896px) {
-      margin: 0 auto;
+      margin: 0 auto var(--size-8);
     }
   `
 
