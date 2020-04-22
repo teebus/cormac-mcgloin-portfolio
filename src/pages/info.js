@@ -186,7 +186,7 @@ const InfoPage = ({ data }) => {
           </div>
           <div css={textLine} className="textLine">
             I help companies <strong>understand their customers</strong> and{" "}
-            <strong>grow their&nbsp;products</strong>.
+            <strong>improve their&nbsp;products</strong>.
           </div>
           <div css={textLine} className="textLine">
             I also enjoy{" "}

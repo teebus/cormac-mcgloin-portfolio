@@ -665,6 +665,11 @@ const BaseStyles = () => (
         @media (min-width: 700px) {
           --project-title: var(--size-8);
         }
+
+        --project-sub-title: var(--size-6);
+        @media (min-width: 700px) {
+          --project-sub-title: var(--size-6);
+        }
       }
 
       .darkMode {

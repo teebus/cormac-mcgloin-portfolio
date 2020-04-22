@@ -112,8 +112,6 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Home" />
-
       <div ref={el => (page = el)} css={projectListWrapperStyle}>
         <Header
           logo={Logo}

@@ -66,17 +66,17 @@ export default ({ data, pageContext }) => {
   `
 
   const projectImageStyle = css`
-    margin: 0 var(--size-1) var(--size-4);
+    margin: var(--size-4) var(--size-1);
     max-width: 800px;
     position: relative;
     overflow: hidden;
     text-align: center;
 
     @media (min-width: 700px) {
-      margin: 0 var(--size-8) var(--size-4);
+      margin: var(--size-4) var(--size-8);
     }
     @media (min-width: 896px) {
-      margin: 0 auto var(--size-8);
+      margin: var(--size-8) auto;
     }
   `
   const projectContent = css`
@@ -88,8 +88,13 @@ export default ({ data, pageContext }) => {
     margin: 0 var(--size-1);
     max-width: 800px;
     @media (min-width: 700px) {
-      margin: 0 auto var(--size-8);
+      margin: 0 auto;
     }
+  `
+
+  const projectHeaderStyles = css`
+    font-size: var(--project-sub-title);
+    color: var(--colour-heading);
   `
 
   const imageWidthCheck = ({ node }) => {
@@ -140,8 +145,11 @@ export default ({ data, pageContext }) => {
                               <Zoom>
                                 {imageWidth > 800 ? (
                                   <img
-                                    sizes="(min-width: 800px) 800px, 100vw,"
+                                    sizes="(min-width: 800px) 1600px, 100vw,"
                                     srcSet={[
+                                      urlFor(node.asset)
+                                        .width(3200)
+                                        .url() + ` 3200w`,
                                       urlFor(node.asset)
                                         .width(1600)
                                         .url() + ` 1600w`,
@@ -198,31 +206,31 @@ export default ({ data, pageContext }) => {
       case "h2":
         return (
           <div css={projectContentText}>
-            <h2>{children}</h2>
+            <h2 css={projectHeaderStyles}>{children}</h2>
           </div>
         )
       case "h3":
         return (
           <div css={projectContentText}>
-            <h3>{children}</h3>
+            <h3 css={projectHeaderStyles}>{children}</h3>
           </div>
         )
       case "h4":
         return (
           <div css={projectContentText}>
-            <h4>{children}</h4>
+            <h4 css={projectHeaderStyles}>{children}</h4>
           </div>
         )
       case "h5":
         return (
           <div css={projectContentText}>
-            <h5>{children}</h5>
+            <h5 css={projectHeaderStyles}>{children}</h5>
           </div>
         )
       case "h6":
         return (
           <div css={projectContentText}>
-            <h6>{children}</h6>
+            <h6 css={projectHeaderStyles}>{children}</h6>
           </div>
         )
       case "blockquote":
