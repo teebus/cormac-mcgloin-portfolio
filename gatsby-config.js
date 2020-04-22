@@ -26,24 +26,24 @@ module.exports = {
         icon: `src/images/site-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `gatsby-plugin-google-fonts`,
-      options: {
-        fonts: [`Cabin\:400,700`, `Crimson Text\:400,700`],
-        display: "swap",
-      },
-    },
     // {
-    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   resolve: `gatsby-plugin-google-fonts`,
     //   options: {
-    //     fonts: [
-    //       {
-    //         family: `Cabin`,
-    //         variants: [`400`, `700`],
-    //       },
-    //     ],
+    //     fonts: [`Cabin\:400,700`, `Crimson Text\:400,700`],
+    //     display: "swap",
     //   },
     // },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Cabin`,
+            variants: [`400`, `700`],
+          },
+        ],
+      },
+    },
     {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
