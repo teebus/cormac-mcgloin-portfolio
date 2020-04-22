@@ -231,7 +231,7 @@ const BaseStyles = () => (
         padding-top: 0;
         /* margin-bottom: 1.45rem; */
         margin-bottom: 0;
-        /* display: block; */
+        display: block;
       }
       h1 {
         margin-left: 0;
