@@ -41,7 +41,7 @@ export default {
       name: "projectContent",
       title: "Project content",
       type: "array",
-      of: [{ type: "block" }, { type: "image" }],
+      of: [{ type: "block" }, { type: "galleryItem" }],
     },
     {
       name: "author",

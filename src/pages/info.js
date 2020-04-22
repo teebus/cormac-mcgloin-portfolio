@@ -250,7 +250,7 @@ const InfoPage = ({ data }) => {
                         .width(400)
                         .url() + ` 400w`
                     }
-                    alt={page._rawPageImage.asset._key}
+                    alt="Portrait of Cormac McGloin "
                   />
                 </picture>
               </Tween>

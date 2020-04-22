@@ -98,7 +98,7 @@ export default ({ data, pageContext }) => {
   `
 
   const imageWidthCheck = ({ node }) => {
-    const imageWidth = node.asset.metadata.dimensions.width
+    const imageWidth = node.galleryImage.asset.metadata.dimensions.width
     // console.log(imageWidth)
 
     return (
@@ -147,36 +147,36 @@ export default ({ data, pageContext }) => {
                                   <img
                                     sizes="(min-width: 800px) 1600px, 100vw,"
                                     srcSet={[
-                                      urlFor(node.asset)
+                                      urlFor(node.galleryImage.asset)
                                         .width(3200)
                                         .url() + ` 3200w`,
-                                      urlFor(node.asset)
+                                      urlFor(node.galleryImage.asset)
                                         .width(1600)
                                         .url() + ` 1600w`,
-                                      urlFor(node.asset)
+                                      urlFor(node.galleryImage.asset)
                                         .width(800)
                                         .url() + ` 800w`,
                                     ]}
-                                    src={urlFor(node.asset)
+                                    src={urlFor(node.galleryImage.asset)
                                       .width(800)
                                       .url()}
-                                    alt={node.asset.id}
+                                    alt={node.imageDescription}
                                   />
                                 ) : (
                                   <img
                                     sizes="(min-width: 800px) 400px, 100vw,"
                                     srcSet={[
-                                      urlFor(node.asset)
+                                      urlFor(node.galleryImage.asset)
                                         .width(1600)
                                         .url() + ` 1600w`,
-                                      urlFor(node.asset)
+                                      urlFor(node.galleryImage.asset)
                                         .width(800)
                                         .url() + ` 800w`,
                                     ]}
-                                    src={urlFor(node.asset)
+                                    src={urlFor(node.galleryImage.asset)
                                       .width(800)
                                       .url()}
-                                    alt={node.asset.id}
+                                    alt={node.imageDescription}
                                   />
                                 )}
                               </Zoom>
@@ -341,7 +341,7 @@ export default ({ data, pageContext }) => {
         <BlockContent
           blocks={project._rawProjectContent}
           serializers={{
-            types: { image: imageWidthCheck, block: blockRenderer },
+            types: { galleryItem: imageWidthCheck, block: blockRenderer },
           }}
           css={projectContent}
           className="projectContent"
