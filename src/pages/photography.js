@@ -108,6 +108,14 @@ export default ({ data, pageContext }) => {
           {viewerIsOpen ? (
             <Modal onClose={closeLightbox}>
               <Carousel
+                styles={{
+                  view: () => ({
+                    textAlign: "center",
+                    "& > img": {
+                      display: "initial",
+                    },
+                  }),
+                }}
                 currentIndex={currentImage}
                 views={galleryMap.map(image => ({
                   ...image,
