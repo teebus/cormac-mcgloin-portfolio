@@ -642,6 +642,7 @@ const BaseStyles = () => (
         --colour-heading: #333333;
         --colour-white: #ffffff;
         --colour-page-background: #faf8f6;
+        --colour-logo: #333333;
 
         --micro-size-1: 0.25rem;
         --micro-size-2: 0.5rem;
@@ -677,6 +678,7 @@ const BaseStyles = () => (
         --colour-heading: #faf8f6;
         --colour-white: #000000;
         --colour-page-background: #222222;
+        --colour-logo: #faf8f6;
       }
 
       h1,
