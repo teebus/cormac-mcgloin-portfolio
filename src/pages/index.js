@@ -50,7 +50,7 @@ const projectListWrapperStyle = css`
   min-height: 100vh;
   /* background-image: linear-gradient(to top, #fad0c4 0%, #ffd1ff 100%); */
   /* mix-blend-mode: difference; */
-  background: var(--colour-page-background);
+  /* background: var(--colour-page-background); */
   /* padding: var(--size-10) 0; */
 `
 

@@ -36,16 +36,16 @@ const Layout = ({ children, pageContext }) => {
     <ThemeProvider theme={theme}>
       <BaseStyles />
 
-      {/* <div
+      <div
         css={{
-          position: "absolute",
+          position: "fixed",
           bottom: "10px",
-          left: "10px",
+          right: "var(--size-1)",
           zIndex: "1",
         }}
       >
         <DarkModeSwitch pgaeContext={pageContext} />
-      </div> */}
+      </div>
 
       {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
 
@@ -57,7 +57,12 @@ const Layout = ({ children, pageContext }) => {
           // padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main css={{ background: "var(--colour-page-background)" }}>
+        <main
+          css={{
+            transition: "all 0.5s",
+            background: "var(--colour-page-background)",
+          }}
+        >
           {children}
         </main>
         {/* <footer>

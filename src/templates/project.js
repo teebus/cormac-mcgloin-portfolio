@@ -261,7 +261,7 @@ export default ({ data, pageContext }) => {
       <div
         css={{
           // mixBlendMode: "difference",
-          background: "var(--colour-page-background)",
+          // background: "var(--colour-page-background)",
           overflow: "hidden",
         }}
       >

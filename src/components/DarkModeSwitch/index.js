@@ -8,7 +8,7 @@ const themeType = {
   light: "lightMode",
 }
 
-const DarkModeSwitch = ({ pageContext }) => {
+const DarkModeSwitch = () => {
   const [mode, setMode] = useState(() => {
     if (typeof window !== "undefined") {
       const val = localStorage.getItem("theme")
@@ -44,6 +44,7 @@ const DarkModeSwitch = ({ pageContext }) => {
         role="button"
         tabIndex="0"
         onKeyDown={toggleModeKeyboard}
+        style={{ cursor: "pointer" }}
       >
         {mode === themeType.light ? (
           <img src={Sun} alt="dark mode" />

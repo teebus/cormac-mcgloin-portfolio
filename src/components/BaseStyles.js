@@ -674,7 +674,7 @@ const BaseStyles = () => (
 
       .darkMode {
         --colour-text: #cccccc;
-        --colour-heading: #ffffff;
+        --colour-heading: #faf8f6;
         --colour-white: #000000;
         --colour-page-background: #222222;
       }
