@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import useDarkMode from "use-dark-mode"
 import Sun from "../../images/dark-mode-sun.svg"
 import Moon from "../../images/dark-mode-moon.svg"
@@ -8,14 +8,28 @@ const DarkModeToggle = () => {
     classNameDark: "darkMode",
   })
 
-  console.log(darkMode.useDarkMode)
+  const [mode, setMode] = useState(() => {
+    return darkMode.value
+  })
+
+  const toggleModeKeyboard = e => {
+    if (e.keyCode == 13 || e.keyCode == 32) {
+      setMode(darkMode.toggle)
+    }
+  }
 
   return (
-    <div>
+    <div
+      onClick={darkMode.toggle}
+      onKeyDown={toggleModeKeyboard}
+      role="button"
+      tabIndex="0"
+      style={{ cursor: "pointer" }}
+    >
       {darkMode.value === true ? (
-        <img src={Moon} alt="Turn on dark mode" onClick={darkMode.disable} />
+        <img src={Moon} alt="Turn on dark mode" />
       ) : (
-        <img src={Sun} alt="Turn on light mode" onClick={darkMode.enable} />
+        <img src={Sun} alt="Turn on light mode" />
       )}
     </div>
   )
