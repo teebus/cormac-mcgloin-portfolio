@@ -53,8 +53,6 @@ const Layout = ({ children, pageContext }) => {
         style={{
           margin: `0 auto`,
           position: "relative",
-          // maxWidth: 960,
-          // padding: `0 1.0875rem 1.45rem`,
         }}
       >
         <main
@@ -65,11 +63,6 @@ const Layout = ({ children, pageContext }) => {
         >
           {children}
         </main>
-        {/* <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer> */}
       </div>
     </ThemeProvider>
   )

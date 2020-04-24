@@ -104,13 +104,19 @@ const InfoPage = ({ data }) => {
     visibility: hidden;
   `
 
+  const emailLink = css`
+    &:before {
+      height: 0.25em;
+    }
+  `
+
   const linkStyles = css`
     position: relative;
     color: var(--colour-heading);
     transition: color 0.2s ease-in-out;
     display: inline-block;
     &:hover {
-      color: #fff;
+      color: var(--color-link-highlight-text);
     }
     &:before {
       content: "";
@@ -118,8 +124,8 @@ const InfoPage = ({ data }) => {
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 10px;
-      background: #12a295;
+      height: 0.25em;
+      background: var(--colour-link-highlight);
       transition: height 0.2s ease-in-out;
       z-index: -1;
     }
@@ -211,6 +217,26 @@ const InfoPage = ({ data }) => {
             </TransitionLink>
             .
           </div>
+          {/* <div
+            css={[textLine, { fontSize: "var(--size-6)" }]}
+            className="textLine"
+          >
+            <a href="mailto:hey@cormacmcgloin.com">
+              <span css={[linkStyles, emailLink]}>
+                hey
+                <span
+                  style={{
+                    fontFamily: "Helvetica",
+                    display: "inline-block",
+                    transform: "translateY(4px)",
+                  }}
+                >
+                  @
+                </span>
+                cormacmcgloin.com
+              </span>
+            </a>
+          </div> */}
         </div>
 
         {page.pageImage && (
