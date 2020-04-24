@@ -20,6 +20,7 @@ import theme from "../theme"
 // import Header from "./header"
 // import "./layout.css"
 import BaseStyles from "./BaseStyles.js"
+import DarkModeToggle from "./DarkModeToggle"
 
 const Layout = ({ children, pageContext }) => {
   // const data = useStaticQuery(graphql`
@@ -44,7 +45,9 @@ const Layout = ({ children, pageContext }) => {
           zIndex: "1",
         }}
       >
-        <DarkModeSwitch pgaeContext={pageContext} />
+        {/* <DarkModeSwitch pageContext={pageContext} /> */}
+
+        <DarkModeToggle />
       </div>
 
       {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
