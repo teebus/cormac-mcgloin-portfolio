@@ -58,15 +58,22 @@ export default ({ data, pageContext }) => {
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
   const galleryMap = page._rawGalleryItems.map(image => ({
-    src: urlFor(image.galleryImage.asset).url(),
+    src: urlFor(image.galleryImage.asset)
+      .auto("format")
+      .format("webp")
+      .url(),
     srcSet: [
       // urlFor(image.asset)
       //   .width(1600)
       //   .url() + ` 1600w`,
       urlFor(image.galleryImage.asset)
+        .auto("format")
+        .format("webp")
         .width(800)
         .url() + ` 800w`,
       urlFor(image.galleryImage.asset)
+        .auto("format")
+        .format("webp")
         .width(400)
         .url() + ` 400w`,
     ],
