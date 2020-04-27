@@ -59,14 +59,14 @@ const Header = ({
     {pageType === "home" || pageType === "info" ? (
       <>
         {logoLink ? (
-          <AniLink
-            fade="true"
-            duration={0.2}
-            css={imageLinkStyles}
-            to={logoLink}
-          >
-            {/* <img src={logo} alt="Cormac McGloin logo" /> */}
-            <div css={imageLinkStyles}>
+          <div css={imageLinkStyles}>
+            <AniLink
+              fade="true"
+              duration={0.2}
+              css={imageLinkStyles}
+              to={logoLink}
+            >
+              {/* <img src={logo} alt="Cormac McGloin logo" /> */}
               <svg
                 width="95"
                 height="31"
@@ -90,8 +90,8 @@ const Header = ({
                   <path d="M93.9975 30V16.66H91.1575V25.04L84.9775 16.66H82.0575V30H84.8975V21.3L91.2575 30H93.9975Z" />
                 </g>
               </svg>
-            </div>
-          </AniLink>
+            </AniLink>
+          </div>
         ) : (
           <div css={imageLinkStyles}>
             <svg
