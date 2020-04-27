@@ -177,7 +177,7 @@ const InfoPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title="Info" />
+      <SEO title={page.title} />
       <Header
         logo={Logo}
         rightText="Back to projects"

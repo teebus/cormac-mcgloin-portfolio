@@ -112,6 +112,8 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
+      <SEO description="Product designer based in London, helping businesses understand their customers and improve their products." />
+
       <div ref={el => (page = el)} css={projectListWrapperStyle}>
         <Header
           logo={Logo}

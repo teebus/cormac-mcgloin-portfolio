@@ -4,7 +4,7 @@ const {
 
 module.exports = {
   siteMetadata: {
-    title: `Cormac McGloin | Product Designer`,
+    title: `Cormac McGloin - Product Designer`,
     description: `Product designer based in London, helping businesses understand their customers and improve their products.`,
     author: `Cormac McGloin`,
     siteUrl: `https://www.cormacmcgloin.com`,
