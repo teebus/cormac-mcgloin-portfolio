@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import useDarkMode from "use-dark-mode"
 import Sun from "../../images/dark-mode-sun.svg"
 import Moon from "../../images/dark-mode-moon.svg"
