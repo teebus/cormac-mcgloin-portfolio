@@ -6,12 +6,11 @@ import Moon from "../../images/dark-mode-moon.svg"
 const DarkModeToggle = () => {
   const darkMode = useDarkMode(false, {
     classNameDark: "darkMode",
+    classNameLight: "lightMode",
   })
 
-  let [mode, setMode] = useState(darkMode)
-
   const toggleModeKeyboard = e => {
-    if (e.keyCode === 13) setMode(darkMode.toggle)
+    if (e.keyCode === 13) darkMode.toggle()
   }
 
   return (
