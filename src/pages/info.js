@@ -104,12 +104,6 @@ const InfoPage = ({ data }) => {
     visibility: hidden;
   `
 
-  const emailLink = css`
-    &:before {
-      height: 0.25em;
-    }
-  `
-
   const linkStyles = css`
     position: relative;
     color: var(--colour-heading);

@@ -12,13 +12,9 @@ import PropTypes from "prop-types"
 
 import { jsx } from "@emotion/core"
 import { ThemeProvider } from "emotion-theming"
-// import { ThemeProvider } from "theme-ui"
-import DarkModeSwitch from "../components/DarkModeSwitch"
 
 import theme from "../theme"
 
-// import Header from "./header"
-// import "./layout.css"
 import BaseStyles from "./BaseStyles.js"
 import DarkModeToggle from "./DarkModeToggle"
 
