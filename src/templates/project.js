@@ -271,7 +271,7 @@ export default ({ data, pageContext }) => {
 
   return (
     <Layout>
-      <SEO title={project.title} />
+      <SEO title={project.title} description={project.projectDescription} />
       <div
         css={{
           // mixBlendMode: "difference",
