@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { Global, css, jsx } from "@emotion/core"
+import "typeface-cabin"
 
 const BaseStyles = () => (
   <Global

@@ -48,25 +48,25 @@ module.exports = {
     //     display: "swap",
     //   },
     // },
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Cabin`,
-            variants: [`400`, `700`],
-          },
-        ],
-      },
-    },
-    {
-      resolve: "gatsby-plugin-web-font-loader",
-      options: {
-        google: {
-          families: ["Cabin:400,700", "Crimson Text:400,700"],
-        },
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Cabin`,
+    //         variants: [`400`, `700`],
+    //       },
+    //     ],
+    //   },
+    // },
+    // {
+    //   resolve: "gatsby-plugin-web-font-loader",
+    //   options: {
+    //     google: {
+    //       families: ["Cabin:400,700", "Crimson Text:400,700"],
+    //     },
+    //   },
+    // },
     {
       resolve: "gatsby-source-sanity",
       options: {
