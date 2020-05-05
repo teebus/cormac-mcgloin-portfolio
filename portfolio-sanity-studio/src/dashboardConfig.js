@@ -14,5 +14,15 @@ export default {
         ],
       },
     },
+    {
+      name: "gatsby",
+      options: {
+        sites: [
+          {
+            siteUrl: "<previewInstanceUrl>",
+          },
+        ],
+      },
+    },
   ],
 }
