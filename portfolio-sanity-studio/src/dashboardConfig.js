@@ -19,7 +19,7 @@ export default {
       options: {
         sites: [
           {
-            siteUrl: "<previewInstanceUrl>",
+            siteUrl: "https://cormac-mcgloin-portfolio-8621531355.gtsb.io",
           },
         ],
       },

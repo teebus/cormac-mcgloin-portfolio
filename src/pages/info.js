@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import urlBuilder from "@sanity/image-url"
