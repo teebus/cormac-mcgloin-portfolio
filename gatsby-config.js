@@ -2,6 +2,10 @@ const {
   api: { projectId, dataset },
 } = require("./portfolio-sanity-studio/sanity.json")
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Cormac McGloin - Product Designer`,
