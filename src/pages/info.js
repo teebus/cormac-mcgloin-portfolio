@@ -172,7 +172,12 @@ const InfoPage = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={page.title} />
+      <SEO
+        title={page.title}
+        description="Hey, I’m a product designer based in London.
+I help companies understand their customers and improve their products.
+I also enjoy photography."
+      />
       <Header
         logo={Logo}
         rightText="Back to projects"

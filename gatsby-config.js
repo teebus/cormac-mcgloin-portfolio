@@ -77,8 +77,8 @@ module.exports = {
         projectId,
         dataset,
         token: process.env.SANITY_TOKEN,
-        watchMode: process.env.WATCH_MODE,
         overlayDrafts: process.env.OVERLAY_DRAFTS,
+        watchMode: process.env.WATCH_MODE,
 
         // a token with read permissions is required
         // if you have a private dataset
