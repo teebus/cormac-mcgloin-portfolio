@@ -149,23 +149,23 @@ export default ({ data, pageContext }) => {
                                     srcSet={[
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-                                        .format("webp")
+
                                         .width(3200)
                                         .url() + ` 3200w`,
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-                                        .format("webp")
+
                                         .width(1600)
                                         .url() + ` 1600w`,
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-                                        .format("webp")
+
                                         .width(800)
                                         .url() + ` 800w`,
                                     ]}
                                     src={urlFor(node.galleryImage.asset)
                                       .auto("format")
-                                      .format("webp")
+
                                       .width(800)
                                       .url()}
                                     alt={node.imageDescription}
@@ -176,18 +176,18 @@ export default ({ data, pageContext }) => {
                                     srcSet={[
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-                                        .format("webp")
+
                                         .width(1600)
                                         .url() + ` 1600w`,
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-                                        .format("webp")
+
                                         .width(800)
                                         .url() + ` 800w`,
                                     ]}
                                     src={urlFor(node.galleryImage.asset)
                                       .auto("format")
-                                      .format("webp")
+
                                       .width(800)
                                       .url()}
                                     alt={node.imageDescription}
@@ -305,19 +305,16 @@ export default ({ data, pageContext }) => {
                       srcSet={[
                         urlFor(project._rawProjectHero)
                           .auto("format")
-                          .format("webp")
                           .fit("max")
                           .height(1400)
                           .width(3360) + ` 3360w`,
                         urlFor(project._rawProjectHero)
                           .auto("format")
-                          .format("webp")
                           .fit("max")
                           .height(700)
                           .width(1680) + ` 1680w`,
                         urlFor(project._rawProjectHero)
                           .auto("format")
-                          .format("webp")
                           .fit("max")
                           .height(900)
                           .width(600) + ` 600w`,
@@ -329,13 +326,11 @@ export default ({ data, pageContext }) => {
                       srcSet={[
                         urlFor(project._rawProjectHero)
                           .auto("format")
-                          .format("webp")
                           .fit("crop")
                           .height(1060)
                           .width(750) + ` 750w`,
                         urlFor(project._rawProjectHero)
                           .auto("format")
-                          .format("webp")
                           .fit("crop")
                           .height(1060)
                           .width(750) + ` 750w`,
@@ -345,7 +340,6 @@ export default ({ data, pageContext }) => {
                     <img
                       src={urlFor(project._rawProjectHero)
                         .auto("format")
-                        .format("webp")
                         .width(1060)
                         .height(750)
                         .fit("crop")

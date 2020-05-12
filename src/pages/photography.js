@@ -60,7 +60,6 @@ export default ({ data, pageContext }) => {
   const galleryMap = page._rawGalleryItems.map(image => ({
     src: urlFor(image.galleryImage.asset)
       .auto("format")
-      .format("webp")
       .url(),
     srcSet: [
       // urlFor(image.asset)
@@ -68,12 +67,10 @@ export default ({ data, pageContext }) => {
       //   .url() + ` 1600w`,
       urlFor(image.galleryImage.asset)
         .auto("format")
-        .format("webp")
         .width(800)
         .url() + ` 800w`,
       urlFor(image.galleryImage.asset)
         .auto("format")
-        .format("webp")
         .width(400)
         .url() + ` 400w`,
     ],
