@@ -110,6 +110,7 @@ const InfoPage = ({ data }) => {
     color: var(--colour-heading);
     transition: color 0.2s ease-in-out;
     display: inline-block;
+    font-weight: 700;
     &:hover {
       color: var(--color-link-highlight-text);
     }
@@ -128,6 +129,17 @@ const InfoPage = ({ data }) => {
       &:before {
         height: 90%;
       }
+    }
+  `
+
+  const emailLinkStyles = css`
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: var(--size-3);
+    margin-left: var(--size-2);
+    @media (min-width: 700px) {
+      margin-left: var(--size-4);
     }
   `
 
@@ -217,12 +229,10 @@ I also enjoy photography."
             </TransitionLink>
             .
           </div>
-          {/* <div
-            css={[textLine, { fontSize: "var(--size-6)" }]}
-            className="textLine"
-          >
-            <a href="mailto:hey@cormacmcgloin.com">
-              <span css={[linkStyles, emailLink]}>
+          <div css={[textLine, emailLinkStyles]} className="textLine">
+            Let's chat:&#20;
+            <a href="mailto:hey@cormacmcgloin.com" target="blank">
+              <span css={linkStyles}>
                 hey
                 <span
                   style={{
@@ -236,7 +246,7 @@ I also enjoy photography."
                 cormacmcgloin.com
               </span>
             </a>
-          </div> */}
+          </div>
         </div>
 
         {page.pageImage && (
