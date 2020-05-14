@@ -58,7 +58,7 @@ const InfoPage = ({ data }) => {
     font-size: var(--size-5);
     font-family: var(--font-family-heading);
     color: var(--colour-heading);
-    margin-bottom: var(--size-10);
+    /* margin-bottom: var(--size-10); */
     line-height: var(--line-height-heading);
     @media (min-width: 1024px) {
       flex: 0 0 calc(60% - (var(--size-10)) / 2);
@@ -137,9 +137,9 @@ const InfoPage = ({ data }) => {
     bottom: 0;
     left: 0;
     font-size: var(--size-3);
-    margin-left: var(--size-2);
+    margin: 0 var(--size-2);
     @media (min-width: 700px) {
-      margin-left: var(--size-4);
+      margin: 0 var(--size-4);
     }
   `
 
