@@ -131,15 +131,18 @@ const NextProject = ({
                                     sizes="(min-width: 800px) 1680px, 100vw,"
                                     srcSet={[
                                       urlFor(next._rawProjectHero)
+                                        .auto("format")
                                         .width(1600)
                                         .height(600)
                                         .url() + ` 1600w`,
                                       urlFor(next._rawProjectHero)
+                                        .auto("format")
                                         .width(800)
                                         .height(300)
                                         .url() + ` 800w`,
                                     ]}
                                     src={urlFor(next._rawProjectHero)
+                                      .auto("format")
                                       .width(800)
                                       .height(300)
                                       .url()}
