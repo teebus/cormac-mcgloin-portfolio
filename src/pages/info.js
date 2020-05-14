@@ -133,13 +133,17 @@ const InfoPage = ({ data }) => {
   `
 
   const emailLinkStyles = css`
-    position: absolute;
-    bottom: 0;
-    left: 0;
     font-size: var(--size-3);
-    margin: 0 var(--size-2);
+    margin: 0;
     @media (min-width: 700px) {
-      margin: 0 var(--size-4);
+      position: relative;
+      margin: 0;
+    }
+    @media (min-width: 1025px) {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      margin: 0 var(--size-8) var(--size-8);
     }
   `
 
