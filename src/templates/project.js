@@ -145,49 +145,42 @@ export default ({ data, pageContext }) => {
                               <Zoom>
                                 {imageWidth > 800 ? (
                                   <img
-                                    sizes="(min-width: 800px) 1600px, 100vw,"
+                                    sizes="(min-width: 800px) 1600px, 100vw"
                                     srcSet={[
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-
                                         .width(3200)
                                         .url() + ` 3200w`,
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-
                                         .width(1600)
                                         .url() + ` 1600w`,
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-
                                         .width(800)
                                         .url() + ` 800w`,
                                     ]}
                                     src={urlFor(node.galleryImage.asset)
                                       .auto("format")
-
                                       .width(800)
                                       .url()}
                                     alt={node.imageDescription}
                                   />
                                 ) : (
                                   <img
-                                    sizes="(min-width: 800px) 400px, 100vw,"
+                                    sizes="(min-width: 800px) 400px, 100vw"
                                     srcSet={[
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-
                                         .width(1600)
                                         .url() + ` 1600w`,
                                       urlFor(node.galleryImage.asset)
                                         .auto("format")
-
                                         .width(800)
                                         .url() + ` 800w`,
                                     ]}
                                     src={urlFor(node.galleryImage.asset)
                                       .auto("format")
-
                                       .width(800)
                                       .url()}
                                     alt={node.imageDescription}
