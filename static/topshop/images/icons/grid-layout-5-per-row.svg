@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="22px" viewBox="0 0 28 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>Combined Shape</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M23.5,0 L27.5,0 L27.5,22 L23.5,22 L23.5,0 Z M18,0 L22,0 L22,22 L18,22 L18,0 Z M12,0 L16,0 L16,22 L12,22 L12,0 Z M6,0 L10,0 L10,22 L6,22 L6,0 Z M0,0 L4,0 L4,22 L0,22 L0,0 Z" id="path-1"></path>
+    </defs>
+    <g id="8.1---PLP---Experimental" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PLP---Experimental---Horizontal-Filters---V2----Full-Bleed-Grid-4-Per-Row---Filters-Applied-V2" transform="translate(-251.000000, -134.000000)">
+            <g id="Sort---View-Controls" transform="translate(99.000000, 132.000000)">
+                <g id="Views">
+                    <g id="Grid-Selector" transform="translate(129.000000, 2.000000)">
+                        <g id="5-Per-Row" transform="translate(23.272727, 0.000000)">
+                            <mask id="mask-2" fill="white">
+                                <use xlink:href="#path-1"></use>
+                            </mask>
+                            <use id="Combined-Shape" fill="#D8D8D8" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

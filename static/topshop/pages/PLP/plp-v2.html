@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Topshop - PLP - Experimental - V2</title>
+	<meta name="viewport" content="width=device-width">
+	<link rel="stylesheet" type="text/css" href="../../css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../../js/slick/slick.css"/>
+	<link rel="stylesheet" type="text/css" href="../../js/slick/slick-theme.css"/>
+</head>
+<body id="plp">
+<!--
+	<header id="header_nav">
+		<div class="mobile-nav">
+			<img src="images/icons/menu-icon.png" alt="">
+		</div>
+		<div class="logo">
+			<img src="images/topshop-logo.png" alt="">
+		</div>
+		<div class="navigation">
+			<a href="#"><li>New In</li></a>
+			<a href="#"><li>Clothing</li>
+			<a href="#"><li>Shoes</li>
+			<a href="#"><li>Bags &amp; Accessories</li>
+			<a href="#"><li>Beauty</li></a>
+			<a href="#"><li>Brands</li></a>
+			<a href="#"><li>Sales &amp; Offers</li></a>
+			<a href="#"><li>Magazine</li></a>
+		</div>
+		<div class="nav-functions">
+			<div class="search">
+				<img class="search-icon" src="images/icons/search-icon.png" alt="">
+			</div>
+			<div class="profile">
+				<img class="profile-icon" src="images/icons/profile-icon.png" alt="">
+			</div>
+			<div class="bag">
+				<img class="bag-icon" src="images/icons/bag-icon.png" alt="">
+			</div>
+		</div>
+	</header>
+-->
+<header class="two-tier">
+	<div class="header-top">
+		<div class="country-selector">
+			<img src="../../images/icons/country-selector-icon.png" alt="">
+		</div>
+		<div class="mobile-nav">
+			<img src="../../images/icons/menu-icon.png" alt="">
+		</div>
+		<div class="logo">
+			<img src="../../images/topshop-logo.png" alt="">
+		</div>
+		<div class="nav-functions">
+			<div class="input-container" data-reactid="76">
+				<div class="search-box-icon">
+					<img src="../../images/icons/search-icon.png" alt="">
+				</div>
+				<input type="text" class="input-field" placeholder="Search" name="test" value="" aria-invalid="false" aria-label="Input Label" aria-describedby="test-error" data-reactid="77" style="outline: none;">
+			</div>
+		<!--
+			<div class="search">
+				<img class="search-icon" src="images/icons/search-icon.png" alt="">
+			</div> -->
+			<div class="profile">
+				<img class="profile-icon" src="../../images/icons/profile-label-icon.png" alt="">
+			</div>
+			<div class="bag">
+				<img class="bag-icon" src="../../images/icons/bag-label-icon.png" alt="">
+			</div>
+		</div>
+	</div>
+
+	<div id="header-nav" class="header-nav">
+		<div class="country-selector">
+			<img src="../../images/icons/country-selector-icon.png" alt="">
+		</div>
+		<div class="navigation">
+			<a href="#"><li>New In</li></a>
+			<a href="#"><li>Clothing</li>
+				<a href="#"><li>Shoes</li>
+					<a href="#"><li>Bags &amp; Accessories</li>
+						<a href="#"><li>Beauty</li></a>
+						<a href="#"><li>Brands</li></a>
+						<a href="#"><li>Sales &amp; Offers</li></a>
+						<a href="#"><li>Magazine</li></a>
+					</div>
+					<div class="nav-functions">
+						<div class="input-container" data-reactid="76">
+							<div class="search-box-icon">
+								<img src="../../images/icons/search-icon.png" alt="">
+							</div>
+
+							<input type="text" class="input-field" placeholder="Search" name="test" value="" aria-invalid="false" aria-label="Input Label" aria-describedby="test-error" data-reactid="77" style="outline: none;">
+						</div>
+		<!--
+			<div class="search">
+				<img class="search-icon" src="images/icons/search-icon.png" alt="">
+			</div> -->
+			<div class="profile">
+				<img class="profile-icon" src="../../images/icons/profile-label-icon.png" alt="">
+			</div>
+			<div class="bag">
+				<img class="bag-icon" src="../../images/icons/bag-label-icon.png" alt="">
+			</div>
+		</div>
+	</div>
+
+</header>
+<div id="main-site">
+	<div class="plp-category-container">
+		<div class="plp-layout-selectors">
+			<div class="product-outfit-switcher"><a id="model-view" class="active" href="#/">Outfit</a> | <a id="product-view" href="#/">Product</a></div>
+			<div class="product-size-switcher">
+				<a id="larger-grid" href="#/">
+
+					<svg width="23px" height="22px" viewBox="0 0 23 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<path fill="#D8D8D8" d="M18,0 L22,0 L22,22 L18,22 L18,0 Z M12,0 L16,0 L16,22 L12,22 L12,0 Z M6,0 L10,0 L10,22 L6,22 L6,0 Z M0,0 L4,0 L4,22 L0,22 L0,0 Z" id="path-1"></path>
+					</svg>
+				</a>
+				<a id="smaller-grid" class="active" href="#/">
+
+					<svg width="28px" height="22px" viewBox="0 0 28 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+						<path fill="#D8D8D8" d="M23.5,0 L27.5,0 L27.5,22 L23.5,22 L23.5,0 Z M18,0 L22,0 L22,22 L18,22 L18,0 Z M12,0 L16,0 L16,22 L12,22 L12,0 Z M6,0 L10,0 L10,22 L6,22 L6,0 Z M0,0 L4,0 L4,22 L0,22 L0,0 Z" id="path-1"></path>
+
+
+
+
+					</svg>
+				</a>
+<!--
+<svg width="22px" height="22px" viewBox="0 0 22 22"  fill=" #cccccc" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="grid-icon-two-per-row">
+            <rect id="Rectangle" x="0" y="0" width="10" height="22"></rect>
+            <rect id="Rectangle" x="12" y="0" width="10" height="22"></rect>
+        </g>
+</svg>
+<svg id="four-per-row" width="22px" height="22px" viewBox="0 0 22 22"  fill=" #cccccc" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="grid-icon-two-per-row">
+            <rect id="Rectangle" x="0" y="0" width="6" height="22"></rect>
+            <rect id="Rectangle" x="8" y="0" width="6" height="22"></rect>
+            <rect id="Rectangle" x="16" y="0" width="6" height="22"></rect>
+        </g>
+</svg>
+<svg width="22px" height="22px" viewBox="0 0 22 22"  fill=" #cccccc" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="grid-icon-two-per-row">
+            <rect id="Rectangle" x="0" y="0" width="4" height="22"></rect>
+            <rect id="Rectangle" x="6" y="0" width="4" height="22"></rect>
+            <rect id="Rectangle" x="12" y="0" width="4" height="22"></rect>
+            <rect id="Rectangle" x="18" y="0" width="4" height="22"></rect>
+        </g>
+</svg>
+-->
+</div>
+</div>
+<div class="plp-category-title">
+	<h1 class="plp-title">Tops</h1>
+</div>
+<div class="plp-results">
+	<span class="results">995 results</span>
+</div>
+</div>
+<div class="mobile-filters-container">
+	<div class="mobile-filters">
+		Filter
+	</div>
+	<div class="mobile-sort">
+		<div class="plp-sort-box">
+			<select class="sort-box" name="select" id="select" aria-label="Select label" aria-activedescendant="" role="listbox" data-reactid="144"><option class="Select-select--option " value="Select colour" role="option" data-reactid="145">Sort</option><option class="Select-select--option " value="Team" role="option" data-reactid="146">White</option><option class="Select-select--option " value="Is" role="option" data-reactid="147">Black</option><option class="Select-select--option " value="The" role="option" data-reactid="148">Red</option><option class="Select-select--option " value="Best" role="option" data-reactid="149">Green</option><option class="Select-select--option " value="Team" role="option" data-reactid="150">Blue</option>
+			</select>
+		</div>
+	</div>
+</div>
+<div class="plp-filters-container" data-margin-top="56" data-sticky-wrap>
+	<div class="plp-filters-inner">
+		<div class="plp-filters">
+			<div class="plp-filter">
+				<div class="plp-filter-box">Colour
+				</div>
+				<div class="filter-box-content">
+
+					<ul>
+						<li>
+							<input class="styled-checkbox" id="styled-checkbox-black" type="checkbox" value="value1">
+							<label class="filter-property" for="styled-checkbox-black">Black</label>
+						</li>
+						<li>
+							<input class="styled-checkbox" id="styled-checkbox-white" type="checkbox" value="value1">
+							<label class="filter-property" for="styled-checkbox-white">White</label>
+						</li>
+						<li>
+							<input class="styled-checkbox" id="styled-checkbox-red" type="checkbox" value="value1">
+							<label class="filter-property" for="styled-checkbox-red">Red</label>
+						</li>
+						<li>
+							<input class="styled-checkbox" id="styled-checkbox-blue" type="checkbox" value="value1">
+							<label class="filter-property" for="styled-checkbox-blue">Blue</label>
+						</li>
+						<li>
+							<input class="styled-checkbox" id="styled-checkbox-green" type="checkbox" value="value1">
+							<label class="filter-property" for="styled-checkbox-green">Green</label>
+						</li>
+						<li>
+							<input class="styled-checkbox" id="styled-checkbox-yellow" type="checkbox" value="value1">
+							<label class="filter-property" for="styled-checkbox-yellow">Yellow</label>
+						</li>
+						<li>
+							<input class="styled-checkbox" id="styled-checkbox-purple" type="checkbox" value="value1">
+							<label class="filter-property" for="styled-checkbox-purple">Purple</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="plp-filter">
+				<!-- <select class="plp-filter-box" name="select" id="select" aria-label="Select label" aria-activedescendant="" role="listbox" data-reactid="144"><option class="Select-select--option " value="Select colour" role="option" data-reactid="145">Size</option><option class="Select-select--option " value="Team" role="option" data-reactid="146">White</option><option class="Select-select--option " value="Is" role="option" data-reactid="147">Black</option><option class="Select-select--option " value="The" role="option" data-reactid="148">Red</option><option class="Select-select--option " value="Best" role="option" data-reactid="149">Green</option><option class="Select-select--option " value="Team" role="option" data-reactid="150">Blue</option>
+			</select> -->
+			<div class="plp-filter-box">Size
+			</div>
+			<div class="filter-box-content">
+				<ul>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-size-8" type="checkbox">
+						<label class="filter-property" for="styled-checkbox-size-8">8</label>
+					</li>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-size-10" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-size-10">10</label>
+					</li>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-size-12" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-size-12">12</label>
+					</li>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-size-14" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-size-14">14</label>
+					</li>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-size-16" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-size-16">16</label>
+					</li>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-size-18" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-size-18">18</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="plp-filter" id="fit">
+			<div class="plp-filter-box">Fit
+			</div>
+			<div class="filter-box-content">
+
+				<ul>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-regular" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-regular">Regular</label>
+					</li>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-tall" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-tall">Tall</label>
+					</li>
+					<li>
+						<input class="styled-checkbox" id="styled-checkbox-petite" type="checkbox" value="value1">
+						<label class="filter-property" for="styled-checkbox-petite">Petite</label>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="plp-filter">
+					<div class="plp-filter-box">Price
+			</div>
+			<div class="filter-box-content">
+
+				<ul>
+
+				</ul>
+			</div>
+
+		</div>
+		<div class="plp-filter">
+					<div class="plp-filter-box">Top Style
+			</div>
+			<div class="filter-box-content">
+
+				<ul>
+
+				</ul>
+			</div>
+		</div>
+		<div class="plp-filter">
+					<div class="plp-filter-box">Collection
+			</div>
+			<div class="filter-box-content">
+
+				<ul>
+
+				</ul>
+			</div>
+		</div>
+		<div class="filters-right-side">
+			<div class="plp-sort-box">
+				<select class="sort-box" name="select" id="select" aria-label="Select label" aria-activedescendant="" role="listbox" data-reactid="144"><option class="Select-select--option " value="Select colour" role="option" data-reactid="145">Sort</option><option class="Select-select--option " value="Team" role="option" data-reactid="146">Featured</option><option class="Select-select--option " value="Is" role="option" data-reactid="147">Price: Low - High</option><option class="Select-select--option " value="The" role="option" data-reactid="148">Price: High -Low</option><
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="plp-grid model-view">
+	<div class="plp-product">
+		<div class="plp-product-image">
+			<img class="product-image-model-view" src="../../images/plp/model-image-1.jpg" data-alt-src="../../images/plp/product-image-1.jpg" alt="">
+		</div>
+		<div class="plp-product-info">
+			<span class="mobile-wishlist">
+				<svg class="wishlist-icon" width="24px" height="20px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<path d="M10.5022602,6.97935662 C10.0152051,7.55623425 9.54775876,8.07561163 5.8290617,11 C2.09075594,8.07561163 1.64291829,7.55623425 1.15649576,6.97935662 C-0.634222276,4.86309694 -0.147799749,2.47746103 1.27351549,1.47745646 C2.53859358,0.592452414 4.32994416,0.919328908 5.8290617,2.61246165 C7.32817924,0.938703997 9.11952982,0.592452414 10.3846079,1.47745646 C11.8065557,2.47746103 12.3125869,4.86309694 10.5022602,6.97935662" fill="none" stroke-width="1" stroke="#232323"></path>
+				</svg>
+			</span>
+			<span class="plp-product-title">Boxy Drape Neck T-Shirt - Second Line Example</span>
+			<span class="plp-product-price">£26.00</span>
+		</div>
+	</div>
+	<div class="plp-product">
+		<div class="plp-product-image">
+			<img class="product-image-model-view" src="../../images/plp/model-image-2.jpg" data-alt-src="../../images/plp/product-image-2.jpg" alt="">
+			<div class="plp-product-overlay">
+				<div class="plp-product-overlay-info">
+					<div class="plp-product-functions">
+						<span>
+
+							<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+								<path d="M8.93185027,8.27967201 C9.60513369,7.40801711 10.0106952,6.31070802 10.0106952,5.11657754 C10.0106952,2.29511301 7.76521925,0 5.00534759,0 C2.24547594,0 0,2.29511301 0,5.11657754 C0,7.93804207 2.24547594,10.2331551 5.00534759,10.2331551 C6.04209626,10.2331551 7.00620321,9.90910517 7.80603209,9.35520285 L9.97963636,11.5771094 C10.1297968,11.7308692 10.3269305,11.8074866 10.5240642,11.8074866 C10.7211979,11.8074866 10.9183316,11.7306068 11.068492,11.5768471 C11.3693262,11.26959 11.3693262,10.7710517 11.068492,10.4637947 L8.93185027,8.27967201 L8.93185027,8.27967201 Z M1.02673797,5.11657754 C1.02673797,2.87394225 2.81146524,1.04955437 5.00534759,1.04955437 C7.19922995,1.04955437 8.98395722,2.87394225 8.98395722,5.11657754 C8.98395722,6.23409055 8.54040642,7.24743529 7.82425668,7.98343529 C7.7693262,8.01649626 7.71670588,8.0545426 7.66947594,8.10255971 C7.6386738,8.13404635 7.61326203,8.16841925 7.58887701,8.20357932 C6.89300535,8.81284563 5.99127273,9.18360071 5.00534759,9.18360071 C2.81146524,9.18360071 1.02673797,7.35895045 1.02673797,5.11657754 L1.02673797,5.11657754 Z" id="Shape"></path>
+
+							</svg>
+							Quick View</span>
+							<span>
+
+								<svg class="wishlist-icon" width="16px" height="13px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+									<path d="M10.5022602,6.97935662 C10.0152051,7.55623425 9.54775876,8.07561163 5.8290617,11 C2.09075594,8.07561163 1.64291829,7.55623425 1.15649576,6.97935662 C-0.634222276,4.86309694 -0.147799749,2.47746103 1.27351549,1.47745646 C2.53859358,0.592452414 4.32994416,0.919328908 5.8290617,2.61246165 C7.32817924,0.938703997 9.11952982,0.592452414 10.3846079,1.47745646 C11.8065557,2.47746103 12.3125869,4.86309694 10.5022602,6.97935662" fill="none" stroke-width="1" stroke="#232323"></path>
+
+								</svg>
+								Wishlist</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="plp-product-info">
+					<span class="mobile-wishlist">
+						<svg class="wishlist-icon" width="24px" height="20px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+							<path d="M10.5022602,6.97935662 C10.0152051,7.55623425 9.54775876,8.07561163 5.8290617,11 C2.09075594,8.07561163 1.64291829,7.55623425 1.15649576,6.97935662 C-0.634222276,4.86309694 -0.147799749,2.47746103 1.27351549,1.47745646 C2.53859358,0.592452414 4.32994416,0.919328908 5.8290617,2.61246165 C7.32817924,0.938703997 9.11952982,0.592452414 10.3846079,1.47745646 C11.8065557,2.47746103 12.3125869,4.86309694 10.5022602,6.97935662" fill="none" stroke-width="1" stroke="#232323"></path>
+						</svg>
+					</span>
+					<span class="plp-product-title">MOTO Denim Shirt</span>
+					<span class="plp-product-price">£32.00</span>
+				</div>
+			</div>
+
+			<div class="plp-product">
+				<a href="../../index.html">
+					<div class="plp-product-image">
+						<img class="product-image-model-view" src="../../images/plp/model-image-3.jpg" data-alt-src="../../images/plp/product-image-3.jpg" alt="">
+						<div class="plp-product-overlay">
+							<div class="plp-product-overlay-info">
+								<div class="plp-product-functions">
+									<span>
+										<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+											<path d="M8.93185027,8.27967201 C9.60513369,7.40801711 10.0106952,6.31070802 10.0106952,5.11657754 C10.0106952,2.29511301 7.76521925,0 5.00534759,0 C2.24547594,0 0,2.29511301 0,5.11657754 C0,7.93804207 2.24547594,10.2331551 5.00534759,10.2331551 C6.04209626,10.2331551 7.00620321,9.90910517 7.80603209,9.35520285 L9.97963636,11.5771094 C10.1297968,11.7308692 10.3269305,11.8074866 10.5240642,11.8074866 C10.7211979,11.8074866 10.9183316,11.7306068 11.068492,11.5768471 C11.3693262,11.26959 11.3693262,10.7710517 11.068492,10.4637947 L8.93185027,8.27967201 L8.93185027,8.27967201 Z M1.02673797,5.11657754 C1.02673797,2.87394225 2.81146524,1.04955437 5.00534759,1.04955437 C7.19922995,1.04955437 8.98395722,2.87394225 8.98395722,5.11657754 C8.98395722,6.23409055 8.54040642,7.24743529 7.82425668,7.98343529 C7.7693262,8.01649626 7.71670588,8.0545426 7.66947594,8.10255971 C7.6386738,8.13404635 7.61326203,8.16841925 7.58887701,8.20357932 C6.89300535,8.81284563 5.99127273,9.18360071 5.00534759,9.18360071 C2.81146524,9.18360071 1.02673797,7.35895045 1.02673797,5.11657754 L1.02673797,5.11657754 Z" id="Shape"></path>
+
+										</svg>
+										Quick View</span>
+										<span>
+											<svg class="wishlist-icon" width="16px" height="13px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+
+												<path d="M10.5022602,6.97935662 C10.0152051,7.55623425 9.54775876,8.07561163 5.8290617,11 C2.09075594,8.07561163 1.64291829,7.55623425 1.15649576,6.97935662 C-0.634222276,4.86309694 -0.147799749,2.47746103 1.27351549,1.47745646 C2.53859358,0.592452414 4.32994416,0.919328908 5.8290617,2.61246165 C7.32817924,0.938703997 9.11952982,0.592452414 10.3846079,1.47745646 C11.8065557,2.47746103 12.3125869,4.86309694 10.5022602,6.97935662" fill="none" stroke-width="1" stroke="#232323"></path>
+
+											</svg>
+											Wishlist</span>
+										</div>
+										<hr>
+										<span>Basic Jerseys: 2 for £10</span>
+									</div>
+								</div>
+							</a>
+						</div>
+						<div class="plp-product-info">
+							<span class="mobile-wishlist">
+								<svg class="wishlist-icon" width="24px" height="20px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<path d="M10.5022602,6.97935662 C10.0152051,7.55623425 9.54775876,8.07561163 5.8290617,11 C2.09075594,8.07561163 1.64291829,7.55623425 1.15649576,6.97935662 C-0.634222276,4.86309694 -0.147799749,2.47746103 1.27351549,1.47745646 C2.53859358,0.592452414 4.32994416,0.919328908 5.8290617,2.61246165 C7.32817924,0.938703997 9.11952982,0.592452414 10.3846079,1.47745646 C11.8065557,2.47746103 12.3125869,4.86309694 10.5022602,6.97935662" fill="none" stroke-width="1" stroke="#232323"></path>
+								</svg>
+							</span>
+							<span class="plp-product-title">Short Sleeved Shirt</span>
+							<span class="plp-product-price">£26.00</span>
+							<span class="plp-product-more-colours">More Colours+</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-4.jpg" data-alt-src="../../images/plp/product-image-4.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="mobile-wishlist">
+								<svg class="wishlist-icon" width="24px" height="20px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<path d="M10.5022602,6.97935662 C10.0152051,7.55623425 9.54775876,8.07561163 5.8290617,11 C2.09075594,8.07561163 1.64291829,7.55623425 1.15649576,6.97935662 C-0.634222276,4.86309694 -0.147799749,2.47746103 1.27351549,1.47745646 C2.53859358,0.592452414 4.32994416,0.919328908 5.8290617,2.61246165 C7.32817924,0.938703997 9.11952982,0.592452414 10.3846079,1.47745646 C11.8065557,2.47746103 12.3125869,4.86309694 10.5022602,6.97935662" fill="none" stroke-width="1" stroke="#232323"></path>
+								</svg>
+							</span>
+							<span class="plp-product-title">Save the Future T-Shirt</span>
+							<span class="plp-product-price">£15.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image plp-gallery">
+							<img class="product-image-model-view" src="../../images/plp/model-image-5.jpg" data-alt-src="../../images/plp/product-image-5.jpg" alt="">
+							<img class="product-image-model-view" src="../../images/plp/product-image-5.jpg" data-alt-src="../../images/plp/model-image-5.jpg" alt="">
+							<img class="product-image-model-view" src="../../images/plp/model-image-5.1.jpg" data-alt-src="../../images/plp/model-image-5.1.jpg" alt="">
+							<img class="product-image-model-view" src="../../images/plp/model-image-5.2.jpg" data-alt-src="../../images/plp/model-image-5.2.jpg" alt="">
+							<img class="product-image-model-view" src="../../images/plp/model-image-5.3.jpg" data-alt-src="../../images/plp/model-image-5.3.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="mobile-wishlist">
+								<svg class="wishlist-icon" width="24px" height="20px" viewBox="0 0 14 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+									<path d="M10.5022602,6.97935662 C10.0152051,7.55623425 9.54775876,8.07561163 5.8290617,11 C2.09075594,8.07561163 1.64291829,7.55623425 1.15649576,6.97935662 C-0.634222276,4.86309694 -0.147799749,2.47746103 1.27351549,1.47745646 C2.53859358,0.592452414 4.32994416,0.919328908 5.8290617,2.61246165 C7.32817924,0.938703997 9.11952982,0.592452414 10.3846079,1.47745646 C11.8065557,2.47746103 12.3125869,4.86309694 10.5022602,6.97935662" fill="none" stroke-width="1" stroke="#232323"></path>
+								</svg>
+							</span>
+							<span class="plp-product-title">Moto - Dark Blue Mom Jeans</span>
+							<span class="plp-product-price">£40.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-6.jpg" data-alt-src="../../images/plp/product-image-6.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="plp-product-title">Femme Forever T-Shirt</span>
+							<span class="plp-product-price">£15.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-7.jpg" data-alt-src="../../images/plp/product-image-7.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="plp-product-title">MOTO Fitted Western Denim Jacket</span>
+							<span class="plp-product-price">£32.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-8.jpg" data-alt-src="../../images/plp/product-image-8.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="plp-product-title">Striped Choker Open Back Top</span>
+							<span class="plp-product-price">£32.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-9.jpg" data-alt-src="../../images/plp/product-image-9.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="plp-product-title">Wrap Front Blazer</span>
+							<span class="plp-product-price">£65.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-10.jpg" data-alt-src="../../images/plp/product-image-10.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="plp-product-title">Zip Frill Palazzo Trousers</span>
+							<span class="plp-product-price">£42.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-11.jpg" data-alt-src="../../images/plp/product-image-11.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="plp-product-title">Stripe Swing Dress</span>
+							<span class="plp-product-price">£28.00</span>
+						</div>
+					</div>
+					<div class="plp-product">
+						<div class="plp-product-image">
+							<img class="product-image-model-view" src="../../images/plp/model-image-12.jpg" data-alt-src="../../images/plp/product-image-12.jpg" alt="">
+						</div>
+						<div class="plp-product-info">
+							<span class="plp-product-title">PETITE Indigo Sidney Jeans</span>
+							<span class="plp-product-price">£40.00</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<div class="footer-container">
+					<div class="newsletter-sign-up">
+						<div class="newsletter-title">
+							<h3>Want The Latest Topshop News straight to your inbox?</h3>
+						</div>
+						<div class="newsletter-form">
+							<div class="email-field">
+								<input type="text" class="input-field Input-field-test" placeholder="Enter email address" name="test" value="" aria-invalid="false" aria-label="Input Label" aria-describedby="test-error" data-reactid="77">
+							</div>
+							<div class="country-dropdown">
+								<select class="select-select" name="select" id="select" aria-label="Select label" aria-activedescendant="" role="listbox" data-reactid="144"><option class="Select-select--option " value="Select country" role="option" data-reactid="145">Select country</option><option class="Select-select--option " value="Team" role="option" data-reactid="146">6</option><option class="Select-select--option " value="Is" role="option" data-reactid="147">8</option><option class="Select-select--option " value="The" role="option" data-reactid="148">10</option><option class="Select-select--option " value="Best" role="option" data-reactid="149">12</option><option class="Select-select--option " value="Team" role="option" data-reactid="150">14</option>
+								</select>
+							</div>
+							<button class="button" type="button" role="button" data-reactid="44">Sign up</button>
+						</div>
+					</div>
+					<hr />
+					<div class="footer-columns">
+						<div class="footer-column">
+							<h3>Help</h3>
+							<ul>
+								<a href="#"><li>Store Finder</li></a>
+								<a href="#"><li>Contact Us</li></a>
+								<a href="#"><li>FAQs</li></a>
+								<a href="#"><li>Size Guide &amp; Washcare</li></a>
+								<a href="#"><li>Accessibility</li></a>
+							</ul>
+						</div>
+						<div class="footer-column">
+							<h3>Delivery &amp; Returns</h3>
+							<ul>
+								<a href="#"><li>Delivery</li></a>
+								<a href="#"><li>Returns</li></a>
+								<a href="#"><li>Track your order</li></a>
+								<a href="#"><li>E-receipts</li></a>
+							</ul>
+						</div>
+						<div class="footer-column">
+							<h3>Cards &amp; Offers</h3>
+							<ul>
+								<a href="#"><li>Student Discount</li></a>
+								<a href="#"><li>Gift Cards</li></a>
+								<a href="#"><li>Topshop Card</li></a>
+							</ul>
+						</div>
+						<div class="footer-column">
+							<h3>About Us</h3>
+							<ul>
+								<a href="#"><li>About Topshop</li></a>
+								<a href="#"><li>Careers &amp; Opportunities</li></a>
+								<a href="#"><li>Topshop says Donate</li></a>
+								<a href="#"><li>T&amp;Cs</li></a>
+								<a href="#"><li>Privacy Policy &amp; Cookies</li></a>
+								<a href="#"><li>Responsibilities</li></a>
+							</ul>
+						</div>
+						<div class="footer-column">
+							<h3>Help</h3>
+							<ul>
+								<a href="#"><li>Store Finder</li></a>
+								<a href="#"><li>Contact Us</li></a>
+								<a href="#"><li>FAQs</li></a>
+								<a href="#"><li>Size Guide &amp; Washcare</li></a>
+								<a href="#"><li>Accessibility</li></a>
+							</ul>
+						</div>
+					</div>
+					<hr />
+					<div class="footer-bottom-bar">
+						<div class="footer-social">
+							<h3>Follow Us</h3>
+							<div class="social-icons">
+								<img src="../../images/icons/social/instagram-icon.svg" alt="">
+								<img src="../../images/icons/social/facebook-icon.svg" alt="">
+								<img src="../../images/icons/social/twitter-icon.svg" alt="">
+								<img src="../../images/icons/social/pinterest-icon.svg" alt="">
+								<img src="../../images/icons/social/snapchat-icon.svg" alt="">
+							</div>
+						</div>
+						<div class="topman">
+							<img src="../../images/icons/topman-logo.svg" alt="">
+						</div>
+					</div>
+				</div>
+			</footer>
+			<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+			<script type="text/javascript" src="../../js/slick/slick.js"></script>
+			<script type="text/javascript" src="../../js/jquery.sticky-kit.js"></script>
+			<script type="text/javascript" src="../../js/jquery.sticky.js"></script>
+			<script src="../../js/TweenMax.js"></script>
+			<script src="../../js/ScrollMagic.js"></script>
+			<script src="../../js/animation.gsap.min.js"></script>
+			<script src="../../js/sticky.js"></script>
+			<!-- <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script> -->
+
+			<script type="text/javascript">
+				$(document).on('ready', function() {
+
+
+					$(".plp-gallery").slick({
+						dots: false,
+						arrows: true,
+						infinite: true,
+						speed: 300,
+						slidesToShow: 1,
+						centerMode: false,
+						variableWidth: false
+					});
+
+
+					var sticky = new Sticky('.plp-filters-container');
+
+					var tl = new TimelineMax();
+
+
+// Scroll Events //
+
+var didScroll = false;
+
+window.onscroll = doThisStuffOnScroll;
+
+function doThisStuffOnScroll() {
+	didScroll = true;
+
+	var scrollHeight = $(window).scrollTop();
+	var results = $('.results');
+	var resultsMoved = false;
+
+	if((scrollHeight  >= 200) && (resultsMoved == false)) {
+		$('.plp-sort-box').fadeOut(500, function(){
+			results.detach();
+			$('.filters-right-side').prepend(results);
+			resultsMoved = true;
+		});
+	} else {
+		$('.plp-sort-box').fadeIn(500);
+		results.detach();
+		$('.plp-results').prepend(results);
+		resultsMoved = false;
+	}
+
+}
+
+setInterval(function() {
+	if(didScroll) {
+		didScroll = false;
+        // console.log('You scrolled');
+    }
+}, 100);
+
+
+
+//$(".sticky-test").sticky({topSpacing: 56});
+
+if ($( window ).width() >= 1024) {
+	$("#header-nav").sticky({topSpacing:0, zIndex:99999});
+}else{
+	$(".two-tier").sticky({topSpacing:2, zIndex:99999});
+}
+
+
+$(window).on('resize', function(){
+      var win = $(this); //this = window
+      if (win.width() >= 1024) { 
+      	$("#header-nav").sticky({topSpacing:0, zIndex:99999});
+      }
+      else { 
+      	$(".two-tier").sticky({topSpacing:2, zIndex:99999});
+      }
+  }); 
+
+$( ".nav-functions .input-field" ).click(function() {
+	$(this).toggleClass("search-box-wider");
+});
+
+
+
+/*
+$(".plp-layout-selector a").click(function(){
+	$(this).toggleClass("active");
+});
+*/
+
+$(".product-outfit-switcher, .product-size-switcher").on('click','a', function(){
+	$(this).addClass('active').siblings().removeClass('active');
+})
+
+
+
+/*
+
+$(".product-size-switcher a#larger-grid").click(function(){
+	$(".plp-grid").addClass("four-per-row");
+});
+
+$(".product-size-switcher a#smaller-grid").click(function(){
+	$(".plp-grid").removeClass("four-per-row");
+});
+
+*/
+
+
+
+// Model & Product View Switcher (Hover) //
+
+var sourceSwap = function () {
+	var $this = $(this);
+	var newSource = $this.data('alt-src');
+	$this.data('alt-src', $this.attr('src'));
+	$this.attr('src', newSource);
+}
+
+/*
+$(function() {
+    $('img[data-alt-src]').each(function() { 
+        new Image().src = $(this).data('alt-src'); 
+    }).hover(sourceSwap, sourceSwap);
+});
+*/
+
+
+// Model & Product View Switcher //
+
+var altCheck = 0;
+
+var sourceAlt = function () {
+	var $this = $(this);
+	var newSource = $this.data('alt-src');
+	if (altCheck == 0) {
+		$this.data('alt-src', $this.attr('src'));
+		$this.attr('src', newSource);
+	}
+}
+
+var sourceOriginal = function () {
+	var $this = $(this);
+	var newSource = $this.data('alt-src');
+	if (altCheck == 1) {
+		$this.data('alt-src', $this.attr('src'));
+		$this.attr('src', newSource);
+	}
+}
+
+
+
+function eachImage (imageSrc, altCheckNumber) {
+	$('img[data-alt-src]').each(imageSrc);
+	altCheck = altCheckNumber;
+}
+
+
+$(".product-outfit-switcher a#product-view").on('click', function() {
+	if (altCheck == 0) {
+		setTimeout(function(){
+			var altImage = eachImage(sourceAlt, 1)
+		}, 500 );
+
+		TweenMax.to(".plp-grid", 0.5, {autoAlpha: 0});
+		TweenMax.to(".plp-grid", 0.5, {autoAlpha: 1, delay: 1});
+	}
+});
+
+
+$(".product-outfit-switcher a#model-view").on('click', function() {
+	if (altCheck == 1) {
+		setTimeout(function(){
+			var originalImage = eachImage(sourceOriginal, 0)
+		}, 500
+		);
+		TweenMax.to(".plp-grid", 0.5, {autoAlpha: 0});
+		TweenMax.to(".plp-grid", 0.5, {autoAlpha: 1, delay: 1});
+	}
+});
+
+
+
+/*
+$(".product-outfit-switcher a#model-view").click(function() {
+	tl
+	.to(".plp-grid", 0.5, {autoAlpha: 0})
+	.set(".plp-grid", {className: "-=product-view"})
+	.set(".plp-grid", {className: "+=model-view"})
+	.to(".plp-grid", 0.5, {autoAlpha: 1});
+});
+*/
+// $(".product-outfit-switcher a#product-view").click(function() {
+	/*tl
+	.to(".plp-grid", 0.5, {autoAlpha: 0})
+	.set(".plp-grid", {className: "-=model-view"})
+	.set(".plp-grid", {className: "+=product-view"})
+	.to(".plp-grid", 0.5, {autoAlpha: 1}); */
+// });
+
+
+// Grid Size Swicther //
+
+
+
+$(".product-size-switcher a#larger-grid").click(function() {
+	if ($('.plp-grid.four-per-row').length == 0) {
+		$('.product-size-swicther a svg').addClass('active')
+		tl
+		.to(".plp-grid", 0.5, {autoAlpha: 0})
+		.set(".plp-grid", {className: "+=four-per-row"})
+		.to(".plp-grid", 0.5, {autoAlpha: 1});
+	}
+});
+
+$(".product-size-switcher a#smaller-grid").click(function() {
+	if ($('.plp-grid.four-per-row').length == 1) {
+		tl
+		.to(".plp-grid", 0.5, {autoAlpha: 0})
+		.set(".plp-grid", {className: "-=four-per-row"})
+		.to(".plp-grid", 0.5, {autoAlpha: 1});
+	}
+});
+
+
+
+// Filter Slide Down //
+/*
+$(".plp-filter-box").click(function(){
+	$(this).siblings(".filter-box-content").slideToggle( 500 );
+	$(this).toggleClass('selected');
+}); */
+
+
+
+$(".plp-filter-box").click(function(){
+	$(this).toggleClass("selected"); 
+	if($(".plp-filter-box.selected").not(this).length == 1){
+		$(".plp-filter-box.selected").not(this).siblings(".filter-box-content").slideToggle(500);
+	//$(this).parent().find(".filter-box-content").slideToggle( 500 );
+	//$(this).parent().siblings(".plp-filter-box").toggleClass('selected');
+	//$(this).siblings(".filter-box-content").slideToggle( 500 );
+	
+
+} else {
+
+	$(this).siblings(".filter-box-content").slideToggle( 500 );
+	$(this).toggleClass("selected");
+}
+});
+
+
+// Checkboxes //
+
+
+$("input[type=checkbox]").click(function(){
+	if ($(this).is(':checked')) {
+		$(this).prop('checked', true)
+	} else {
+		$(this).prop('checked', false)
+	}
+	if($("input[type=checkbox]").is(':checked') && ($(".clear-filters").length == 0) ){
+		$(".results").append('<span class="clear-filters"><a href="#/">Clear all filters</a></span>');
+	}
+
+	else if ($("input[type=checkbox]").is(':checked') && ($(".clear-filters").length == 1) ) {
+
+	}
+
+	else {
+		$(".clear-filters").remove();
+	} 
+});
+
+$(".results").on('click', ".clear-filters a", function(){
+	$("input[type=checkbox]").prop('checked', false);
+	$(".clear-filters").remove();
+});
+
+
+
+});
+</script> 
+
+</body>
+</html>

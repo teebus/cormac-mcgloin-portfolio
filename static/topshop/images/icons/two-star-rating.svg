@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="75px" height="12px" viewBox="0 0 75 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Review Stars</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="7.1---PDP---Experimental" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PDP-Experiment-V7" transform="translate(-310.000000, -2812.000000)">
+            <g id="Reviews" transform="translate(300.000000, 2400.000000)">
+                <g id="Content">
+                    <g id="Review-2" transform="translate(7.000000, 412.000000)">
+                        <g id="Rating" transform="translate(3.000000, 0.000000)">
+                            <g id="Review-Stars">
+                                <polygon id="Review-Star-5" fill="#CCCCCC" points="37.4241071 0 35.6205357 3.84 31.5625 4.32 34.268308 7.68 33.8174152 12 37.4241071 10.08048 41.03125 12 40.5803571 7.68 43.2861652 4.32 39.2281295 3.84"></polygon>
+                                <polygon id="Review-Star-4" fill="#CCCCCC" points="53.65625 0 51.8526786 3.84 47.7946429 4.32 50.5004509 7.68 50.049558 12 53.65625 10.08048 57.2633929 12 56.8125 7.68 59.518308 4.32 55.4602723 3.84"></polygon>
+                                <polygon id="Review-Star-3" fill="#CCCCCC" points="68.9866071 0 67.1830357 3.84 63.125 4.32 65.830808 7.68 65.3799152 12 68.9866071 10.08048 72.59375 12 72.1428571 7.68 74.8486652 4.32 70.7906295 3.84"></polygon>
+                                <polygon id="Review-Star-2" fill="#000000" points="22.09375 0 20.2901786 3.84 16.2321429 4.32 18.9379509 7.68 18.487058 12 22.09375 10.08048 25.7008929 12 25.25 7.68 27.955808 4.32 23.8977723 3.84"></polygon>
+                                <polygon id="Review-Star-1" fill="#000000" points="5.86160714 0 4.05803571 3.84 0 4.32 2.70580804 7.68 2.25491518 12 5.86160714 10.08048 9.46875 12 9.01785714 7.68 11.7236652 4.32 7.66562946 3.84"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

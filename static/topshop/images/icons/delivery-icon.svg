@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="16px" viewBox="0 0 23 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>delivery-icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="7.1---PDP---Experimental" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PDP-Experiment---Gallery-Top---How-You-Wear-It-Content-Module" transform="translate(-422.000000, -1884.000000)" fill="#232323">
+            <g id="Value-Proposition" transform="translate(0.000000, 1820.000000)">
+                <g id="Content" transform="translate(238.000000, 62.000000)">
+                    <g id="Free-Home-Delivery-eSpot" transform="translate(0.000000, 2.000000)">
+                        <g id="Content">
+                            <g id="Title---Icon" transform="translate(6.000000, 0.000000)">
+                                <g id="delivery-icon" transform="translate(178.000000, 0.000000)">
+                                    <path d="M17.1222222,7 L17.1222222,2.5 L19.6777778,2.5 L22.2333333,7 L17.1222222,7 Z M20.3695667,2.1485 C20.2369333,1.90325 19.9762667,1.75 19.6923444,1.75 L17.1222222,1.75 L17.1222222,0.75 C17.1222222,0.33575 16.7790111,0 16.3555556,0 L0.766666667,0 C0.343211111,0 0,0.33575 0,0.75 L0,12.25 C0,12.66425 0.343211111,13 0.766666667,13 L1.81418889,13 C2.00381111,11.45125 3.34905556,10.25 4.98333333,10.25 C6.61761111,10.25 7.96285556,11.45125 8.15247778,13 L14.8475222,13 C15.0371444,11.45125 16.3823889,10.25 18.0166667,10.25 C19.6509444,10.25 20.9961889,11.45125 21.1858111,13 L22.2333333,13 C22.6567889,13 23,12.66425 23,12.25 L23,7 L20.3695667,2.1485 Z" id="Fill-1"></path>
+                                    <path d="M5.5,16 C4.12157895,16 3,14.8784211 3,13.5 C3,12.1215789 4.12157895,11 5.5,11 C6.87842105,11 8,12.1215789 8,13.5 C8,14.8784211 6.87842105,16 5.5,16" id="Fill-3"></path>
+                                    <path d="M17.5,16 C16.1215789,16 15,14.8784211 15,13.5 C15,12.1215789 16.1215789,11 17.5,11 C18.8784211,11 20,12.1215789 20,13.5 C20,14.8784211 18.8784211,16 17.5,16" id="Fill-5"></path>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

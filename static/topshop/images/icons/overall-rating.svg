@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="131px" height="17px" viewBox="0 0 131 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>Rating</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="8.54166667 0 6.13690476 5.12 0.726190476 5.76 4.33393452 10.24 3.73274405 16 8.54166667 13.44064 13.3511905 16 12.75 10.24 16.357744 5.76 10.9470298 5.12"></polygon>
+    </defs>
+    <g id="7.1---PDP---Experimental" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PDP-Experiment-V7" transform="translate(-634.000000, -2534.000000)">
+            <g id="Reviews" transform="translate(300.000000, 2400.000000)">
+                <g id="Content">
+                    <g id="Overall-Rating" transform="translate(334.000000, 106.000000)">
+                        <g id="Rating" transform="translate(0.000000, 28.000000)">
+                            <text id="3.5" font-family="Interstate-Regular, Interstate" font-size="14" font-weight="normal" line-spacing="20" letter-spacing="0.200000003" fill="#000000">
+                                <tspan x="110" y="13">3.5</tspan>
+                            </text>
+                            <g id="Review-Stars">
+                                <polygon id="Review-Star-5" fill="#000000" points="49.8988095 0 47.4940476 5.12 42.0833333 5.76 45.6910774 10.24 45.0898869 16 49.8988095 13.44064 54.7083333 16 54.1071429 10.24 57.7148869 5.76 52.3041726 5.12"></polygon>
+                                <g id="Half-Star" transform="translate(63.000000, 0.000000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <use id="Review-Star-4" fill="#000000" xlink:href="#path-1"></use>
+                                    <rect id="Rectangle-4" fill="#D8D8D8" mask="url(#mask-2)" x="9" y="-6" width="9" height="23"></rect>
+                                </g>
+                                <polygon id="Review-Star-3" fill="#CCCCCC" points="91.9821429 0 89.577381 5.12 84.1666667 5.76 87.7744107 10.24 87.1732202 16 91.9821429 13.44064 96.7916667 16 96.1904762 10.24 99.7982202 5.76 94.387506 5.12"></polygon>
+                                <polygon id="Review-Star-2" fill="#000000" points="29.4583333 0 27.0535714 5.12 21.6428571 5.76 25.2506012 10.24 24.6494107 16 29.4583333 13.44064 34.2678571 16 33.6666667 10.24 37.2744107 5.76 31.8636964 5.12"></polygon>
+                                <polygon id="Review-Star-1" fill="#000000" points="7.81547619 0 5.41071429 5.12 0 5.76 3.60774405 10.24 3.00655357 16 7.81547619 13.44064 12.625 16 12.0238095 10.24 15.6315536 5.76 10.2208393 5.12"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

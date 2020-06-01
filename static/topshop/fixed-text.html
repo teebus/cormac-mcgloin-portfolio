@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Editorial Test - Topshop</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" type="text/css" href="/js/slick/slick.css"/>
+  <link rel="stylesheet" type="text/css" href="/js/slick/slick-theme.css"/>
+  <link rel="stylesheet" type="text/css" href="/js/powertip/css/jquery.powertip.css" />
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body id="fixed-text">
+  <header id="header_nav">
+    <div class="mobile-nav">
+      <img src="images/icons/menu-icon.png" alt="">
+    </div>
+    <div class="logo">
+      <img src="images/topshop-logo.png" alt="">
+    </div>
+    <div class="navigation">
+      <a href="#"><li>New In</li></a>
+      <a href="#"><li>Clothing</li>
+        <a href="#"><li>Shoes</li>
+          <a href="#"><li>Bags &amp; Accessories</li>
+            <a href="#"><li>Beauty</li></a>
+            <a href="#"><li>Brands</li></a>
+            <a href="#"><li>Sales &amp; Offers</li></a>
+            <a href="#"><li>Magazine</li></a>
+          </div>
+          <div class="nav-functions">
+            <div class="search">
+              <img class="search-icon" src="images/icons/search-icon.png" alt="">
+            </div>
+            <div class="profile">
+              <img class="profile-icon" src="images/icons/profile-icon.png" alt="">
+            </div>
+            <div class="bag">
+              <img class="bag-icon" src="images/icons/bag-icon.png" alt="">
+            </div>
+          </div>
+          <!-- <img class="object-fit-cover" src="images/header-v2.png" alt=""> -->
+        </header>
+        <div id="main-site">
+
+        <div id="text-container-1" class="fixed-text-container">
+
+          <div class="fixed-text">
+            Testing
+          </div>
+        </div>
+
+        <div id="text-container-2" class="fixed-text-container">
+          <div class="fixed-text">
+            Testing
+          </div>
+        </div>
+
+                <div id="text-container-1" class="fixed-text-container">
+          <div class="fixed-text">
+            Testing
+          </div>
+        </div>
+
+
+        </div>
+
+        <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/js/jquery.sticky-kit.js"></script>
+          <script src="/js/TweenMax.js"></script>
+        <script src="/js/ScrollMagic.js"></script>
+        <script src="/js/animation.gsap.min.js"></script>
+
+
+       <script type="text/javascript">
+        jQuery.fn.center = function () {   
+          this.css("top", (($(window).height() - this.outerHeight()) / 2) + $(window).scrollTop() - 80 + "px");    
+          this.css("left", (($(window).width() - this.outerWidth()) / 2) + $(window).scrollLeft() + "px");     return this; } 
+
+        $(document).on('ready', function() {
+
+
+var controller = new ScrollMagic.Controller();
+
+
+$(window).scroll(function() {
+
+  $('#text-container-1').each(function(){
+
+  var rowScene = new ScrollMagic.Scene({triggerElement: this, triggerHook: 0.7})
+  .addTo(controller);
+      $(this).children('.fixed-text').center()        
+  });
+
+  
+
+});
+
+});
+
+        </script>
+
+        
+
+      </body>
+      </html>
