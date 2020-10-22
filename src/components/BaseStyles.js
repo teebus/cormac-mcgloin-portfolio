@@ -684,7 +684,7 @@ const BaseStyles = () => (
         --colour-page-background: #222222;
         --colour-logo: #faf8f6;
         --colour-link-highlight: #e8b808;
-        --color-link-highlight-text: #333333;
+        --colour-link-highlight-text: #333333;
         --colour-animated-cover: #faf8f6;
       }
 
