@@ -106,6 +106,7 @@ export default ({ data, pageContext }) => {
                     textAlign: "center",
                     "& > img": {
                       display: "initial",
+                      maxHeight: "100vh",
                     },
                   }),
                 }}
