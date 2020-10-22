@@ -295,7 +295,7 @@ I also enjoy photography."
             ref={n => (coverWrapper = n)}
             style={{
               position: "fixed",
-              background: "var(--colour-page-background)",
+              background: "var(--colour-animated-cover)",
               top: 0,
               left: 0,
               width: "100vw",
