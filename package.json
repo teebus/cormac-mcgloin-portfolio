@@ -34,7 +34,7 @@
     "react-dom": "^16.12.0",
     "react-gsap": "^1.2.0",
     "react-helmet": "^5.2.1",
-    "react-images": "^1.1.3",
+    "react-images": "^1.1.7",
     "react-medium-image-zoom": "^4.3.0",
     "react-photo-gallery": "^8.0.0",
     "react-scrollmagic": "^2.2.0",
@@ -50,7 +50,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build",
+    "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby build",
     "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run start --prefix portfolio-sanity-studio & npm run develop",

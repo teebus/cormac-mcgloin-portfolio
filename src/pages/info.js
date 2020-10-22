@@ -147,6 +147,7 @@ const InfoPage = ({ data }) => {
     }
   `
 
+  const pageType = "info"
   const page = { ...data.sanityPage }
 
   useEffect(() => {
@@ -187,18 +188,12 @@ const InfoPage = ({ data }) => {
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
   return (
-    <Layout>
+    <Layout pageType={pageType}>
       <SEO
         title={page.title}
         description="Hey, I’m a product designer based in London.
 I help companies understand their customers and improve their products.
 I also enjoy photography."
-      />
-      <Header
-        logo={Logo}
-        rightText="Back to projects"
-        rightTextLink="/"
-        pageType="info"
       />
 
       <div ref={el => (infoWrapper = el)} css={infoWrapperStyles}>

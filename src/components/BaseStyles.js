@@ -645,7 +645,8 @@ const BaseStyles = () => (
         --colour-page-background: #faf8f6;
         --colour-logo: #333333;
         --colour-link-highlight: #12a295;
-        --color-link-highlight-text: #ffffff;
+        --colour-link-highlight-text: #ffffff;
+        --colour-animated-cover: #111111;
 
         --micro-size-1: 0.25rem;
         --micro-size-2: 0.5rem;
@@ -684,6 +685,7 @@ const BaseStyles = () => (
         --colour-logo: #faf8f6;
         --colour-link-highlight: #e8b808;
         --color-link-highlight-text: #333333;
+        --colour-animated-cover: #faf8f6;
       }
 
       h1,

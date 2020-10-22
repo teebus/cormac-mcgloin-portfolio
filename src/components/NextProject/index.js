@@ -3,16 +3,10 @@ import { css } from "@emotion/core"
 import styled from "@emotion/styled"
 import urlBuilder from "@sanity/image-url"
 
-import { Link } from "gatsby"
-
 import { Controller, Scene } from "react-scrollmagic"
 import { Tween } from "react-gsap"
 
-const NextProject = ({
-  pageContext,
-
-  ...rest
-}) => {
+const NextProject = ({ pageContext, ...rest }) => {
   const { next } = pageContext
 
   const urlFor = source =>
@@ -56,7 +50,7 @@ const NextProject = ({
     }
   `
 
-  const NextProjectLink = styled(Link)`
+  const NextProjectLink = styled.div`
     /* transition: all 0.5s; */
   `
   const NextProjectOverlay = styled.div`
@@ -123,8 +117,8 @@ const NextProject = ({
                             >
                               <div>
                                 <NextProjectLink
-                                  // css={nextProjectLink}
-                                  to={`/project/${next.slug.current}`}
+                                // css={nextProjectLink}
+                                // to={`/project/${next.slug.current}`}
                                 >
                                   <img
                                     css={nextProjectImage}

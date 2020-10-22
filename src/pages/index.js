@@ -5,8 +5,6 @@ import { FadeInFromRight } from "../components/animation"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
-import Header from "../components/Header/index"
-import Logo from "../images/cormac-mcgloin-logo.svg"
 
 import gsap from "gsap"
 
@@ -85,43 +83,65 @@ const projectListItemStyle = theme => css`
 // `
 
 const IndexPage = ({ data }) => {
+  const pageType = "home"
+
   let coverWrapper = useRef(null)
   let page = useRef(null)
 
   const [coverAnimation, setCoverAnimation] = useState()
+  const [coverAnimationPhotography, setCoverAnimationPhotography] = useState()
 
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
 
     setCoverAnimation(
       timeline
-        .set(coverWrapper, { y: "100%" })
         .to(coverWrapper, {
           y: "0%",
-          ease: "power1.easeInOut",
+          ease: "power4.easeOut",
           duration: 0.5,
         })
-        .set(page, { opacity: 0 })
-        .to(coverWrapper, {
-          y: "-100%",
-          ease: "power1.easeIn",
-          duration: 0.5,
-        })
+        // .set(page, { opacity: 0 })
+        .to(
+          coverWrapper,
+          {
+            y: "100%",
+            ease: "power4.easeIn",
+            duration: 0.5,
+          },
+          "+=0.5"
+        )
     )
   }, [setCoverAnimation])
 
+  useEffect(() => {
+    const timeline = gsap.timeline({ paused: true })
+    setCoverAnimationPhotography(
+      timeline
+        .set(coverWrapper, { y: "100%" })
+        .to(coverWrapper, {
+          y: "0%",
+          ease: "power4.easeOut",
+          duration: 0.5,
+        })
+        // .set(page, { opacity: 0 })
+        .to(
+          coverWrapper,
+          {
+            y: "-100%",
+            ease: "power4.easeIn",
+            duration: 0.5,
+          },
+          "+=0.5"
+        )
+    )
+  }, [setCoverAnimationPhotography])
+
   return (
-    <Layout>
+    <Layout pageType={pageType}>
       <SEO description="Product designer based in London, helping businesses understand their customers and improve their products." />
 
       <div ref={el => (page = el)} css={projectListWrapperStyle}>
-        <Header
-          logo={Logo}
-          logoLink={null}
-          rightText="Info"
-          rightTextLink="/info"
-          pageType="home"
-        />
         <ul css={projectListStyle}>
           {/* <div id="test"></div> */}
           <FadeInFromRight duration={0.4} stagger={0.1}>
@@ -133,11 +153,12 @@ const IndexPage = ({ data }) => {
                     preventScrollJump
                     to={`/project/${project.slug.current}`}
                     exit={{
-                      length: 1,
+                      length: 2,
                       trigger: ({ exit }) => coverAnimation.play(),
                     }}
                     entry={{
                       delay: 0.5,
+                      // length: 1,
                     }}
                   >
                     {project.title}
@@ -152,8 +173,8 @@ const IndexPage = ({ data }) => {
                   preventScrollJump
                   to="/photography"
                   exit={{
-                    length: 1,
-                    trigger: ({ exit }) => coverAnimation.play(),
+                    length: 2,
+                    trigger: ({ exit }) => coverAnimationPhotography.play(),
                   }}
                   entry={{
                     delay: 0.5,
@@ -169,12 +190,13 @@ const IndexPage = ({ data }) => {
               ref={n => (coverWrapper = n)}
               style={{
                 position: "fixed",
-                background: "var(--colour-page-background)",
+                background: "var(--colour-animated-cover)",
                 top: 0,
                 left: 0,
                 width: "100vw",
                 height: "100vh",
-                transform: "translateY(100%)",
+                zIndex: "100",
+                transform: "translateY(-100%)",
               }}
             />
           </TransitionPortal>

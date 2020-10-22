@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 import Layout from "../components/layout"
@@ -7,11 +7,12 @@ import urlBuilder from "@sanity/image-url"
 import SEO from "../components/seo"
 import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
-import Header from "../components/Header/index"
 import ProjectInfo from "../components/ProjectInfo"
 import NextProject from "../components/NextProject"
 import { Controller, Scene } from "react-scrollmagic"
+import gsap from "gsap"
 import { Tween } from "react-gsap"
+import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 
 export const query = graphql`
   query($slug: String) {
@@ -37,11 +38,39 @@ export const query = graphql`
 
 export default ({ data, pageContext }) => {
   const project = { ...data.sanityProject }
+  const { next } = pageContext
+
+  const pageType = "project"
+  let coverWrapper = useRef(null)
 
   const urlFor = source =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
-  useEffect(() => {})
+  const [coverAnimation, setCoverAnimation] = useState()
+
+  useEffect(() => {
+    const timeline = gsap.timeline({ paused: true })
+    console.log(next)
+
+    setCoverAnimation(
+      timeline
+        .to(coverWrapper, {
+          y: "0%",
+          ease: "power4.easeOut",
+          duration: 0.5,
+        })
+        // .set(page, { opacity: 0 })
+        .to(
+          coverWrapper,
+          {
+            y: "100%",
+            ease: "power4.easeOut",
+            duration: 1,
+          },
+          "<0.8"
+        )
+    )
+  }, [setCoverAnimation])
 
   const heroStyle = css`
     width: 100%;
@@ -263,7 +292,7 @@ export default ({ data, pageContext }) => {
       : null
 
   return (
-    <Layout>
+    <Layout pageType={pageType}>
       <SEO title={project.title} description={project.projectDescription} />
       <div
         css={{
@@ -272,13 +301,13 @@ export default ({ data, pageContext }) => {
           overflow: "hidden",
         }}
       >
-        <Header
+        {/* <Header
           leftText="Back to projects"
           leftTextLink="/"
           rightText="Info"
           rightTextLink="/info"
           pageType="photography"
-        />
+        /> */}
         {project.projectHero && (
           <Tween
             duration={1}
@@ -359,16 +388,46 @@ export default ({ data, pageContext }) => {
           css={projectContent}
           className="projectContent"
         />
-        <NextProject
-          css={css`
-            margin: var(--size-4) 0;
-            @media (min-width: 700px) {
-              margin: var(--size-11) 0;
-            }
-          `}
-          pageContext={pageContext}
-        />
+        {next && (
+          <TransitionLink
+            css={{ color: "var(--colour-heading)" }}
+            to={`/project/${next.slug.current}`}
+            exit={{
+              length: 2,
+              trigger: ({ exit }) => coverAnimation.play(),
+            }}
+            entry={{
+              delay: 0.5,
+              // length: 1,
+            }}
+          >
+            <NextProject
+              css={css`
+                margin: var(--size-4) 0;
+                @media (min-width: 700px) {
+                  margin: var(--size-11) 0;
+                }
+              `}
+              pageContext={pageContext}
+            />
+          </TransitionLink>
+        )}
       </div>
+      <TransitionPortal>
+        <div
+          ref={n => (coverWrapper = n)}
+          style={{
+            position: "fixed",
+            background: "var(--colour-animated-cover)",
+            top: 0,
+            left: 0,
+            width: "100vw",
+            height: "100vh",
+            zIndex: "100",
+            transform: "translateY(-100%)",
+          }}
+        />
+      </TransitionPortal>
     </Layout>
   )
 }

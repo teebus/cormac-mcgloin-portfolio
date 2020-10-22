@@ -14,11 +14,12 @@ import { jsx } from "@emotion/core"
 import { ThemeProvider } from "emotion-theming"
 
 import theme from "../theme"
+import Header from "../components/Header/index"
 
 import BaseStyles from "./BaseStyles.js"
 import DarkModeToggle from "./DarkModeToggle"
 
-const Layout = ({ children, pageContext }) => {
+const Layout = ({ children, pageContext, pageType }) => {
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
@@ -60,6 +61,7 @@ const Layout = ({ children, pageContext }) => {
             background: "var(--colour-page-background)",
           }}
         >
+          <Header pageType={pageType} />
           {children}
         </main>
       </div>

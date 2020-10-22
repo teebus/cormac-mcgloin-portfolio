@@ -6,7 +6,7 @@ import Gallery from "react-photo-gallery"
 import Carousel, { Modal, ModalGateway } from "react-images"
 import SEO from "../components/seo"
 import Header from "../components/Header/index"
-import "react-medium-image-zoom/dist/styles.css"
+// import "react-medium-image-zoom/dist/styles.css"
 
 export const query = graphql`
   {
@@ -39,6 +39,7 @@ export const query = graphql`
 `
 
 export default ({ data, pageContext }) => {
+  const pageType = "photography"
   const page = { ...data.sanityPage }
 
   const [currentImage, setCurrentImage] = useState(0)
@@ -82,7 +83,7 @@ export default ({ data, pageContext }) => {
   }))
 
   return (
-    <Layout>
+    <Layout pageType={pageType}>
       <SEO title={page.title} description="Photography by Cormac McGloin" />
       <div
         css={{
@@ -91,17 +92,6 @@ export default ({ data, pageContext }) => {
           overflow: "hidden",
         }}
       >
-        <Header
-          leftText="Back to projects"
-          leftTextLink="/"
-          rightText="Info"
-          rightTextLink="/info"
-          pageType="photography"
-        />
-        {/* <div css={pageContentStyle}>
-          <Heading as="h1">{page.title}</Heading>
-        </div> */}
-
         <Gallery
           photos={galleryMap}
           direction="column"
