@@ -50,7 +50,6 @@ export default ({ data, pageContext }) => {
 
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
-    console.log(next)
 
     setCoverAnimation(
       timeline

@@ -86,7 +86,7 @@ const IndexPage = ({ data }) => {
   const pageType = "home"
 
   let coverWrapper = useRef(null)
-  let page = useRef(null)
+  // let page = useRef(null)
 
   const [coverAnimation, setCoverAnimation] = useState()
   const [coverAnimationPhotography, setCoverAnimationPhotography] = useState()
@@ -141,7 +141,10 @@ const IndexPage = ({ data }) => {
     <Layout pageType={pageType}>
       <SEO description="Product designer based in London, helping businesses understand their customers and improve their products." />
 
-      <div ref={el => (page = el)} css={projectListWrapperStyle}>
+      <div
+        // ref={el => (page = el)}
+        css={projectListWrapperStyle}
+      >
         <ul css={projectListStyle}>
           {/* <div id="test"></div> */}
           <FadeInFromRight duration={0.4} stagger={0.1}>

@@ -7,8 +7,6 @@ import { css } from "@emotion/core"
 import gsap from "gsap"
 import { Tween } from "react-gsap"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
-import Header from "../components/Header/index"
-import Logo from "../images/cormac-mcgloin-logo.svg"
 
 export const query = graphql`
   {
