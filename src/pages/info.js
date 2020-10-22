@@ -110,7 +110,7 @@ const InfoPage = ({ data }) => {
     display: inline-block;
     font-weight: 700;
     &:hover {
-      color: var(--color-link-highlight-text);
+      color: var(--colour-link-highlight-text);
     }
     &:before {
       content: "";
