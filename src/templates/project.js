@@ -397,7 +397,10 @@ export default ({ data, pageContext }) => {
             }}
             entry={{
               delay: 0.5,
-              // length: 1,
+              trigger: ({ entry, node }) => {
+                node.style.overflow = "hidden"
+                document.documentElement.scrollTop = 0
+              },
             }}
           >
             <NextProject
