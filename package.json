@@ -9,7 +9,7 @@
     "@emotion/core": "^10.0.27",
     "@emotion/styled": "^10.0.27",
     "@sanity/block-content-to-react": "^2.0.7",
-    "@sanity/image-url": "^0.140.18",
+    "@sanity/image-url": "^0.140.19",
     "dotenv": "^8.2.0",
     "emotion": "^10.0.23",
     "emotion-theming": "^10.0.27",
@@ -51,6 +51,7 @@
   "license": "MIT",
   "scripts": {
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby build",
+    "refresh": "curl -X POST http://localhost:8000/__refresh",
     "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run start --prefix portfolio-sanity-studio & npm run develop",
