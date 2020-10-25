@@ -38,6 +38,7 @@
     "react-medium-image-zoom": "^4.3.0",
     "react-photo-gallery": "^8.0.0",
     "react-scrollmagic": "^2.2.0",
+    "react-transition-group": "^4.4.1",
     "typeface-cabin": "^0.0.72",
     "use-dark-mode": "^2.3.1"
   },

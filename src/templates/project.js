@@ -12,6 +12,7 @@ import NextProject from "../components/NextProject"
 import { gsap } from "gsap/all"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
+import { Transition } from "react-transition-group"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -75,41 +76,36 @@ export default ({ data, pageContext, node }) => {
   let divImageWrapper = []
   let imageWrapper = []
 
+  const [show, setShow] = useState(true)
+
   useEffect(() => {
-    divImageWrapper.forEach((el, index) => {
+    console.log(divImageWrapper)
+
+    divImageWrapper.forEach(el => {
       gsap.from(el, {
         autoAlpha: 0,
         x: "100%",
         ease: "power4.easeOut",
         duration: 0.8,
         scrollTrigger: {
-          id: `section-${index + 1}`,
           trigger: el,
           markers: true,
         },
       })
     })
-    imageWrapper.forEach((el, index) => {
+    imageWrapper.forEach(el => {
       gsap.from(el, {
         autoAlpha: 0,
         x: "-100%",
         ease: "power4.easeOut",
         duration: 0.8,
         scrollTrigger: {
-          id: `section-${index + 1}`,
           trigger: el,
-          markers: true,
+          // markers: true,
         },
       })
     })
   }, [divImageWrapper, imageWrapper])
-
-  // let addToRefs = el => {
-  //   // if (el && !imageWrapper.current.includes(el)) {
-  //   //   imageWrapper.current.push(el)
-  //   // }
-  //   console.log(el)
-  // }
 
   const heroStyle = css`
     width: 100%;
@@ -165,19 +161,54 @@ export default ({ data, pageContext, node }) => {
     color: var(--colour-heading);
   `
 
-  const imageWidthCheck = ({ node, i }) => {
+  const imageWidthCheck = ({ node }) => {
     const imageWidth = node.galleryImage.asset.metadata.dimensions.width
     const imageKey = node._key
 
     return (
+      // <Transition
+      //   mountOnEnter
+      //   in={true}
+      //   appear={true}
+      //   timeout={1000}
+      //   onEnter={node => {
+      //     gsap.from(node, {
+      //       autoAlpha: 0,
+      //       x: "100%",
+      //       ease: "power4.easeOut",
+      //       duration: 0.8,
+      //       scrollTrigger: {
+      //         trigger: node,
+      //         // markers: true,
+      //       },
+      //     })
+      //   }}
+      // >
       <div
         css={projectImageStyle}
         key={imageKey}
         // id={`trigger-${node._key}`}
         ref={el => divImageWrapper.push(el)}
       >
-        <Zoom>
-          {imageWidth > 800 ? (
+        {imageWidth > 800 ? (
+          <Zoom>
+            {/* <Transition
+                unmountOnExit
+                in={true}
+                appear={true}
+                timeout={1000}
+                onEntering={node => {
+                  gsap.from(node, {
+                    autoAlpha: 0,
+                    x: "-100%",
+                    ease: "power4.easeOut",
+                    duration: 0.8,
+                    scrollTrigger: {
+                      trigger: node,
+                    },
+                  })
+                }}
+              > */}
             <img
               sizes="(min-width: 800px) 1600px, 100vw"
               srcSet={[
@@ -201,7 +232,26 @@ export default ({ data, pageContext, node }) => {
               alt={node.imageDescription}
               ref={el => imageWrapper.push(el)}
             />
-          ) : (
+            {/* </Transition> */}
+          </Zoom>
+        ) : (
+          <Zoom>
+            {/* <Transition
+                in={true}
+                appear={true}
+                timeout={1000}
+                onEntered={node => {
+                  gsap.from(node, {
+                    autoAlpha: 0,
+                    x: "-100%",
+                    ease: "power4.easeOut",
+                    duration: 0.8,
+                    scrollTrigger: {
+                      trigger: node,
+                    },
+                  })
+                }}
+              > */}
             <img
               sizes="(min-width: 800px) 400px, 100vw"
               srcSet={[
@@ -219,10 +269,13 @@ export default ({ data, pageContext, node }) => {
                 .width(800)
                 .url()}
               alt={node.imageDescription}
+              ref={el => imageWrapper.push(el)}
             />
-          )}
-        </Zoom>
+            {/* </Transition> */}
+          </Zoom>
+        )}
       </div>
+      // </Transition>
     )
   }
 
