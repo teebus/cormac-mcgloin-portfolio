@@ -13,7 +13,7 @@
     "dotenv": "^8.2.0",
     "emotion": "^10.0.23",
     "emotion-theming": "^10.0.27",
-    "gatsby": "^2.21.8",
+    "gatsby": "^2.24.85",
     "gatsby-cli": "^2.11.8",
     "gatsby-image": "^2.2.44",
     "gatsby-plugin-google-analytics": "^2.2.4",
@@ -52,7 +52,7 @@
   "scripts": {
     "build": "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true ENABLE_GATSBY_REFRESH_ENDPOINT=true gatsby build",
     "refresh": "curl -X POST http://localhost:8000/__refresh",
-    "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
+    "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop -o",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run start --prefix portfolio-sanity-studio & npm run develop",
     "serve": "gatsby serve",

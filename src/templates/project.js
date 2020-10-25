@@ -9,10 +9,11 @@ import Zoom from "react-medium-image-zoom"
 import "react-medium-image-zoom/dist/styles.css"
 import ProjectInfo from "../components/ProjectInfo"
 import NextProject from "../components/NextProject"
-import { Controller, Scene } from "react-scrollmagic"
-import gsap from "gsap"
-import { Tween } from "react-gsap"
+import { gsap } from "gsap/all"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export const query = graphql`
   query($slug: String) {
@@ -36,7 +37,7 @@ export const query = graphql`
   }
 `
 
-export default ({ data, pageContext }) => {
+export default ({ data, pageContext, node }) => {
   const project = { ...data.sanityProject }
   const { next } = pageContext
 
@@ -70,6 +71,45 @@ export default ({ data, pageContext }) => {
         )
     )
   }, [setCoverAnimation])
+
+  let divImageWrapper = []
+  let imageWrapper = []
+
+  useEffect(() => {
+    divImageWrapper.forEach((el, index) => {
+      gsap.from(el, {
+        autoAlpha: 0,
+        x: "100%",
+        ease: "power4.easeOut",
+        duration: 0.8,
+        scrollTrigger: {
+          id: `section-${index + 1}`,
+          trigger: el,
+          markers: true,
+        },
+      })
+    })
+    imageWrapper.forEach((el, index) => {
+      gsap.from(el, {
+        autoAlpha: 0,
+        x: "-100%",
+        ease: "power4.easeOut",
+        duration: 0.8,
+        scrollTrigger: {
+          id: `section-${index + 1}`,
+          trigger: el,
+          markers: true,
+        },
+      })
+    })
+  }, [divImageWrapper, imageWrapper])
+
+  // let addToRefs = el => {
+  //   // if (el && !imageWrapper.current.includes(el)) {
+  //   //   imageWrapper.current.push(el)
+  //   // }
+  //   console.log(el)
+  // }
 
   const heroStyle = css`
     width: 100%;
@@ -125,108 +165,64 @@ export default ({ data, pageContext }) => {
     color: var(--colour-heading);
   `
 
-  const imageWidthCheck = ({ node }) => {
+  const imageWidthCheck = ({ node, i }) => {
     const imageWidth = node.galleryImage.asset.metadata.dimensions.width
-    // console.log(imageWidth)
+    const imageKey = node._key
 
     return (
-      <Controller key={node._key}>
-        <Scene
-          triggerElement={`#trigger-${node._key}`}
-          indicators={false}
-          duration={1}
-          offset={-200}
-          reverse={false}
-        >
-          {(progress, event) => {
-            return (
-              <Tween
-                duration={0.8}
-                from={{ autoAlpha: 0, x: "100%" }}
-                ease="Power4.easeOut"
-                paused
-                playState={scrollTriggerLogic(event)}
-              >
-                <div
-                  css={projectImageStyle}
-                  key={node._key}
-                  id={`trigger-${node._key}`}
-                >
-                  <Controller key={node._key}>
-                    <Scene
-                      triggerElement={`#trigger-${node._key}`}
-                      indicators={false}
-                      duration={1}
-                      offset={-200}
-                      reverse={false}
-                    >
-                      {(progress, event) => {
-                        return (
-                          <Tween
-                            duration={0.8}
-                            from={{ x: "-100%" }}
-                            ease="Power4.easeOut"
-                            paused
-                            playState={scrollTriggerLogic(event)}
-                          >
-                            <div>
-                              <Zoom>
-                                {imageWidth > 800 ? (
-                                  <img
-                                    sizes="(min-width: 800px) 1600px, 100vw"
-                                    srcSet={[
-                                      urlFor(node.galleryImage.asset)
-                                        .auto("format")
-                                        .width(3200)
-                                        .url() + ` 3200w`,
-                                      urlFor(node.galleryImage.asset)
-                                        .auto("format")
-                                        .width(1600)
-                                        .url() + ` 1600w`,
-                                      urlFor(node.galleryImage.asset)
-                                        .auto("format")
-                                        .width(800)
-                                        .url() + ` 800w`,
-                                    ]}
-                                    src={urlFor(node.galleryImage.asset)
-                                      .auto("format")
-                                      .width(800)
-                                      .url()}
-                                    alt={node.imageDescription}
-                                  />
-                                ) : (
-                                  <img
-                                    sizes="(min-width: 800px) 400px, 100vw"
-                                    srcSet={[
-                                      urlFor(node.galleryImage.asset)
-                                        .auto("format")
-                                        .width(1600)
-                                        .url() + ` 1600w`,
-                                      urlFor(node.galleryImage.asset)
-                                        .auto("format")
-                                        .width(800)
-                                        .url() + ` 800w`,
-                                    ]}
-                                    src={urlFor(node.galleryImage.asset)
-                                      .auto("format")
-                                      .width(800)
-                                      .url()}
-                                    alt={node.imageDescription}
-                                  />
-                                )}
-                              </Zoom>
-                            </div>
-                          </Tween>
-                        )
-                      }}
-                    </Scene>
-                  </Controller>
-                </div>
-              </Tween>
-            )
-          }}
-        </Scene>
-      </Controller>
+      <div
+        css={projectImageStyle}
+        key={imageKey}
+        // id={`trigger-${node._key}`}
+        ref={el => divImageWrapper.push(el)}
+      >
+        <Zoom>
+          {imageWidth > 800 ? (
+            <img
+              sizes="(min-width: 800px) 1600px, 100vw"
+              srcSet={[
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(3200)
+                  .url() + ` 3200w`,
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(1600)
+                  .url() + ` 1600w`,
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(800)
+                  .url() + ` 800w`,
+              ]}
+              src={urlFor(node.galleryImage.asset)
+                .auto("format")
+                .width(800)
+                .url()}
+              alt={node.imageDescription}
+              ref={el => imageWrapper.push(el)}
+            />
+          ) : (
+            <img
+              sizes="(min-width: 800px) 400px, 100vw"
+              srcSet={[
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(1600)
+                  .url() + ` 1600w`,
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(800)
+                  .url() + ` 800w`,
+              ]}
+              src={urlFor(node.galleryImage.asset)
+                .auto("format")
+                .width(800)
+                .url()}
+              alt={node.imageDescription}
+            />
+          )}
+        </Zoom>
+      </div>
     )
   }
 
@@ -308,70 +304,70 @@ export default ({ data, pageContext }) => {
           pageType="photography"
         /> */}
         {project.projectHero && (
-          <Tween
-            duration={1}
-            from={{ autoAlpha: 0, y: "-100%" }}
-            ease="Power4.easeOut"
-          >
-            <div css={heroStyle}>
-              <Tween
+          // <Tween
+          //   duration={1}
+          //   from={{ autoAlpha: 0, y: "-100%" }}
+          //   ease="Power4.easeOut"
+          // >
+          <div css={heroStyle}>
+            {/* <Tween
                 duration={1}
                 from={{ autoAlpha: 0, y: "100%" }}
                 ease="Power4.easeOut"
-              >
-                <div>
-                  <picture>
-                    <source
-                      media="(min-width: 800px)"
-                      srcSet={[
-                        urlFor(project._rawProjectHero)
-                          .auto("format")
-                          .fit("max")
-                          .height(1400)
-                          .width(3360) + ` 3360w`,
-                        urlFor(project._rawProjectHero)
-                          .auto("format")
-                          .fit("max")
-                          .height(700)
-                          .width(1680) + ` 1680w`,
-                        urlFor(project._rawProjectHero)
-                          .auto("format")
-                          .fit("max")
-                          .height(900)
-                          .width(600) + ` 600w`,
-                      ]}
-                      sizes="100vw"
-                    />
+              > */}
+            <div>
+              <picture>
+                <source
+                  media="(min-width: 800px)"
+                  srcSet={[
+                    urlFor(project._rawProjectHero)
+                      .auto("format")
+                      .fit("max")
+                      .height(1400)
+                      .width(3360) + ` 3360w`,
+                    urlFor(project._rawProjectHero)
+                      .auto("format")
+                      .fit("max")
+                      .height(700)
+                      .width(1680) + ` 1680w`,
+                    urlFor(project._rawProjectHero)
+                      .auto("format")
+                      .fit("max")
+                      .height(900)
+                      .width(600) + ` 600w`,
+                  ]}
+                  sizes="100vw"
+                />
 
-                    <source
-                      srcSet={[
-                        urlFor(project._rawProjectHero)
-                          .auto("format")
-                          .fit("crop")
-                          .height(1060)
-                          .width(750) + ` 750w`,
-                        urlFor(project._rawProjectHero)
-                          .auto("format")
-                          .fit("crop")
-                          .height(1060)
-                          .width(750) + ` 750w`,
-                      ]}
-                    />
+                <source
+                  srcSet={[
+                    urlFor(project._rawProjectHero)
+                      .auto("format")
+                      .fit("crop")
+                      .height(1060)
+                      .width(750) + ` 750w`,
+                    urlFor(project._rawProjectHero)
+                      .auto("format")
+                      .fit("crop")
+                      .height(1060)
+                      .width(750) + ` 750w`,
+                  ]}
+                />
 
-                    <img
-                      src={urlFor(project._rawProjectHero)
-                        .auto("format")
-                        .width(1060)
-                        .height(750)
-                        .fit("crop")
-                        .url()}
-                      alt={project._rawProjectHero.asset.id}
-                    />
-                  </picture>
-                </div>
-              </Tween>
+                <img
+                  src={urlFor(project._rawProjectHero)
+                    .auto("format")
+                    .width(1060)
+                    .height(750)
+                    .fit("crop")
+                    .url()}
+                  alt={project._rawProjectHero.asset.id}
+                />
+              </picture>
             </div>
-          </Tween>
+            {/* </Tween> */}
+          </div>
+          // </Tween>
         )}
         <ProjectInfo
           title={project.title}
@@ -379,6 +375,7 @@ export default ({ data, pageContext }) => {
           role={project.projectRole}
           css={projectInfoStyles}
         />
+
         <BlockContent
           blocks={project._rawProjectContent}
           serializers={{

@@ -170,15 +170,19 @@ const InfoPage = ({ data }) => {
         .set(coverWrapper, { y: "100%" })
         .to(coverWrapper, {
           y: "0%",
-          ease: "power1.easeInOut",
+          ease: "power4.easeOut",
           duration: 0.5,
         })
         .set(infoWrapper, { opacity: 0 })
-        .to(coverWrapper, {
-          y: "-100%",
-          ease: "power1.easeIn",
-          duration: 0.5,
-        })
+        .to(
+          coverWrapper,
+          {
+            y: "-100%",
+            ease: "power4.easeIn",
+            duration: 0.5,
+          },
+          "+=0.5"
+        )
     )
   }, [setCoverAnimation])
 
@@ -210,7 +214,7 @@ I also enjoy photography."
               preventScrollJump
               to={"/photography"}
               exit={{
-                length: 1,
+                length: 2,
                 trigger: ({ exit }) => coverAnimation.play(),
               }}
               entry={{
