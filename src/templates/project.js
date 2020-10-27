@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react"
+import React, { useRef, useState, useEffect, useCallback } from "react"
 import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 import Layout from "../components/layout"
@@ -13,6 +13,7 @@ import { gsap } from "gsap/all"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 import { Transition } from "react-transition-group"
+import Tween from "react-gsap"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -50,6 +51,8 @@ export default ({ data, pageContext, node }) => {
 
   const [coverAnimation, setCoverAnimation] = useState()
 
+  const [inProp, setInProp] = useState(true)
+
   useEffect(() => {
     const timeline = gsap.timeline({ paused: true })
 
@@ -73,39 +76,41 @@ export default ({ data, pageContext, node }) => {
     )
   }, [setCoverAnimation])
 
-  let divImageWrapper = []
-  let imageWrapper = []
+  let divImageWrapper = useRef([])
 
-  const [show, setShow] = useState(true)
+  let imageWrapper = useRef([])
 
-  useEffect(() => {
-    console.log(divImageWrapper)
+  imageWrapper.current = []
 
-    divImageWrapper.forEach(el => {
-      gsap.from(el, {
-        autoAlpha: 0,
-        x: "100%",
-        ease: "power4.easeOut",
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: el,
-          markers: true,
-        },
-      })
-    })
-    imageWrapper.forEach(el => {
-      gsap.from(el, {
-        autoAlpha: 0,
-        x: "-100%",
-        ease: "power4.easeOut",
-        duration: 0.8,
-        scrollTrigger: {
-          trigger: el,
-          // markers: true,
-        },
-      })
-    })
-  }, [divImageWrapper, imageWrapper])
+  // useEffect(() => {
+  //   console.log(divImageWrapper.current)
+
+  //   divImageWrapper.current.forEach(el => {
+  //     gsap.from(el, {
+  //       autoAlpha: 0,
+  //       x: "100%",
+  //       ease: "power4.easeOut",
+  //       duration: 0.8,
+  //       scrollTrigger: {
+  //         trigger: el,
+  //         markers: true,
+  //       },
+  //     })
+  //   })
+
+  //   imageWrapper.forEach(el => {
+  //     gsap.from(el, {
+  //       autoAlpha: 0,
+  //       x: "-100%",
+  //       ease: "power4.easeOut",
+  //       duration: 0.8,
+  //       scrollTrigger: {
+  //         trigger: el,
+  //         // markers: true,
+  //       },
+  //     })
+  //   })
+  // }, [divImageWrapper])
 
   const heroStyle = css`
     width: 100%;
@@ -135,6 +140,7 @@ export default ({ data, pageContext, node }) => {
     position: relative;
     overflow: hidden;
     text-align: center;
+    display: table;
 
     @media (min-width: 700px) {
       margin: var(--size-4) var(--size-8);
@@ -166,38 +172,38 @@ export default ({ data, pageContext, node }) => {
     const imageKey = node._key
 
     return (
-      // <Transition
-      //   mountOnEnter
-      //   in={true}
-      //   appear={true}
-      //   timeout={1000}
-      //   onEnter={node => {
-      //     gsap.from(node, {
-      //       autoAlpha: 0,
-      //       x: "100%",
-      //       ease: "power4.easeOut",
-      //       duration: 0.8,
-      //       scrollTrigger: {
-      //         trigger: node,
-      //         // markers: true,
-      //       },
-      //     })
-      //   }}
-      // >
-      <div
-        css={projectImageStyle}
-        key={imageKey}
-        // id={`trigger-${node._key}`}
-        ref={el => divImageWrapper.push(el)}
+      // <button onClick={() => setInProp(true)}>Click to Enter</button>
+      <Transition
+        in={inProp}
+        appear={true}
+        timeout={1000}
+        onEnter={node => {
+          gsap.from(node, {
+            autoAlpha: 0,
+            x: "100%",
+            ease: "power4.easeOut",
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: node,
+              // markers: true,
+            },
+          })
+        }}
       >
-        {imageWidth > 800 ? (
-          <Zoom>
-            {/* <Transition
-                unmountOnExit
+        <div
+          css={projectImageStyle}
+          key={imageKey}
+          // id={`trigger-${node._key}`}
+          // ref={el => divImageWrapper.current.push(el)}
+        >
+          {imageWidth > 800 ? (
+            <Zoom>
+              <Transition
                 in={true}
                 appear={true}
                 timeout={1000}
-                onEntering={node => {
+                enter={false}
+                onEnter={node => {
                   gsap.from(node, {
                     autoAlpha: 0,
                     x: "-100%",
@@ -208,39 +214,38 @@ export default ({ data, pageContext, node }) => {
                     },
                   })
                 }}
-              > */}
-            <img
-              sizes="(min-width: 800px) 1600px, 100vw"
-              srcSet={[
-                urlFor(node.galleryImage.asset)
-                  .auto("format")
-                  .width(3200)
-                  .url() + ` 3200w`,
-                urlFor(node.galleryImage.asset)
-                  .auto("format")
-                  .width(1600)
-                  .url() + ` 1600w`,
-                urlFor(node.galleryImage.asset)
-                  .auto("format")
-                  .width(800)
-                  .url() + ` 800w`,
-              ]}
-              src={urlFor(node.galleryImage.asset)
-                .auto("format")
-                .width(800)
-                .url()}
-              alt={node.imageDescription}
-              ref={el => imageWrapper.push(el)}
-            />
-            {/* </Transition> */}
-          </Zoom>
-        ) : (
-          <Zoom>
-            {/* <Transition
+              >
+                <img
+                  sizes="(min-width: 800px) 1600px, 100vw"
+                  srcSet={[
+                    urlFor(node.galleryImage.asset)
+                      .auto("format")
+                      .width(3200)
+                      .url() + ` 3200w`,
+                    urlFor(node.galleryImage.asset)
+                      .auto("format")
+                      .width(1600)
+                      .url() + ` 1600w`,
+                    urlFor(node.galleryImage.asset)
+                      .auto("format")
+                      .width(800)
+                      .url() + ` 800w`,
+                  ]}
+                  src={urlFor(node.galleryImage.asset)
+                    .auto("format")
+                    .width(800)
+                    .url()}
+                  alt={node.imageDescription}
+                />
+              </Transition>
+            </Zoom>
+          ) : (
+            <Zoom>
+              <Transition
                 in={true}
                 appear={true}
                 timeout={1000}
-                onEntered={node => {
+                onEnter={node => {
                   gsap.from(node, {
                     autoAlpha: 0,
                     x: "-100%",
@@ -251,31 +256,30 @@ export default ({ data, pageContext, node }) => {
                     },
                   })
                 }}
-              > */}
-            <img
-              sizes="(min-width: 800px) 400px, 100vw"
-              srcSet={[
-                urlFor(node.galleryImage.asset)
-                  .auto("format")
-                  .width(1600)
-                  .url() + ` 1600w`,
-                urlFor(node.galleryImage.asset)
-                  .auto("format")
-                  .width(800)
-                  .url() + ` 800w`,
-              ]}
-              src={urlFor(node.galleryImage.asset)
-                .auto("format")
-                .width(800)
-                .url()}
-              alt={node.imageDescription}
-              ref={el => imageWrapper.push(el)}
-            />
-            {/* </Transition> */}
-          </Zoom>
-        )}
-      </div>
-      // </Transition>
+              >
+                <img
+                  sizes="(min-width: 800px) 400px, 100vw"
+                  srcSet={[
+                    urlFor(node.galleryImage.asset)
+                      .auto("format")
+                      .width(1600)
+                      .url() + ` 1600w`,
+                    urlFor(node.galleryImage.asset)
+                      .auto("format")
+                      .width(800)
+                      .url() + ` 800w`,
+                  ]}
+                  src={urlFor(node.galleryImage.asset)
+                    .auto("format")
+                    .width(800)
+                    .url()}
+                  alt={node.imageDescription}
+                />
+              </Transition>
+            </Zoom>
+          )}
+        </div>
+      </Transition>
     )
   }
 
@@ -432,7 +436,10 @@ export default ({ data, pageContext, node }) => {
         <BlockContent
           blocks={project._rawProjectContent}
           serializers={{
-            types: { galleryItem: imageWidthCheck, block: blockRenderer },
+            types: {
+              galleryItem: imageWidthCheck,
+              block: blockRenderer,
+            },
           }}
           css={projectContent}
           className="projectContent"
