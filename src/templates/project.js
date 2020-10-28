@@ -450,13 +450,13 @@ export default ({ data, pageContext, node }) => {
           css={projectInfoStyles}
         />
 
-        {project._rawProjectContent.map(image => {
+        {/* {project._rawProjectContent.map(image => {
           if (image._type === "galleryItem") {
             const widthTest = image.galleryImage.asset.metadata.dimensions.width
             console.log(widthTest)
             return widthTest
           }
-        })}
+        })} */}
 
         <BlockContent
           blocks={project._rawProjectContent}
