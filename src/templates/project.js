@@ -77,40 +77,54 @@ export default ({ data, pageContext, node }) => {
   }, [setCoverAnimation])
 
   let divImageWrapper = useRef([])
+  divImageWrapper.current = []
 
   let imageWrapper = useRef([])
-
   imageWrapper.current = []
 
-  // useEffect(() => {
-  //   console.log(divImageWrapper.current)
+  useEffect(() => {
+    divImageWrapper.current.forEach(el => {
+      gsap.from(el, {
+        autoAlpha: 0,
+        x: "800px",
+        ease: "power4.easeOut",
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: el,
+          // markers: true,
+          start: "top center",
+          end: "center center",
+        },
+      })
+    })
 
-  //   divImageWrapper.current.forEach(el => {
-  //     gsap.from(el, {
-  //       autoAlpha: 0,
-  //       x: "100%",
-  //       ease: "power4.easeOut",
-  //       duration: 0.8,
-  //       scrollTrigger: {
-  //         trigger: el,
-  //         markers: true,
-  //       },
-  //     })
-  //   })
+    imageWrapper.current.forEach(el => {
+      gsap.from(el, {
+        autoAlpha: 0,
+        x: "-800px",
+        ease: "power4.easeOut",
+        duration: 0.8,
+        scrollTrigger: {
+          trigger: el,
+          start: "top center",
+          end: "center center",
+          // markers: true,
+        },
+      })
+    })
+  }, [divImageWrapper.current, imageWrapper.current])
 
-  //   imageWrapper.forEach(el => {
-  //     gsap.from(el, {
-  //       autoAlpha: 0,
-  //       x: "-100%",
-  //       ease: "power4.easeOut",
-  //       duration: 0.8,
-  //       scrollTrigger: {
-  //         trigger: el,
-  //         // markers: true,
-  //       },
-  //     })
-  //   })
-  // }, [divImageWrapper])
+  let addToRefsWrapper = el => {
+    if (el && !divImageWrapper.current.includes(el)) {
+      divImageWrapper.current.push(el)
+    }
+  }
+
+  let addToRefsImage = el => {
+    if (el && !imageWrapper.current.includes(el)) {
+      imageWrapper.current.push(el)
+    }
+  }
 
   const heroStyle = css`
     width: 100%;
@@ -140,7 +154,6 @@ export default ({ data, pageContext, node }) => {
     position: relative;
     overflow: hidden;
     text-align: center;
-    display: table;
 
     @media (min-width: 700px) {
       margin: var(--size-4) var(--size-8);
@@ -173,32 +186,33 @@ export default ({ data, pageContext, node }) => {
 
     return (
       // <button onClick={() => setInProp(true)}>Click to Enter</button>
-      <Transition
-        in={inProp}
-        appear={true}
-        timeout={1000}
-        onEnter={node => {
-          gsap.from(node, {
-            autoAlpha: 0,
-            x: "100%",
-            ease: "power4.easeOut",
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: node,
-              // markers: true,
-            },
-          })
-        }}
+      // <Transition
+      //   in={inProp}
+      //   appear={true}
+      //   timeout={1000}
+      //   onEnter={node => {
+      //     gsap.from(node, {
+      //       autoAlpha: 0,
+      //       x: "100%",
+      //       ease: "power4.easeOut",
+      //       duration: 0.8,
+      //       scrollTrigger: {
+      //         trigger: node,
+      //         // markers: true,
+      //       },
+      //     })
+      //   }}
+      // >
+      <div
+        css={projectImageStyle}
+        // key={imageKey}
+        // id={`trigger-${node._key}`}
+        // ref={el => divImageWrapper.current.push(el)}
+        ref={addToRefsWrapper}
       >
-        <div
-          css={projectImageStyle}
-          key={imageKey}
-          // id={`trigger-${node._key}`}
-          // ref={el => divImageWrapper.current.push(el)}
-        >
-          {imageWidth > 800 ? (
-            <Zoom>
-              <Transition
+        {imageWidth > 800 ? (
+          <Zoom>
+            {/* <Transition
                 in={true}
                 appear={true}
                 timeout={1000}
@@ -214,72 +228,75 @@ export default ({ data, pageContext, node }) => {
                     },
                   })
                 }}
-              >
-                <img
-                  sizes="(min-width: 800px) 1600px, 100vw"
-                  srcSet={[
-                    urlFor(node.galleryImage.asset)
-                      .auto("format")
-                      .width(3200)
-                      .url() + ` 3200w`,
-                    urlFor(node.galleryImage.asset)
-                      .auto("format")
-                      .width(1600)
-                      .url() + ` 1600w`,
-                    urlFor(node.galleryImage.asset)
-                      .auto("format")
-                      .width(800)
-                      .url() + ` 800w`,
-                  ]}
-                  src={urlFor(node.galleryImage.asset)
-                    .auto("format")
-                    .width(800)
-                    .url()}
-                  alt={node.imageDescription}
-                />
-              </Transition>
-            </Zoom>
-          ) : (
-            <Zoom>
-              <Transition
-                in={true}
-                appear={true}
-                timeout={1000}
-                onEnter={node => {
-                  gsap.from(node, {
-                    autoAlpha: 0,
-                    x: "-100%",
-                    ease: "power4.easeOut",
-                    duration: 0.8,
-                    scrollTrigger: {
-                      trigger: node,
-                    },
-                  })
-                }}
-              >
-                <img
-                  sizes="(min-width: 800px) 400px, 100vw"
-                  srcSet={[
-                    urlFor(node.galleryImage.asset)
-                      .auto("format")
-                      .width(1600)
-                      .url() + ` 1600w`,
-                    urlFor(node.galleryImage.asset)
-                      .auto("format")
-                      .width(800)
-                      .url() + ` 800w`,
-                  ]}
-                  src={urlFor(node.galleryImage.asset)
-                    .auto("format")
-                    .width(800)
-                    .url()}
-                  alt={node.imageDescription}
-                />
-              </Transition>
-            </Zoom>
-          )}
-        </div>
-      </Transition>
+              > */}
+            <img
+              sizes="(min-width: 800px) 1600px, 100vw"
+              srcSet={[
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(3200)
+                  .url() + ` 3200w`,
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(1600)
+                  .url() + ` 1600w`,
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(800)
+                  .url() + ` 800w`,
+              ]}
+              src={urlFor(node.galleryImage.asset)
+                .auto("format")
+                .width(800)
+                .url()}
+              alt={node.imageDescription}
+              ref={addToRefsImage}
+            />
+
+            {/* </Transition> */}
+          </Zoom>
+        ) : (
+          <Zoom>
+            {/* <Transition
+                  in={true}
+                  appear={true}
+                  timeout={1000}
+                  onEnter={node => {
+                    gsap.from(node, {
+                      autoAlpha: 0,
+                      x: "-100%",
+                      ease: "power4.easeOut",
+                      duration: 0.8,
+                      scrollTrigger: {
+                        trigger: node,
+                      },
+                    })
+                  }}
+                > */}
+            <img
+              sizes="(min-width: 800px) 400px, 100vw"
+              srcSet={[
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(1600)
+                  .url() + ` 1600w`,
+                urlFor(node.galleryImage.asset)
+                  .auto("format")
+                  .width(800)
+                  .url() + ` 800w`,
+              ]}
+              src={urlFor(node.galleryImage.asset)
+                .auto("format")
+                .width(800)
+                .url()}
+              alt={node.imageDescription}
+              ref={addToRefsImage}
+            />
+            {/* </Transition> */}
+          </Zoom>
+        )}
+      </div>
+      // </Transition>
     )
   }
 
@@ -432,6 +449,14 @@ export default ({ data, pageContext, node }) => {
           role={project.projectRole}
           css={projectInfoStyles}
         />
+
+        {project._rawProjectContent.map(image => {
+          if (image._type === "galleryItem") {
+            const widthTest = image.galleryImage.asset.metadata.dimensions.width
+            console.log(widthTest)
+            return widthTest
+          }
+        })}
 
         <BlockContent
           blocks={project._rawProjectContent}
