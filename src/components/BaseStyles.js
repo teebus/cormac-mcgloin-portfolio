@@ -542,9 +542,9 @@ const BaseStyles = () => (
       blockquote *:last-child {
         margin-bottom: 0;
       }
-      li *:last-child {
+      /* li *:last-child {
         margin-bottom: 0;
-      }
+      } */
       p *:last-child {
         margin-bottom: 0;
       }
