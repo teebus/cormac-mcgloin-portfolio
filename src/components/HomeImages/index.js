@@ -5,11 +5,11 @@ import urlBuilder from "@sanity/image-url"
 
 const projectImageWrapper = css`
   position: absolute !important;
-  top: 0;
-  left: 0;
-  /* transform: translate(-50%, -50%); */
+  top: 50%;
+  left: 50%;
+  transform: translate(-90%, -50%);
   width: 100%;
-  max-width: 50vw;
+  max-width: 40vw;
   height: 100%;
   max-height: 50vh;
   opacity: 0;
@@ -17,8 +17,11 @@ const projectImageWrapper = css`
   pointer-events: none;
   transition: opacity 0.5s;
 `
+
 const projectImageWrapperActive = css`
-  opacity: 1;
+  @media (hover: hover) and (pointer: fine) {
+    opacity: 1;
+  }
 `
 const projectImage = css`
   position: absolute;
@@ -90,9 +93,9 @@ export default ({ image, active, imageKey, x, y }) => {
         css={projectImage}
         // fluid={image}
         key={imageKey}
-        style={{
-          transform: `translate(${x - width / 2}px, ${y - height / 2}px)`,
-        }}
+        // style={{
+        //   transform: `translate(${x - width / 2}px, ${y - height / 2}px)`,
+        // }}
         ref={ref}
       />
     </div>

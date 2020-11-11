@@ -77,6 +77,7 @@ const ProjectListLinkStyle = styled(TransitionLink)`
   opacity: 1;
   transition: opacity 0.5s;
   margin: 0 var(--size-2);
+  font-weight: 600;
 
   @media (min-width: 600px) {
     font-size: var(--size-9);
@@ -86,7 +87,7 @@ const ProjectListLinkStyle = styled(TransitionLink)`
     display: none;
 
     @media (min-width: 900px) {
-      display: initial;
+      /* display: initial; */
       content: "/";
       margin-left: var(--size-8);
       opacity: 0.3;
@@ -95,11 +96,11 @@ const ProjectListLinkStyle = styled(TransitionLink)`
 `
 
 const ProjectListItemStyle = styled.li`
-  visibility: hidden;
+  /* visibility: hidden; */
   display: flex;
-  align-items: center;
   width: 100%;
   justify-content: flex-end;
+  margin-bottom: 0;
 
   @media (min-width: 900px) {
     width: initial;
@@ -114,14 +115,14 @@ const ProjectListItemStyle = styled.li`
 const ProjectListStyle = styled.ul`
   position: relative;
   display: flex;
-  flex-flow: row wrap;
-  align-items: flex-end;
+  flex-flow: column wrap;
+  align-items: flex-start;
   justify-content: flex-end;
   text-align: right;
   margin: 0;
   padding: 0;
-  width: 100%;
-  max-width: 80vw;
+  /* width: 100%;
+  max-width: 80vw; */
   list-style: none;
   z-index: 2;
   font-weight: 400;
@@ -133,9 +134,10 @@ const ProjectListStyle = styled.ul`
   }
 
   @media (min-width: 600px) {
-    /* transform: translateX(-25vw); */
-    margin: var(--size-4) auto;
-    justify-content: flex-start;
+    text-align: left;
+    transform: translateX(-15vw);
+    margin: 0 var(--size-10);
+    align-items: flex-start;
   }
 
   &:hover ${ProjectListItemStyle} {
