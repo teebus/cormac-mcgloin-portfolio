@@ -69,7 +69,7 @@ const projectListWrapperStyle = css`
 //   }
 // `
 
-const ProjectListItemStyle = styled(TransitionLink)`
+const ProjectListLinkStyle = styled(TransitionLink)`
   flex: 1 100%;
   max-width: 100%;
   font-size: var(--size-6);
@@ -81,6 +81,34 @@ const ProjectListItemStyle = styled(TransitionLink)`
   @media (min-width: 600px) {
     font-size: var(--size-9);
   }
+
+  &:after {
+    display: none;
+
+    @media (min-width: 900px) {
+      display: initial;
+      content: "/";
+      margin-left: var(--size-8);
+      opacity: 0.3;
+    }
+  }
+`
+
+const ProjectListItemStyle = styled.li`
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
+
+  @media (min-width: 900px) {
+    width: initial;
+    justify-content: flex-start;
+  }
+
+  &:last-of-type ${ProjectListLinkStyle}:after {
+    display: none;
+  }
 `
 
 const ProjectListStyle = styled.ul`
@@ -88,8 +116,9 @@ const ProjectListStyle = styled.ul`
   display: flex;
   flex-flow: row wrap;
   align-items: flex-end;
+  justify-content: flex-end;
   text-align: right;
-  margin: var(--size-4) auto;
+  margin: 0;
   padding: 0;
   width: 100%;
   max-width: 80vw;
@@ -105,6 +134,8 @@ const ProjectListStyle = styled.ul`
 
   @media (min-width: 600px) {
     /* transform: translateX(-25vw); */
+    margin: var(--size-4) auto;
+    justify-content: flex-start;
   }
 
   &:hover ${ProjectListItemStyle} {
@@ -253,17 +284,12 @@ const IndexPage = ({ data }) => {
           {data.allSanityProject.edges.map(({ node: project }, index) => {
             return (
               <>
-                <li
+                <ProjectListItemStyle
                   ref={addToRefs}
-                  css={css`
-                    visibility: hidden;
-                    display: flex;
-                    align-items: center;
-                  `}
                   key={project.slug.current}
                 >
-                  <h2 key={project.slug.current}>
-                    <ProjectListItemStyle
+                  <span key={project.slug.current}>
+                    <ProjectListLinkStyle
                       onMouseEnter={() => setActiveIndex(index)}
                       onMouseLeave={() => setActiveIndex(-1)}
                       index={index}
@@ -280,17 +306,17 @@ const IndexPage = ({ data }) => {
                       }}
                     >
                       {project.title}
-                    </ProjectListItemStyle>
-                  </h2>
-                  <Divider>/</Divider>
-                </li>
+                    </ProjectListLinkStyle>
+                  </span>
+                  {/* <Divider>/</Divider> */}
+                </ProjectListItemStyle>
               </>
             )
           })}
 
-          <li css={{ visibility: "hidden" }} ref={addToRefs}>
-            <h2>
-              <ProjectListItemStyle
+          <ProjectListItemStyle ref={addToRefs}>
+            <span>
+              <ProjectListLinkStyle
                 preventScrollJump
                 to="/photography"
                 exit={{
@@ -302,9 +328,9 @@ const IndexPage = ({ data }) => {
                 }}
               >
                 Photography
-              </ProjectListItemStyle>
-            </h2>
-          </li>
+              </ProjectListLinkStyle>
+            </span>
+          </ProjectListItemStyle>
 
           <TransitionPortal>
             <div
