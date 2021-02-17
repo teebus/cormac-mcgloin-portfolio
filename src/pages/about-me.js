@@ -145,7 +145,7 @@ const InfoPage = ({ data }) => {
     }
   `
 
-  const pageType = "info"
+  const pageType = "aboutMe"
   const page = { ...data.sanityPage }
 
   useEffect(() => {

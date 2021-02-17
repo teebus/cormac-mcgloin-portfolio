@@ -49,7 +49,7 @@ const Header = ({
   leftText,
   rightText,
   leftTextLink = "/",
-  rightTextLink = "/info",
+  rightTextLink = "/about-me",
   logoLink = "/",
   pageType,
 }) => {
@@ -82,7 +82,7 @@ const Header = ({
   return (
     // <div css={headerStyles}>
     <>
-      {pageType === "home" || pageType === "info" ? (
+      {pageType === "home" || pageType === "aboutMe" ? (
         <>
           {logoLink ? (
             <Link css={imageLinkStyles} to="/">
@@ -98,7 +98,7 @@ const Header = ({
           )}
 
           <Link css={rightTextlinkStyles} to={rightTextLink}>
-            Info
+            About me
           </Link>
         </>
       ) : (
@@ -108,7 +108,7 @@ const Header = ({
           </Link>
 
           <Link css={rightTextlinkStyles} to={rightTextLink}>
-            Info
+            About me
           </Link>
         </>
       )}
