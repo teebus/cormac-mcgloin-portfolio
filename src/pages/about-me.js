@@ -10,7 +10,7 @@ import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 
 export const query = graphql`
   {
-    sanityPage(slug: { current: { eq: "info" } }) {
+    sanityPage(slug: { current: { eq: "about-me" } }) {
       slug {
         current
       }
