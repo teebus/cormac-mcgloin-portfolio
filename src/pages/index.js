@@ -180,20 +180,20 @@ const projectImage = css`
   height: auto;
 `
 
-const useMousePosition = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+// const useMousePosition = () => {
+//   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
-  useEffect(() => {
-    const updateMousePosition = event => {
-      setMousePosition({ x: event.clientX, y: event.clientY })
-    }
-    window.addEventListener("mousemove", updateMousePosition)
+//   useEffect(() => {
+//     const updateMousePosition = event => {
+//       setMousePosition({ x: event.clientX, y: event.clientY })
+//     }
+//     window.addEventListener("mousemove", updateMousePosition)
 
-    return () => window.removeEventListener("mousemove", updateMousePosition)
-  }, [])
+//     return () => window.removeEventListener("mousemove", updateMousePosition)
+//   }, [])
 
-  return mousePosition
-}
+//   return mousePosition
+// }
 
 const IndexPage = ({ data }) => {
   const pageType = "home"
@@ -209,7 +209,7 @@ const IndexPage = ({ data }) => {
 
   const [activeIndex, setActiveIndex] = useState(-1)
 
-  const { x, y } = useMousePosition()
+  // c"onst { x, y } = useMousePosition()"
 
   // console.log(x, y)
 
@@ -353,19 +353,18 @@ const IndexPage = ({ data }) => {
 
         {data.allSanityProject.edges.map(({ node: project }, index) => {
           const isActive = index === activeIndex
-          const xPos = x
-          const yPos = y
+          // const xPos = x
+          // const yPos = y
 
           const image = project._rawProjectHero.asset
-
           return (
             <HomeImages
               image={image}
-              // key={project.slug.current}
+              key={project.slug.current}
               imageKey={project.slug.current}
               active={isActive}
-              x={xPos}
-              y={yPos}
+              // x={xPos}
+              // y={yPos}
             />
           )
         })}

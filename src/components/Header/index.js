@@ -78,42 +78,92 @@ const Header = ({
       </g>
     </svg>
   )
-
-  return (
-    // <div css={headerStyles}>
-    <>
-      {pageType === "home" || pageType === "aboutMe" ? (
-        <>
-          {logoLink ? (
-            <Link css={imageLinkStyles} to="/">
-              {/* <img src={logo} alt="Cormac McGloin logo" /> */}
-              <Logo />
-            </Link>
-          ) : (
+  console.log(pageType)
+  function RenderHeader({ pageType }) {
+    switch (pageType) {
+      case "home":
+        return (
+          <>
             <div css={imageLinkStyles}>
               <Logo />
             </div>
+            <Link css={rightTextlinkStyles} to={rightTextLink}>
+              About me
+            </Link>
+          </>
+        )
+      case "aboutMe":
+        return (
+          <>
+            <Link css={imageLinkStyles} to="/">
+              <Logo />
+            </Link>
+            <Link css={rightTextlinkStyles} to="/">
+              Back to projects
+            </Link>
+          </>
+        )
+      case "project":
+        return (
+          <>
+            <Link css={leftTextLinkStyles} to="/">
+              Back to projects
+            </Link>
+            <Link css={rightTextlinkStyles} to="/about-me">
+              About me
+            </Link>
+          </>
+        )
+      default:
+        return (
+          <>
+            <Link css={imageLinkStyles} to="/">
+              <Logo />
+            </Link>
 
-            // <img src={logo} alt="Cormac McGloin logo" css={imageLinkStyles} />
-          )}
+            <Link css={rightTextlinkStyles} to={rightTextLink}>
+              About me
+            </Link>
+          </>
+        )
+    }
+  }
 
-          <Link css={rightTextlinkStyles} to={rightTextLink}>
-            About me
-          </Link>
-        </>
-      ) : (
-        <>
-          <Link css={leftTextLinkStyles} to={leftTextLink}>
-            Back to projects
-          </Link>
+  return <RenderHeader pageType={pageType} />
+  // <>
+  // <div css={headerStyles}>
+  // <>
+  //   {pageType === "home" || pageType === "aboutMe" ? (
+  //     <>
+  //       {logoLink ? (
+  //         <Link css={imageLinkStyles} to="/">
+  //           {/* <img src={logo} alt="Cormac McGloin logo" /> */}
+  //           <Logo />
+  //         </Link>
+  //       ) : (
+  //         <div css={imageLinkStyles}>
+  //           <Logo />
+  //         </div>
 
-          <Link css={rightTextlinkStyles} to={rightTextLink}>
-            About me
-          </Link>
-        </>
-      )}
-    </>
-  )
+  //         // <img src={logo} alt="Cormac McGloin logo" css={imageLinkStyles} />
+  //       )}
+
+  //       <Link css={rightTextlinkStyles} to={rightTextLink}>
+  //         About me
+  //       </Link>
+  //     </>
+  //   ) : (
+  //     <>
+  //       <Link css={leftTextLinkStyles} to={leftTextLink}>
+  //         Back to projects
+  //       </Link>
+
+  //       <Link css={rightTextlinkStyles} to={rightTextLink}>
+  //         About me
+  //       </Link>
+  //     </>
+  //   )}
+  // </>
 }
 
 export default Header
