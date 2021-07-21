@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useLayoutEffect } from "react"
 import Img from "gatsby-image"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import urlBuilder from "@sanity/image-url"
 
 const projectImageWrapper = css`
@@ -34,7 +34,7 @@ const projectImage = css`
   transition: transform 0.2s;
 `
 
-const getDimensionsObject = node => {
+const getDimensionsObject = (node) => {
   const rect = node.getBoundingClientRect()
   return {
     width: rect.width,
@@ -46,7 +46,7 @@ const useSize = () => {
   const [dimensions, setDimensions] = useState({})
   const [node, setNode] = useState(null)
 
-  const ref = useCallback(node => {
+  const ref = useCallback((node) => {
     setNode(node)
   }, [])
 
@@ -63,7 +63,7 @@ const useSize = () => {
 export default ({ image, active, imageKey, x, y }) => {
   const [ref, { width, height }] = useSize()
 
-  const urlFor = source =>
+  const urlFor = (source) =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
   return (
@@ -71,23 +71,11 @@ export default ({ image, active, imageKey, x, y }) => {
       <img
         sizes="(min-width: 800px) 1600px, 100vw"
         srcSet={[
-          urlFor(image)
-            .auto("format")
-            .width(3200)
-            .url() + ` 3200w`,
-          urlFor(image)
-            .auto("format")
-            .width(1600)
-            .url() + ` 1600w`,
-          urlFor(image)
-            .auto("format")
-            .width(800)
-            .url() + ` 800w`,
+          urlFor(image).auto("format").width(3200).url() + ` 3200w`,
+          urlFor(image).auto("format").width(1600).url() + ` 1600w`,
+          urlFor(image).auto("format").width(800).url() + ` 800w`,
         ]}
-        src={urlFor(image)
-          .auto("format")
-          .width(800)
-          .url()}
+        src={urlFor(image).auto("format").width(800).url()}
         alt=""
         // src={image}
         css={projectImage}

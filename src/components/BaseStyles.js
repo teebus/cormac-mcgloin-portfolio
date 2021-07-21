@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { Global, css, jsx } from "@emotion/core"
+import { Global, css, jsx } from "@emotion/react"
 import "typeface-cabin"
 
 const BaseStyles = () => (
   <Global
-    styles={theme => css`
+    styles={(theme) => css`
       /* @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;700&display=swap"); */
       html {
         font-family: var(--font-family-body);

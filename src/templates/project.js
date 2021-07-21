@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import BlockContent from "@sanity/block-content-to-react"
 import Layout from "../components/layout"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import urlBuilder from "@sanity/image-url"
 import SEO from "../components/seo"
 import Zoom from "react-medium-image-zoom"
@@ -16,7 +16,7 @@ import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
 gsap.registerPlugin(ScrollTrigger)
 
 export const query = graphql`
-  query($slug: String) {
+  query ($slug: String) {
     sanityProject(slug: { current: { eq: $slug } }) {
       title
       projectDescription
@@ -27,9 +27,7 @@ export const query = graphql`
       _rawProjectHero(resolveReferences: { maxDepth: 5 })
       projectHero {
         asset {
-          fluid {
-            ...GatsbySanityImageFluid_noBase64
-          }
+          gatsbyImageData
         }
       }
       _rawProjectContent(resolveReferences: { maxDepth: 5 })
@@ -44,7 +42,7 @@ export default ({ data, pageContext, node }) => {
   const pageType = "project"
   let coverWrapper = useRef(null)
 
-  const urlFor = source =>
+  const urlFor = (source) =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
   const [coverAnimation, setCoverAnimation] = useState()
@@ -80,7 +78,7 @@ export default ({ data, pageContext, node }) => {
 
   useEffect(() => {
     console.log(divImageWrapper.current)
-    divImageWrapper.current.forEach(el => {
+    divImageWrapper.current.forEach((el) => {
       gsap.from(el, {
         autoAlpha: 0,
         x: "800px",
@@ -95,7 +93,7 @@ export default ({ data, pageContext, node }) => {
       })
     })
 
-    imageWrapper.current.forEach(el => {
+    imageWrapper.current.forEach((el) => {
       gsap.from(el, {
         autoAlpha: 0,
         x: "-800px",
@@ -111,13 +109,13 @@ export default ({ data, pageContext, node }) => {
     })
   }, [divImageWrapper.current, imageWrapper.current])
 
-  let addToRefsWrapper = el => {
+  let addToRefsWrapper = (el) => {
     if (el && !divImageWrapper.current.includes(el)) {
       divImageWrapper.current.push(el)
     }
   }
 
-  let addToRefsImage = el => {
+  let addToRefsImage = (el) => {
     if (el && !imageWrapper.current.includes(el)) {
       imageWrapper.current.push(el)
     }
@@ -289,7 +287,7 @@ export default ({ data, pageContext, node }) => {
     }
   }
 
-  const scrollTriggerLogic = event =>
+  const scrollTriggerLogic = (event) =>
     event.type === "enter" && event.scrollDirection === "FORWARD"
       ? "play"
       : event.type === "enter" && event.scrollDirection === "REVERSE"
@@ -435,7 +433,7 @@ export default ({ data, pageContext, node }) => {
       </div>
       <TransitionPortal>
         <div
-          ref={n => (coverWrapper = n)}
+          ref={(n) => (coverWrapper = n)}
           style={{
             position: "fixed",
             background: "var(--colour-animated-cover)",

@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import urlBuilder from "@sanity/image-url"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import gsap from "gsap"
 import { Tween } from "react-gsap"
 import TransitionLink, { TransitionPortal } from "gatsby-plugin-transition-link"
@@ -18,9 +18,7 @@ export const query = graphql`
       _rawPageImage(resolveReferences: { maxDepth: 5 })
       pageImage {
         asset {
-          fluid {
-            ...GatsbySanityImageFluid_noBase64
-          }
+          gatsbyImageData
         }
       }
     }
@@ -186,7 +184,7 @@ const InfoPage = ({ data }) => {
     )
   }, [setCoverAnimation])
 
-  const urlFor = source =>
+  const urlFor = (source) =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
   return (
@@ -198,7 +196,7 @@ I help companies understand their customers and improve their products.
 I also enjoy photography."
       />
 
-      <div ref={el => (infoWrapper = el)} css={infoWrapperStyles}>
+      <div ref={(el) => (infoWrapper = el)} css={infoWrapperStyles}>
         <div css={infoText}>
           <div css={textLine} className="textLine">
             Hey, I’m a <strong>product designer</strong> based in&nbsp;London.
@@ -296,7 +294,7 @@ I also enjoy photography."
         )}
         <TransitionPortal>
           <div
-            ref={n => (coverWrapper = n)}
+            ref={(n) => (coverWrapper = n)}
             style={{
               position: "fixed",
               background: "var(--colour-animated-cover)",

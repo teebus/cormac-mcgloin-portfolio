@@ -26,9 +26,7 @@ export const query = graphql`
                 aspectRatio
               }
             }
-            fluid {
-              src
-            }
+            gatsbyImageData
           }
         }
         imageDescription
@@ -54,25 +52,19 @@ export default ({ data, pageContext }) => {
     setViewerIsOpen(false)
   }
 
-  const urlFor = source =>
+  const urlFor = (source) =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
-  const galleryMap = page._rawGalleryItems.map(image => ({
-    src: urlFor(image.galleryImage.asset)
-      .auto("format")
-      .url(),
+  const galleryMap = page._rawGalleryItems.map((image) => ({
+    src: urlFor(image.galleryImage.asset).auto("format").url(),
     srcSet: [
       // urlFor(image.asset)
       //   .width(1600)
       //   .url() + ` 1600w`,
-      urlFor(image.galleryImage.asset)
-        .auto("format")
-        .width(800)
-        .url() + ` 800w`,
-      urlFor(image.galleryImage.asset)
-        .auto("format")
-        .width(400)
-        .url() + ` 400w`,
+      urlFor(image.galleryImage.asset).auto("format").width(800).url() +
+        ` 800w`,
+      urlFor(image.galleryImage.asset).auto("format").width(400).url() +
+        ` 400w`,
     ],
     sizes: ["(min-width: 800px) 400px, 100vw"],
     width: image.galleryImage.asset.metadata.dimensions.width,
@@ -111,7 +103,7 @@ export default ({ data, pageContext }) => {
                   }),
                 }}
                 currentIndex={currentImage}
-                views={galleryMap.map(image => ({
+                views={galleryMap.map((image) => ({
                   ...image,
                   // srcset: image.srcSet,
                   caption: image.title,

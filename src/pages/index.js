@@ -7,7 +7,7 @@ import React, {
 } from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import { Global, css } from "@emotion/core"
+import { Global, css } from "@emotion/react"
 import styled from "@emotion/styled"
 import { FadeInFromRight } from "../components/animation"
 import Layout from "../components/layout"
@@ -33,9 +33,7 @@ export const query = graphql`
           _rawProjectHero(resolveReferences: { maxDepth: 5 })
           projectHero {
             asset {
-              fluid {
-                ...GatsbySanityImageFluid_noBase64
-              }
+              gatsbyImageData
             }
           }
         }
@@ -271,7 +269,7 @@ const IndexPage = ({ data }) => {
     )
   }, [setCoverAnimationPhotography])
 
-  let addToRefs = el => {
+  let addToRefs = (el) => {
     if (el && !divWrapper.current.includes(el)) {
       divWrapper.current.push(el)
     }
@@ -336,7 +334,7 @@ const IndexPage = ({ data }) => {
 
           <TransitionPortal>
             <div
-              ref={n => (coverWrapper = n)}
+              ref={(n) => (coverWrapper = n)}
               style={{
                 position: "fixed",
                 background: "var(--colour-animated-cover)",

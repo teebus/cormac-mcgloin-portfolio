@@ -1,5 +1,5 @@
 import React from "react"
-import { css } from "@emotion/core"
+import { css } from "@emotion/react"
 import styled from "@emotion/styled"
 import urlBuilder from "@sanity/image-url"
 
@@ -9,7 +9,7 @@ import { Tween } from "react-gsap"
 const NextProject = ({ pageContext, ...rest }) => {
   const { next } = pageContext
 
-  const urlFor = source =>
+  const urlFor = (source) =>
     urlBuilder({ projectId: "z8jm8zku", dataset: "production" }).image(source)
 
   const nextProject = css`
@@ -67,7 +67,7 @@ const NextProject = ({ pageContext, ...rest }) => {
     } */
   `
 
-  const scrollTriggerLogic = event =>
+  const scrollTriggerLogic = (event) =>
     event.type === "enter" && event.scrollDirection === "FORWARD"
       ? "play"
       : event.type === "enter" && event.scrollDirection === "REVERSE"

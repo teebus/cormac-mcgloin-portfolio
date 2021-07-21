@@ -10,8 +10,8 @@
 import PropTypes from "prop-types"
 // import { useStaticQuery, graphql } from "gatsby"
 
-import { jsx } from "@emotion/core"
-import { ThemeProvider } from "emotion-theming"
+import { jsx } from "@emotion/react"
+import { ThemeProvider } from "@emotion/react"
 
 import theme from "../theme"
 import Header from "../components/Header/index"
